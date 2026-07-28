@@ -22,7 +22,7 @@ function App(): React.JSX.Element {
           </a>
         </div>
         <div className="action">
-          <button type="button" onClick={ipcHandle}>
+          <button type="button" className="rounded-full bg-red-500 p-2 font-semibold text-sm" onClick={ipcHandle}>
             Send IPC
           </button>
         </div>

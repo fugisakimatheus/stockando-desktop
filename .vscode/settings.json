@@ -59,7 +59,7 @@
   },
   "emmet.showExpandedAbbreviation": "never",
   "tailwindCSS.emmetCompletions": true,
-  "tailwindCSS.experimental.configFile": "packages/design-system/styles/globals.css",
+  "tailwindCSS.experimental.configFile": "src/renderer/src/globals.css",
   "biome.requireConfiguration": true,
   "biome.suggestInstallingGlobally": false,
   "biome.lsp.bin": {
