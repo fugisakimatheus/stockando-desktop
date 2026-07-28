@@ -1,0 +1,73 @@
+{
+  "[prisma]": {
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "always",
+    "source.organizeImports.biome": "always"
+  },
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.fontLigatures": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "terminal.integrated.scrollback": 100000,
+  "scss.lint.unknownAtRules": "ignore",
+  "css.lint.unknownAtRules": "ignore",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.ts, ${capture}.*.ts",
+    "*.js": "${capture}.js, ${capture}.*.js",
+    "*.jsx": "${capture}.jsx, ${capture}.*.jsx",
+    "*.tsx": "${capture}.tsx, ${capture}.*.tsx",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.db": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.s3db": "${capture}.${extname}-*"
+  },
+  "emmet.showExpandedAbbreviation": "never",
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.experimental.configFile": "packages/design-system/styles/globals.css",
+  "biome.requireConfiguration": true,
+  "biome.suggestInstallingGlobally": false,
+  "biome.lsp.bin": {
+    "darwin-arm64": "./node_modules/@biomejs/cli-darwin-arm64/biome",
+    "darwin-x64": "./node_modules/@biomejs/cli-darwin-x64/biome",
+    "linux-arm64": "./node_modules/@biomejs/cli-linux-arm64/biome",
+    "linux-x64": "./node_modules/@biomejs/cli-linux-x64/biome",
+    "win32-arm64": "./node_modules/@biomejs/cli-win32-arm64/biome.exe",
+    "win32-x64": "./node_modules/@biomejs/cli-win32-x64/biome.exe"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "skills": {
+    "architecture-decision-records": {
+      "source": "affaan-m/ECC",
+      "sourceType": "github",
+      "skillPath": "skills/architecture-decision-records/SKILL.md",
+      "computedHash": "8291e07421c0bac735aafb1107f8b43d3efb17197489936bacd36f09657a9307"
+    },
+    "compound-components": {
+      "source": "hzblj/skills",
+      "sourceType": "github",
+      "skillPath": "skills/shared/ui/compound-components/SKILL.md",
+      "computedHash": "8fa2af04a4d4a8ca1a09b1f084a4bcbbda5234978426de15588ae0732d141774"
+    },
+    "drizzle": {
+      "source": "lobehub/lobehub",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/drizzle/SKILL.md",
+      "computedHash": "c826b51d435fb0448f10309f00979b9be62ea380505166234b816fd617cd1a93"
+    },
+    "elysiajs": {
+      "source": "midudev/autoskills",
+      "sourceType": "github",
+      "skillPath": "packages/autoskills/skills-registry/elysiajs/SKILL.md",
+      "computedHash": "a0d60a807b0bfe39a0189629795bded40d2355a2d2cc682c27368b3903b8eca7"
+    },
+    "error-handling": {
+      "source": "affaan-m/ECC",
+      "sourceType": "github",
+      "skillPath": "skills/error-handling/SKILL.md",
+      "computedHash": "ef344b42af4c8912d4acca91e7a10212a079220004e0fc0ac43dfccd569d136a"
+    },
+    "feature-sliced-design": {
+      "source": "feature-sliced/skills",
+      "sourceType": "github",
+      "skillPath": "feature-sliced-design/SKILL.md",
+      "computedHash": "c57a32d524addae35b41b07bbfdd35eea3d85b3d0bd8f4779032eb31b62e5ce9"
+    },
+    "github-actions-templates": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/github-actions-templates/SKILL.md",
+      "computedHash": "0e9ef6482d18da53dfc766dcb483222cd4a61c79702d1fb9f42e34fb6d1f81b6"
+    },
+    "shadcn": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/shadcn/SKILL.md",
+      "computedHash": "1d9eca48714f0298a91c2743d05b7f45bacd2ff1d44ece55c3ff32f4a93cf3b8"
+    },
+    "sqlite-expert": {
+      "source": "RightNow-AI/openfang",
+      "sourceType": "github",
+      "skillPath": "crates/openfang-skills/bundled/sqlite-expert/SKILL.md",
+      "computedHash": "f63004999d019b0a150309ea1a20661ab3aa33267e48e26f0dfafa6f800cc122"
+    },
+    "tailwindcss": {
+      "source": "rajnandan1/kener",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/tailwindcss/SKILL.md",
+      "computedHash": "86fc9273e267997eec5559edfb1eeb8757c14c7c8a1ab853b9c11ee6ce87197b"
+    },
+    "tanstack-query-expert": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/tanstack-query-expert/SKILL.md",
+      "computedHash": "24ca57d13931ad57ce26e8e28abbffdec424a2e1ce159b3f4a20a6aa6c01003a"
+    },
+    "tdd-workflow": {
+      "source": "affaan-m/everything-claude-code",
+      "sourceType": "github",
+      "skillPath": "skills/tdd-workflow/SKILL.md",
+      "computedHash": "d10751717312fe7613c05c226013569edd1b6c1785a446897570c703cc9c5d02"
+    },
+    "turbopack": {
+      "source": "vercel/vercel-plugin",
+      "sourceType": "github",
+      "skillPath": "skills/turbopack/SKILL.md",
+      "computedHash": "cd8c2f189adacb88854c20088ab37dfe077cdc0bc1ded3ec3aa4e40be22bcf3c"
+    },
+    "typescript-advanced-types": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "skillPath": "plugins/javascript-typescript/skills/typescript-advanced-types/SKILL.md",
+      "computedHash": "3a3be8c925f96ac4e1280db28a01677e7ca5197f3792de2bbf35ab3bb324b6dd"
+    },
+    "typescript-expert": {
+      "source": "remix-run/remix",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/typescript-expert/SKILL.md",
+      "computedHash": "d0a0b8aab0e934bdfe04a4d798b5786c3744ccf2bd53fe1f5403dc41ffb749ea"
+    },
+    "vitest": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vitest/SKILL.md",
+      "computedHash": "669c7275f7e1379b06b2bcfa593603aead4c983b951c7e8edbc09640aa38d0a1"
+    },
+    "zod": {
+      "source": "midudev/autoskills",
+      "sourceType": "github",
+      "skillPath": "packages/autoskills/skills-registry/zod/SKILL.md",
+      "computedHash": "e5d8e35002d0d6b03db0b0daad54e1b82c9c10804f8a745025c07db5ea685655"
+    }
+  }
+}

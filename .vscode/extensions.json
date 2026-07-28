@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "biomejs.biome",
+    "naumovs.color-highlight",
+    "EditorConfig.EditorConfig",
+    "MermaidChart.vscode-mermaid-chart",
+    "bradlc.vscode-tailwindcss",
+    "mikestead.dotenv",
+    "christian-kohler.npm-intellisense"
+  ]
+}
