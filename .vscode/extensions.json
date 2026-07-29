@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "biomejs.biome",
     "naumovs.color-highlight",
     "EditorConfig.EditorConfig",
     "MermaidChart.vscode-mermaid-chart",

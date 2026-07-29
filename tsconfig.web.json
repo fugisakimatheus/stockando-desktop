@@ -8,9 +8,9 @@
       "@main/*": ["./src/main/*"],
       "@preload/*": ["./src/preload/*"],
       "@renderer/*": ["./src/renderer/src/*"],
-      "@components/*": ["./src/renderer/src/components/*"],
-      "@hooks/*": ["./src/renderer/src/hooks/*"],
-      "@lib/*": ["./src/renderer/src/lib/*"]
+      "@app/*": ["./src/renderer/src/app/*"],
+      "@pages/*": ["./src/renderer/src/pages/*"],
+      "@shared/*": ["./src/renderer/src/shared/*"]
     }
   }
 }

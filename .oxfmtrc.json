@@ -37,7 +37,7 @@
     ]
   },
   "sortTailwindcss": {
-    "stylesheet": "src/renderer/src/globals.css",
+    "stylesheet": "src/renderer/src/app/styles/globals.css",
     "attributes": ["classList", "className", "class"],
     "functions": ["clsx", "cva", "cn", "tw"]
   },

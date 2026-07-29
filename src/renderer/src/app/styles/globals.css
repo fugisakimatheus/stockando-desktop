@@ -1,10 +1,15 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/jetbrains-mono';
+@import './typeset.css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-inter: 'Inter Variable', sans-serif;
+  --font-jetbrains-mono: 'JetBrains Mono Variable', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -48,6 +53,8 @@
 
 :root {
   --radius: 0.625rem;
+  --font-inter: 'Inter Variable', sans-serif;
+  --font-jetbrains-mono: 'JetBrains Mono Variable', monospace;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -119,7 +126,31 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    font-family: var(--font-inter);
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-inter);
   }
+
+  code,
+  pre,
+  kbd,
+  samp,
+  tt,
+  var {
+    font-family: var(--font-jetbrains-mono);
+  }
+}
+
+.typeset-docs {
+  --typeset-font-body: var(--font-inter);
+  --typeset-font-heading: var(--font-inter);
+  --typeset-font-mono: var(--font-jetbrains-mono);
+  --typeset-size: 15px;
+  --typeset-leading: 1.75;
+  --typeset-flow: 1em;
 }
