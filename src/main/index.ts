@@ -1,7 +1,10 @@
 import { join } from 'node:path'
+
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { app, BrowserWindow, ipcMain, shell } from 'electron'
+
 import icon from '../../resources/icon.png?asset'
+import { startServer, stopServer } from './server'
 
 function createWindow(): void {
   // Create the browser window.
@@ -38,7 +41,7 @@ function createWindow(): void {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 
@@ -51,6 +54,14 @@ app.whenReady().then(() => {
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
+
+  try {
+    await startServer()
+  } catch (error) {
+    console.error('Failed to start local HTTP server', error)
+    app.quit()
+    return
+  }
 
   createWindow()
 
@@ -68,6 +79,10 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
+})
+
+app.on('will-quit', async () => {
+  await stopServer()
 })
 
 // In this file you can include the rest of your app's specific main process

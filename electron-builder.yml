@@ -1,18 +1,18 @@
-appId: com.electron.app
-productName: stockando-desktop
+appId: com.stockando.app
+productName: Stockando
 directories:
   buildResources: build
 files:
   - '!**/.vscode/*'
   - '!src/*'
   - '!electron.vite.config.{js,ts,mjs,cjs}'
-  - '!{.eslintcache,eslint.config.mjs,.prettierignore,.prettierrc.yaml,biome.json,dev-app-update.yml,CHANGELOG.md,README.md}'
+  - '!{.oxfmtrc.json,.oxlintrc.json,.eslintcache,eslint.config.mjs,.prettierignore,.prettierrc.yaml,biome.json,dev-app-update.yml,CHANGELOG.md,README.md}'
   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
 asarUnpack:
   - resources/**
 win:
-  executableName: stockando-desktop
+  executableName: Stockando
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}

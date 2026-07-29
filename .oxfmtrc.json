@@ -1,0 +1,52 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "trailingComma": "none",
+  "arrowParens": "always",
+  "quoteProps": "as-needed",
+  "endOfLine": "lf",
+  "ignorePatterns": [".agents/**", "**/scripts/**", "**/*.md", "**/*.hbs"],
+  "sortImports": {
+    "newlinesBetween": true,
+    "customGroups": [
+      {
+        "groupName": "stockando",
+        "elementNamePattern": ["@stockando/**"]
+      },
+      {
+        "groupName": "app-alias",
+        "elementNamePattern": ["@/**"]
+      }
+    ],
+    "groups": [
+      "builtin",
+      { "newlinesBetween": true },
+      "external",
+      { "newlinesBetween": true },
+      "stockando",
+      { "newlinesBetween": true },
+      "app-alias",
+      { "newlinesBetween": true },
+      ["internal", "subpath", "parent", "sibling", "index"],
+      "unknown"
+    ]
+  },
+  "sortTailwindcss": {
+    "stylesheet": "src/renderer/src/globals.css",
+    "attributes": ["classList", "className", "class"],
+    "functions": ["clsx", "cva", "cn", "tw"]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.{json,jsonc,json5}"],
+      "options": {
+        "trailingComma": "none"
+      }
+    }
+  ]
+}

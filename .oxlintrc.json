@@ -1,0 +1,99 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "ignorePatterns": [".agents/**", "**/scripts/**"],
+  "plugins": ["oxc", "typescript", "unicorn", "import", "react", "jsx-a11y", "nextjs"],
+  "categories": {
+    "correctness": "off",
+    "suspicious": "off",
+    "pedantic": "off",
+    "perf": "off",
+    "style": "off",
+    "restriction": "off",
+    "nursery": "off"
+  },
+  "env": {
+    "builtin": true
+  },
+  "rules": {
+    "jsx-a11y/prefer-tag-over-role": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/interactive-supports-focus": "off",
+    "jsx-a11y/html-has-lang": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "react/react-in-jsx-scope": "off",
+    "unicorn/no-array-for-each": "off",
+    "unicorn/no-static-only-class": "off",
+    "typescript/dot-notation": "off",
+    "no-extra-boolean-cast": "off",
+    "unicorn/no-useless-switch-case": "off",
+    "react/rules-of-hooks": "error",
+    "no-unsafe-optional-chaining": "off",
+    "react/no-unstable-nested-components": "off",
+    "radix": "off",
+    "no-constructor-return": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "react/exhaustive-deps": "error",
+    "oxc/no-accumulating-spread": "off",
+    "nextjs/no-img-element": "off",
+    "react/no-danger": "off",
+    "no-console": "off",
+    "typescript/no-explicit-any": "error",
+    "array-callback-return": "off",
+    "no-global-assign": "off",
+    "react/no-array-index-key": "off",
+    "no-shadow-restricted-names": "off",
+    "typescript/array-type": ["error", { "default": "array" }],
+    "import/no-default-export": "error",
+    "import/no-duplicates": [
+      "error",
+      {
+        "preferInline": false
+      }
+    ],
+    "react/self-closing-comp": "error",
+    "no-param-reassign": "off",
+    "typescript/consistent-type-imports": "error",
+    "typescript/no-non-null-assertion": "error",
+    "typescript/prefer-as-const": "error",
+    "default-param-last": "error",
+    "typescript/prefer-enum-initializers": "error",
+    "unicorn/prefer-number-properties": "error",
+    "typescript/no-inferrable-types": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.spec.integration.ts"],
+      "rules": {
+        "no-console": "off",
+        "react/rules-of-hooks": "off"
+      }
+    },
+    {
+      "files": [
+        "**/app/**",
+        "**/electron.vite.config.ts",
+        "**/next.config.ts",
+        "**/manifest.ts",
+        "**/proxy.ts",
+        "**/instrumentation*.ts",
+        "**/vitest.config.*",
+        "**/postcss.config.*",
+        "**/turbo/generators/**",
+        "**/*provider*",
+        "**/*vitest*"
+      ],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    }
+  ]
+}
