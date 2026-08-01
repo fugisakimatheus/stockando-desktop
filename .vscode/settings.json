@@ -3,22 +3,28 @@
     "editor.formatOnSave": true
   },
   "[javascript]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.formatOnSave": true
   },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.formatOnSave": true
   },
   "[typescript]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.formatOnSave": true
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.formatOnSave": true
   },
   "[json]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.formatOnSave": true
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.formatOnSave": true
   },
   "emmet.syntaxProfiles": {
     "javascript": "jsx"
@@ -26,8 +32,16 @@
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "always",
+    "source.fixAll.biome": "never",
+    "quickfix.biome": "never",
+    "source.organizeImports.biome": "never"
+  },
   "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
   "editor.fontLigatures": true,
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "terminal.integrated.scrollback": 150000,
   "scss.lint.unknownAtRules": "ignore",
   "css.lint.unknownAtRules": "ignore",
@@ -57,9 +71,7 @@
   "js/ts.tsdk.path": "./node_modules/typescript",
   "oxc.fmt.configPath": ".oxfmtrc.json",
   "editor.formatOnSaveMode": "file",
-  "editor.defaultFormatter": "oxc.oxc-vscode",
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.oxc": "always"
-  }
+  "oxc.enable.oxfmt": true,
+  "oxc.enable": true,
+  "oxc.enable.oxlint": true
 }
