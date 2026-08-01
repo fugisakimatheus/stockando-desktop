@@ -7,49 +7,62 @@ applyTo: '**/*'
 
 When a change is **large**, **architectural**, or records a **technical trade-off** (why X instead of Y), treat ADRs as part of the deliverable — not an optional follow-up.
 
+In this repository, that means preserving the current Electron architecture while documenting choices that affect the boundaries between main, preload, and renderer, or that change how UI and shared logic are organized.
+
 Canonical skill: [architecture-decision-records](../../.agents/skills/architecture-decision-records/SKILL.md) · Index: [docs/adr/README.md](../../docs/adr/README.md) · Template: [docs/adr/template.md](../../docs/adr/template.md)
 
 ## When this applies
 
 Trigger on any of:
 
-- Choosing or changing framework, library, package boundary, API shape, auth/data strategy, FSD placement, or shared UI/runtime pattern
-- Introducing a documented exception (e.g. non-Kubb BFF) or superseding an existing convention
-- Planning / PR work that alters “how we build” across apps or packages
-- Explicit signals: “we decided…”, “use X instead of Y”, “record as ADR”, “trade-off is…”
+- Changing the responsibility boundaries between [src/main](../../src/main), [src/preload](../../src/preload), and [src/renderer](../../src/renderer)
+- Introducing or changing IPC, Electron lifecycle behavior, or local server integration
+- Moving or renaming the core architecture folders or creating a new top-level layer that changes the app structure
+- Changing the placement rules for renderer code under [src/renderer/src/app](../../src/renderer/src/app), [src/renderer/src/pages](../../src/renderer/src/pages), and [src/renderer/src/shared](../../src/renderer/src/shared)
+- Introducing a shared abstraction that affects multiple pages, such as API helpers, query client conventions, or reusable UI patterns
+- Changing conventions already described in [docs/architecture/FEATURE-SLICED-DESIGN.md](../../docs/architecture/FEATURE-SLICED-DESIGN.md) or [docs/ui/COMPOUND_COMPONENTS.md](../../docs/ui/COMPOUND_COMPONENTS.md)
+- Explicit signals such as “we decided…”, “use X instead of Y”, “record as ADR”, or “trade-off is…”
 
 **Skip** (no ADR scan/update required) when the work only:
 
-- Applies a convention **already specified** in `.cursor/rules/`, skills, or how-tos — e.g. “use `RecordEditor` / `FormEngine` / `DynamicFilters` / `ConfirmDialog`”, compound over prop monoliths, tuple SDK errors, infinite scroll lists, overlay-glass tokens, i18n catalogs, named exports
-- Is a trivial edit: renames, formatting, one-off bugfixes, copy tweaks, version pins without a new trade-off
+- Applies a convention already documented in the repo docs, skills, or existing ADRs
+- Is a trivial edit such as a small UI tweak, copy change, formatting cleanup, or one-off bugfix without a cross-cutting architectural impact
+- Refactors code locally without changing ownership, boundaries, or the public structure of the app
 
-Re-enter this workflow only if the task **changes**, **supersedes**, or **exceptions** that existing convention (new alternative rejected, new package boundary, documented exception).
+Re-enter this workflow only if the task **changes**, **supersedes**, or **introduces an exception** to the current architecture conventions.
 
 ## Required workflow
 
-1. **Scan** [docs/adr/README.md](../../docs/adr/README.md) for related ADRs (topic keywords + nearby numbers).
-2. **Read** matching ADR files — Context + Decision must still match reality.
+1. **Scan** [docs/adr/README.md](../../docs/adr/README.md) and the related architecture docs before changing a structural decision.
+2. **Review** the current architecture shape: [src/main](../../src/main) for Electron bootstrap and server lifecycle, [src/preload](../../src/preload) for the bridge, and [src/renderer/src](../../src/renderer/src) for the React shell, route modules, and shared UI/helpers.
 3. **Decide**:
-   - **Update** an existing ADR if the same decision evolved (status, consequences, links, superseded-by).
-   - **Draft a new ADR** if no record covers the choice (next `NNNN`, English, Nygard sections from the template).
-   - **No ADR** only if the change is truly how-to / local and introduces no lasting alternative rejection.
-4. **Confirm with the user** before writing a **new** ADR file (skill workflow). Updates to an existing ADR that you already own in-session may proceed when the user asked for the architectural change; still mention what you changed.
-5. **Index** — append/adjust the row in `docs/adr/README.md`. Link from related how-tos/rules when the decision is widely enforced (same pattern as existing ADR cross-links).
-6. **Status** — `proposed` while under discussion; `accepted` when in effect; `deprecated` / `superseded by ADR-NNNN` when replaced (always link the successor).
+   - **Update** an existing ADR if the same decision evolved.
+   - **Draft** a new ADR if no record covers the choice (use the next number in the sequence and follow the template in English).
+   - **No ADR** only if the change is truly local and does not introduce a lasting architectural alternative.
+4. **Confirm with the user** before creating a new ADR file when the decision is still under discussion.
+5. **Index** — append or adjust the row in [docs/adr/README.md](../../docs/adr/README.md) whenever an ADR is added or changed.
+6. **Status** — use `proposed` while under discussion, `accepted` when in effect, and `deprecated` or `superseded by ADR-NNNN` when replaced.
+
+## Project-specific guidance
+
+- Keep the base Electron boundaries intact: main-process concerns stay in [src/main](../../src/main), IPC exposure stays in [src/preload](../../src/preload), and UI stays in [src/renderer](../../src/renderer).
+- Keep page-level UI close to the owning page under [src/renderer/src/pages](../../src/renderer/src/pages).
+- Move reusable UI and helpers to [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui), [src/renderer/src/shared/lib](../../src/renderer/src/shared/lib), or [src/renderer/src/shared/api](../../src/renderer/src/shared/api) when multiple screens need them.
+- Prefer a simple and predictable structure over introducing a large new abstraction layer.
+- Prefer compound or composer components when a UI surface has coordinated parts and shared state.
 
 ## Do / don’t
 
-- ✅ Language of ADR bodies: **English** (repo convention)
-- ✅ Record **why** + rejected alternatives; keep readable in ~2 minutes
-- ✅ Prefer updating an ADR over duplicating overlapping decisions
-- ❌ Do not invent ADRs for style-only or file-naming choices
-- ❌ Do not leave a new platform convention only in chat/PR without checking `docs/adr/`
-- ❌ Do not auto-create `docs/adr/` from scratch without consent (already exists)
+- ✅ Record trade-offs about architecture boundaries, ownership, IPC, routing, shared abstractions, and renderer organization.
+- ✅ Prefer updating an existing ADR over creating overlapping records.
+- ❌ Do not invent ADRs for style-only changes, single-file refactors, or minor bug fixes.
+- ❌ Do not move logic across main, preload, and renderer just to follow a personal pattern.
+- ❌ Do not introduce a large new folder structure unless the app clearly outgrows the current layout.
 
 ## Quick check before finishing the task
 
 ```
-[ ] Scanned docs/adr/README.md for related decisions
-[ ] Updated existing ADR(s) OR drafted/confirmed new ADR OR justified “no ADR”
-[ ] Index row accurate if files changed
+[ ] Scanned docs/adr/README.md and the relevant architecture docs
+[ ] Updated an existing ADR or drafted/confirmed a new one when needed
+[ ] Index row updated if an ADR file changed
 ```
