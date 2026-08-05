@@ -4,5 +4,6 @@ This directory captures significant architectural and technical decisions for th
 
 | ADR | Title | Status | Date |
 |-----|-------|--------|------|
+| ADR-0001 | Database schema foundation for stock, POS, and fiscal documents | proposed | 2026-08-01 |
 
-No ADRs have been recorded yet. Add a new decision record by creating a file using the template in this directory.
+Add a new decision record by creating a file using the template in this directory.
