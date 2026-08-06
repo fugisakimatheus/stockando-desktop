@@ -1,5 +1,4 @@
 import { cn } from '@shared/lib/cn'
-import * as React from 'react'
 import { LabelContext, Label as LabelPrimitive, type LabelProps } from 'react-aria-components'
 
 function Label({ className, htmlFor, slot, ...props }: LabelProps) {
@@ -7,7 +6,7 @@ function Label({ className, htmlFor, slot, ...props }: LabelProps) {
     <LabelPrimitive
       data-slot="label"
       className={cn(
-        'flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 peer-data-disabled:opacity-50',
+        'flex items-center gap-2 text-sm leading-none font-medium tracking-tight text-foreground/90 select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 peer-data-disabled:opacity-50',
         className
       )}
       {...props}

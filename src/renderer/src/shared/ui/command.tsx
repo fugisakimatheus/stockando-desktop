@@ -41,7 +41,7 @@ function Command({
       data-slot="command"
       dir={dir}
       className={cn(
-        'flex size-full flex-col overflow-hidden rounded-xl! bg-popover p-1 text-popover-foreground',
+        'flex size-full flex-col overflow-hidden rounded-2xl! border border-border/70 bg-popover/95 p-1 text-popover-foreground shadow-[0_18px_50px_rgba(15,23,42,0.16)] backdrop-blur-xl dark:border-white/10 dark:bg-popover/90 dark:shadow-[0_18px_50px_rgba(2,6,23,0.28)]',
         className
       )}
       style={style}
@@ -75,7 +75,7 @@ function CommandDialog({
     <Dialog
       isOpen={open}
       onOpenChange={onOpenChange}
-      className={cn('top-1/3 translate-y-0 overflow-hidden rounded-xl! p-0', className)}
+      className={cn('top-1/3 translate-y-0 overflow-hidden rounded-2xl! p-0', className)}
       showCloseButton={showCloseButton}
       isDismissable
       {...props}
@@ -97,7 +97,7 @@ function CommandInput({ className, ...props }: InputProps) {
       data-slot="command-input-wrapper"
       className="p-1 pb-0"
     >
-      <InputGroup className="h-8! rounded-lg! border-input/30 bg-input/30 shadow-none! *:data-[slot=input-group-addon]:pl-2!">
+      <InputGroup className="h-9! rounded-xl! border-border/70 bg-gradient-to-br from-background/90 via-background/80 to-background/70 shadow-[0_4px_12px_rgba(15,23,42,0.04)]! backdrop-blur-sm *:data-[slot=input-group-addon]:pl-2! dark:border-white/10 dark:from-background/80 dark:via-background/70 dark:to-background/60 dark:shadow-[0_4px_14px_rgba(2,6,23,0.16)]!">
         <Input
           {...props}
           data-slot="command-input"
@@ -160,7 +160,7 @@ function CommandItem<T extends object>({ className, children, textValue, ...prop
       {...props}
       data-slot="command-item"
       className={cn(
-        "group/command-item relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none in-data-[slot=dialog-content]:rounded-lg! data-focused:bg-muted data-focused:text-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-selected:bg-muted data-selected:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-focused:*:[svg]:text-foreground data-selected:*:[svg]:text-foreground",
+        "group/command-item relative flex cursor-default items-center gap-2 rounded-xl px-2 py-1.5 text-sm outline-hidden select-none in-data-[slot=dialog-content]:rounded-xl! data-focused:bg-muted data-focused:text-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-selected:bg-muted data-selected:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-focused:*:[svg]:text-foreground data-selected:*:[svg]:text-foreground",
         className
       )}
       textValue={textValue || (typeof children === 'string' ? children : undefined)}

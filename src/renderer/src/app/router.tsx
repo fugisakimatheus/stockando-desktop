@@ -2,10 +2,10 @@ import { CategoriesPage } from '@pages/categories'
 import { HomePage } from '@pages/home'
 import { ProductsPage } from '@pages/products'
 import { SettingsPage } from '@pages/settings'
-import { createRootRoute, createRoute, createRouter } from '@tanstack/react-router'
+import { createRootRoute, createRoute, createRouter, Outlet } from '@tanstack/react-router'
 
 const rootRoute = createRootRoute({
-  component: () => null
+  component: () => <Outlet />
 })
 
 const homeRoute = createRoute({

@@ -38,3 +38,7 @@ We will introduce a foundational Drizzle schema in the main-process database lay
 ### Risks
 - The schema may need adjustment once real business rules and fiscal integration details are finalized.
 - The initial design should be reviewed regularly as new modules are introduced.
+
+### Implementation refinement
+- The first schema iteration has been strengthened with company-scoped uniqueness constraints, stronger cascading rules for company-owned records, and indexes that improve integrity and query performance for inventory and fiscal workflows.
+- These refinements preserve the pragmatic MVP structure while making the model more reliable for multi-company and operational use.

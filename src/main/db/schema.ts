@@ -1,20 +1,28 @@
-import { integer, real, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { index, integer, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core'
 
-export const companies = sqliteTable('companies', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  name: text('name').notNull(),
-  documentNumber: text('document_number').notNull(),
-  tradeName: text('trade_name'),
-  status: text('status').notNull().default('active'),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const companies = sqliteTable(
+  'companies',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    name: text('name').notNull(),
+    documentNumber: text('document_number').notNull(),
+    tradeName: text('trade_name'),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('companies_document_number_unique').on(t.documentNumber),
+    index('companies_status_idx').on(t.status)
+  ]
+)
 
 export const companySettings = sqliteTable('company_settings', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   companyId: integer('company_id')
     .notNull()
-    .references(() => companies.id),
+    .references(() => companies.id, { onDelete: 'cascade' })
+    .unique(),
   companyName: text('company_name').notNull(),
   taxRegime: text('tax_regime'),
   currencyCode: text('currency_code').notNull().default('BRL'),
@@ -24,275 +32,695 @@ export const companySettings = sqliteTable('company_settings', {
   updatedAt: text('updated_at').notNull()
 })
 
-export const users = sqliteTable('users', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  name: text('name').notNull(),
-  email: text('email').notNull().unique(),
-  passwordHash: text('password_hash'),
-  role: text('role').notNull().default('admin'),
-  status: text('status').notNull().default('active'),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const users = sqliteTable(
+  'users',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    email: text('email').notNull(),
+    passwordHash: text('password_hash'),
+    role: text('role').notNull().default('admin'),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('users_company_email_unique').on(t.companyId, t.email),
+    index('users_company_idx').on(t.companyId),
+    index('users_role_idx').on(t.role)
+  ]
+)
 
-export const customers = sqliteTable('customers', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  name: text('name').notNull(),
-  documentNumber: text('document_number'),
-  email: text('email'),
-  phone: text('phone'),
-  address: text('address'),
-  customerType: text('customer_type').notNull().default('individual'),
-  status: text('status').notNull().default('active'),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const roles = sqliteTable(
+  'roles',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    description: text('description'),
+    isSystem: integer('is_system', { mode: 'boolean' }).notNull().default(false),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [uniqueIndex('roles_company_name_unique').on(t.companyId, t.name), index('roles_company_idx').on(t.companyId)]
+)
 
-export const categories = sqliteTable('categories', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  name: text('name').notNull(),
-  parentCategoryId: integer('parent_category_id').references(() => categories.id),
-  status: text('status').notNull().default('active'),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const rolePermissions = sqliteTable(
+  'role_permissions',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    roleId: integer('role_id')
+      .notNull()
+      .references(() => roles.id, { onDelete: 'cascade' }),
+    permission: text('permission').notNull(),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [uniqueIndex('role_permissions_role_permission_unique').on(t.roleId, t.permission)]
+)
 
-export const unitsOfMeasure = sqliteTable('units_of_measure', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  name: text('name').notNull(),
-  symbol: text('symbol').notNull(),
-  status: text('status').notNull().default('active'),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const customers = sqliteTable(
+  'customers',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    documentNumber: text('document_number'),
+    email: text('email'),
+    phone: text('phone'),
+    address: text('address'),
+    customerType: text('customer_type').notNull().default('individual'),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('customers_company_document_unique').on(t.companyId, t.documentNumber),
+    index('customers_company_idx').on(t.companyId)
+  ]
+)
 
-export const products = sqliteTable('products', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  categoryId: integer('category_id').references(() => categories.id),
-  unitId: integer('unit_id').references(() => unitsOfMeasure.id),
-  sku: text('sku').notNull(),
-  name: text('name').notNull(),
-  description: text('description'),
-  barcode: text('barcode'),
-  costPrice: real('cost_price'),
-  salePrice: real('sale_price'),
-  trackInventory: integer('track_inventory', { mode: 'boolean' }).notNull().default(false),
-  status: text('status').notNull().default('active'),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const suppliers = sqliteTable(
+  'suppliers',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    documentNumber: text('document_number').notNull(),
+    tradeName: text('trade_name'),
+    email: text('email'),
+    phone: text('phone'),
+    address: text('address'),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('suppliers_company_document_unique').on(t.companyId, t.documentNumber),
+    index('suppliers_company_idx').on(t.companyId),
+    index('suppliers_status_idx').on(t.status)
+  ]
+)
 
-export const warehouses = sqliteTable('warehouses', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  name: text('name').notNull(),
-  code: text('code').notNull(),
-  address: text('address'),
-  status: text('status').notNull().default('active'),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const categories = sqliteTable(
+  'categories',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    parentCategoryId: integer('parent_category_id').references(() => categories.id, {
+      onDelete: 'set null'
+    }),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('categories_company_name_unique').on(t.companyId, t.name),
+    index('categories_parent_category_idx').on(t.parentCategoryId)
+  ]
+)
 
-export const stock = sqliteTable('stock', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  productId: integer('product_id')
-    .notNull()
-    .references(() => products.id),
-  warehouseId: integer('warehouse_id')
-    .notNull()
-    .references(() => warehouses.id),
-  quantity: real('quantity').notNull().default(0),
-  reservedQuantity: real('reserved_quantity').notNull().default(0),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const unitsOfMeasure = sqliteTable(
+  'units_of_measure',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    symbol: text('symbol').notNull(),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [uniqueIndex('units_company_name_unique').on(t.companyId, t.name)]
+)
 
-export const stockMovements = sqliteTable('stock_movements', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  productId: integer('product_id')
-    .notNull()
-    .references(() => products.id),
-  warehouseId: integer('warehouse_id')
-    .notNull()
-    .references(() => warehouses.id),
-  movementType: text('movement_type').notNull(),
-  quantity: real('quantity').notNull(),
-  unitCost: real('unit_cost'),
-  referenceType: text('reference_type'),
-  referenceId: text('reference_id'),
-  notes: text('notes'),
-  createdAt: text('created_at').notNull()
-})
+export const products = sqliteTable(
+  'products',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    categoryId: integer('category_id').references(() => categories.id, { onDelete: 'set null' }),
+    unitId: integer('unit_id').references(() => unitsOfMeasure.id, { onDelete: 'set null' }),
+    sku: text('sku').notNull(),
+    name: text('name').notNull(),
+    description: text('description'),
+    barcode: text('barcode'),
+    costPrice: real('cost_price'),
+    salePrice: real('sale_price'),
+    trackInventory: integer('track_inventory', { mode: 'boolean' }).notNull().default(false),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('products_company_sku_unique').on(t.companyId, t.sku),
+    index('products_company_idx').on(t.companyId),
+    index('products_category_idx').on(t.categoryId),
+    index('products_status_idx').on(t.status)
+  ]
+)
 
-export const paymentMethods = sqliteTable('payment_methods', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  name: text('name').notNull(),
-  code: text('code').notNull(),
-  status: text('status').notNull().default('active'),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const warehouses = sqliteTable(
+  'warehouses',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    code: text('code').notNull(),
+    address: text('address'),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('warehouses_company_code_unique').on(t.companyId, t.code),
+    index('warehouses_company_idx').on(t.companyId)
+  ]
+)
 
-export const taxRules = sqliteTable('tax_rules', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  name: text('name').notNull(),
-  taxType: text('tax_type').notNull(),
-  rate: real('rate').notNull(),
-  status: text('status').notNull().default('active'),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const stock = sqliteTable(
+  'stock',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    productId: integer('product_id')
+      .notNull()
+      .references(() => products.id, { onDelete: 'cascade' }),
+    warehouseId: integer('warehouse_id')
+      .notNull()
+      .references(() => warehouses.id, { onDelete: 'cascade' }),
+    quantity: real('quantity').notNull().default(0),
+    reservedQuantity: real('reserved_quantity').notNull().default(0),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('stock_company_product_warehouse_unique').on(t.companyId, t.productId, t.warehouseId),
+    index('stock_product_idx').on(t.productId),
+    index('stock_warehouse_idx').on(t.warehouseId)
+  ]
+)
 
-export const digitalCertificates = sqliteTable('digital_certificates', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  alias: text('alias').notNull(),
-  issuerName: text('issuer_name'),
-  serialNumber: text('serial_number'),
-  validFrom: text('valid_from'),
-  validTo: text('valid_to'),
-  status: text('status').notNull().default('active'),
-  certificatePath: text('certificate_path'),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const stockMovements = sqliteTable(
+  'stock_movements',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    productId: integer('product_id')
+      .notNull()
+      .references(() => products.id, { onDelete: 'cascade' }),
+    warehouseId: integer('warehouse_id')
+      .notNull()
+      .references(() => warehouses.id, { onDelete: 'cascade' }),
+    movementType: text('movement_type').notNull(),
+    quantity: real('quantity').notNull(),
+    unitCost: real('unit_cost'),
+    referenceType: text('reference_type'),
+    referenceId: text('reference_id'),
+    notes: text('notes'),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [
+    index('stock_movements_company_idx').on(t.companyId),
+    index('stock_movements_product_idx').on(t.productId),
+    index('stock_movements_warehouse_idx').on(t.warehouseId)
+  ]
+)
 
-export const orders = sqliteTable('orders', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  customerId: integer('customer_id').references(() => customers.id),
-  orderNumber: text('order_number').notNull().unique(),
-  orderType: text('order_type').notNull().default('sale'),
-  status: text('status').notNull().default('draft'),
-  subtotal: real('subtotal').notNull().default(0),
-  discountAmount: real('discount_amount').notNull().default(0),
-  taxAmount: real('tax_amount').notNull().default(0),
-  totalAmount: real('total_amount').notNull().default(0),
-  paymentStatus: text('payment_status').notNull().default('pending'),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const stockAdjustments = sqliteTable(
+  'stock_adjustments',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    productId: integer('product_id')
+      .notNull()
+      .references(() => products.id, { onDelete: 'cascade' }),
+    warehouseId: integer('warehouse_id')
+      .notNull()
+      .references(() => warehouses.id, { onDelete: 'cascade' }),
+    adjustmentType: text('adjustment_type').notNull(),
+    quantity: real('quantity').notNull(),
+    unitCost: real('unit_cost'),
+    reason: text('reason'),
+    notes: text('notes'),
+    createdByUserId: integer('created_by_user_id').references(() => users.id, { onDelete: 'set null' }),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [
+    index('stock_adjustments_company_idx').on(t.companyId),
+    index('stock_adjustments_product_idx').on(t.productId),
+    index('stock_adjustments_warehouse_idx').on(t.warehouseId)
+  ]
+)
 
-export const orderItems = sqliteTable('order_items', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  orderId: integer('order_id')
-    .notNull()
-    .references(() => orders.id),
-  productId: integer('product_id')
-    .notNull()
-    .references(() => products.id),
-  quantity: real('quantity').notNull(),
-  unitPrice: real('unit_price').notNull(),
-  discountAmount: real('discount_amount').notNull().default(0),
-  taxAmount: real('tax_amount').notNull().default(0),
-  totalAmount: real('total_amount').notNull(),
-  createdAt: text('created_at').notNull()
-})
+export const paymentMethods = sqliteTable(
+  'payment_methods',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    code: text('code').notNull(),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [uniqueIndex('payment_methods_company_code_unique').on(t.companyId, t.code)]
+)
 
-export const orderPayments = sqliteTable('order_payments', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  orderId: integer('order_id')
-    .notNull()
-    .references(() => orders.id),
-  paymentMethodId: integer('payment_method_id')
-    .notNull()
-    .references(() => paymentMethods.id),
-  amount: real('amount').notNull(),
-  status: text('status').notNull().default('pending'),
-  transactionReference: text('transaction_reference'),
-  paidAt: text('paid_at'),
-  createdAt: text('created_at').notNull()
-})
+export const taxRules = sqliteTable(
+  'tax_rules',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    taxType: text('tax_type').notNull(),
+    rate: real('rate').notNull(),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [uniqueIndex('tax_rules_company_name_unique').on(t.companyId, t.name)]
+)
 
-export const invoices = sqliteTable('invoices', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  orderId: integer('order_id').references(() => orders.id),
-  customerId: integer('customer_id').references(() => customers.id),
-  digitalCertificateId: integer('digital_certificate_id').references(() => digitalCertificates.id),
-  taxRuleId: integer('tax_rule_id').references(() => taxRules.id),
-  documentType: text('document_type').notNull(),
-  documentNumber: text('document_number').notNull(),
-  accessKey: text('access_key'),
-  issueDate: text('issue_date').notNull(),
-  status: text('status').notNull().default('draft'),
-  subtotal: real('subtotal').notNull().default(0),
-  taxAmount: real('tax_amount').notNull().default(0),
-  totalAmount: real('total_amount').notNull().default(0),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const digitalCertificates = sqliteTable(
+  'digital_certificates',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    alias: text('alias').notNull(),
+    issuerName: text('issuer_name'),
+    serialNumber: text('serial_number'),
+    validFrom: text('valid_from'),
+    validTo: text('valid_to'),
+    status: text('status').notNull().default('active'),
+    certificatePath: text('certificate_path'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [uniqueIndex('digital_certificates_company_alias_unique').on(t.companyId, t.alias)]
+)
 
-export const invoiceItems = sqliteTable('invoice_items', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  invoiceId: integer('invoice_id')
-    .notNull()
-    .references(() => invoices.id),
-  productId: integer('product_id')
-    .notNull()
-    .references(() => products.id),
-  quantity: real('quantity').notNull(),
-  unitPrice: real('unit_price').notNull(),
-  taxAmount: real('tax_amount').notNull().default(0),
-  totalAmount: real('total_amount').notNull(),
-  createdAt: text('created_at').notNull()
-})
+export const orders = sqliteTable(
+  'orders',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    customerId: integer('customer_id').references(() => customers.id, { onDelete: 'set null' }),
+    orderNumber: text('order_number').notNull(),
+    orderType: text('order_type').notNull().default('sale'),
+    status: text('status').notNull().default('draft'),
+    subtotal: real('subtotal').notNull().default(0),
+    discountAmount: real('discount_amount').notNull().default(0),
+    taxAmount: real('tax_amount').notNull().default(0),
+    totalAmount: real('total_amount').notNull().default(0),
+    paymentStatus: text('payment_status').notNull().default('pending'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('orders_company_order_number_unique').on(t.companyId, t.orderNumber),
+    index('orders_company_idx').on(t.companyId),
+    index('orders_status_idx').on(t.status)
+  ]
+)
 
-export const documentSeries = sqliteTable('document_series', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  documentType: text('document_type').notNull(),
-  series: text('series').notNull(),
-  currentNumber: integer('current_number').notNull().default(0),
-  status: text('status').notNull().default('active'),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const quotes = sqliteTable(
+  'quotes',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    customerId: integer('customer_id').references(() => customers.id, { onDelete: 'set null' }),
+    quoteNumber: text('quote_number').notNull(),
+    status: text('status').notNull().default('draft'),
+    validUntil: text('valid_until'),
+    subtotal: real('subtotal').notNull().default(0),
+    discountAmount: real('discount_amount').notNull().default(0),
+    taxAmount: real('tax_amount').notNull().default(0),
+    totalAmount: real('total_amount').notNull().default(0),
+    notes: text('notes'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('quotes_company_quote_number_unique').on(t.companyId, t.quoteNumber),
+    index('quotes_company_idx').on(t.companyId),
+    index('quotes_customer_idx').on(t.customerId),
+    index('quotes_status_idx').on(t.status)
+  ]
+)
 
-export const numberingSequences = sqliteTable('numbering_sequences', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  companyId: integer('company_id')
-    .notNull()
-    .references(() => companies.id),
-  sequenceType: text('sequence_type').notNull(),
-  currentValue: integer('current_value').notNull().default(0),
-  createdAt: text('created_at').notNull(),
-  updatedAt: text('updated_at').notNull()
-})
+export const quoteItems = sqliteTable(
+  'quote_items',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    quoteId: integer('quote_id')
+      .notNull()
+      .references(() => quotes.id, { onDelete: 'cascade' }),
+    productId: integer('product_id')
+      .notNull()
+      .references(() => products.id, { onDelete: 'restrict' }),
+    quantity: real('quantity').notNull(),
+    unitPrice: real('unit_price').notNull(),
+    discountAmount: real('discount_amount').notNull().default(0),
+    taxAmount: real('tax_amount').notNull().default(0),
+    totalAmount: real('total_amount').notNull(),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [index('quote_items_quote_idx').on(t.quoteId), index('quote_items_product_idx').on(t.productId)]
+)
+
+export const quoteOrderConversions = sqliteTable(
+  'quote_order_conversions',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    quoteId: integer('quote_id')
+      .notNull()
+      .references(() => quotes.id, { onDelete: 'cascade' }),
+    orderId: integer('order_id')
+      .notNull()
+      .references(() => orders.id, { onDelete: 'cascade' }),
+    convertedAt: text('converted_at').notNull(),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('quote_order_conversions_quote_unique').on(t.quoteId),
+    uniqueIndex('quote_order_conversions_order_unique').on(t.orderId),
+    index('quote_order_conversions_quote_idx').on(t.quoteId),
+    index('quote_order_conversions_order_idx').on(t.orderId)
+  ]
+)
+
+export const orderItems = sqliteTable(
+  'order_items',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    orderId: integer('order_id')
+      .notNull()
+      .references(() => orders.id, { onDelete: 'cascade' }),
+    productId: integer('product_id')
+      .notNull()
+      .references(() => products.id, { onDelete: 'restrict' }),
+    quantity: real('quantity').notNull(),
+    unitPrice: real('unit_price').notNull(),
+    discountAmount: real('discount_amount').notNull().default(0),
+    taxAmount: real('tax_amount').notNull().default(0),
+    totalAmount: real('total_amount').notNull(),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [index('order_items_order_idx').on(t.orderId), index('order_items_product_idx').on(t.productId)]
+)
+
+export const orderPayments = sqliteTable(
+  'order_payments',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    orderId: integer('order_id')
+      .notNull()
+      .references(() => orders.id, { onDelete: 'cascade' }),
+    paymentMethodId: integer('payment_method_id')
+      .notNull()
+      .references(() => paymentMethods.id, { onDelete: 'restrict' }),
+    amount: real('amount').notNull(),
+    status: text('status').notNull().default('pending'),
+    transactionReference: text('transaction_reference'),
+    paidAt: text('paid_at'),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [
+    index('order_payments_order_idx').on(t.orderId),
+    index('order_payments_payment_method_idx').on(t.paymentMethodId)
+  ]
+)
+
+export const purchaseOrders = sqliteTable(
+  'purchase_orders',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    supplierId: integer('supplier_id')
+      .notNull()
+      .references(() => suppliers.id, { onDelete: 'restrict' }),
+    orderNumber: text('order_number').notNull(),
+    status: text('status').notNull().default('draft'),
+    subtotal: real('subtotal').notNull().default(0),
+    discountAmount: real('discount_amount').notNull().default(0),
+    taxAmount: real('tax_amount').notNull().default(0),
+    totalAmount: real('total_amount').notNull().default(0),
+    expectedDeliveryDate: text('expected_delivery_date'),
+    paymentStatus: text('payment_status').notNull().default('pending'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('purchase_orders_company_order_unique').on(t.companyId, t.orderNumber),
+    index('purchase_orders_company_idx').on(t.companyId),
+    index('purchase_orders_supplier_idx').on(t.supplierId),
+    index('purchase_orders_status_idx').on(t.status)
+  ]
+)
+
+export const purchaseOrderItems = sqliteTable(
+  'purchase_order_items',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    purchaseOrderId: integer('purchase_order_id')
+      .notNull()
+      .references(() => purchaseOrders.id, { onDelete: 'cascade' }),
+    productId: integer('product_id')
+      .notNull()
+      .references(() => products.id, { onDelete: 'restrict' }),
+    quantity: real('quantity').notNull(),
+    unitCost: real('unit_cost').notNull(),
+    discountAmount: real('discount_amount').notNull().default(0),
+    taxAmount: real('tax_amount').notNull().default(0),
+    totalAmount: real('total_amount').notNull(),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [
+    index('purchase_order_items_purchase_order_idx').on(t.purchaseOrderId),
+    index('purchase_order_items_product_idx').on(t.productId)
+  ]
+)
+
+export const priceRules = sqliteTable(
+  'price_rules',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    ruleType: text('rule_type').notNull(),
+    appliesToType: text('applies_to_type').notNull(),
+    appliesToId: text('applies_to_id'),
+    value: real('value').notNull(),
+    startDate: text('start_date'),
+    endDate: text('end_date'),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [index('price_rules_company_idx').on(t.companyId), index('price_rules_status_idx').on(t.status)]
+)
+
+export const invoices = sqliteTable(
+  'invoices',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    orderId: integer('order_id').references(() => orders.id, { onDelete: 'set null' }),
+    customerId: integer('customer_id').references(() => customers.id, { onDelete: 'set null' }),
+    digitalCertificateId: integer('digital_certificate_id').references(() => digitalCertificates.id, {
+      onDelete: 'set null'
+    }),
+    taxRuleId: integer('tax_rule_id').references(() => taxRules.id, { onDelete: 'set null' }),
+    documentType: text('document_type').notNull(),
+    documentNumber: text('document_number').notNull(),
+    accessKey: text('access_key'),
+    issueDate: text('issue_date').notNull(),
+    status: text('status').notNull().default('draft'),
+    subtotal: real('subtotal').notNull().default(0),
+    taxAmount: real('tax_amount').notNull().default(0),
+    totalAmount: real('total_amount').notNull().default(0),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('invoices_company_document_unique').on(t.companyId, t.documentType, t.documentNumber),
+    index('invoices_company_idx').on(t.companyId),
+    index('invoices_status_idx').on(t.status)
+  ]
+)
+
+export const invoiceItems = sqliteTable(
+  'invoice_items',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    invoiceId: integer('invoice_id')
+      .notNull()
+      .references(() => invoices.id, { onDelete: 'cascade' }),
+    productId: integer('product_id')
+      .notNull()
+      .references(() => products.id, { onDelete: 'restrict' }),
+    quantity: real('quantity').notNull(),
+    unitPrice: real('unit_price').notNull(),
+    taxAmount: real('tax_amount').notNull().default(0),
+    totalAmount: real('total_amount').notNull(),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [index('invoice_items_invoice_idx').on(t.invoiceId), index('invoice_items_product_idx').on(t.productId)]
+)
+
+export const financialAccounts = sqliteTable(
+  'financial_accounts',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    accountType: text('account_type').notNull(),
+    bankName: text('bank_name'),
+    initialBalance: real('initial_balance').notNull().default(0),
+    currentBalance: real('current_balance').notNull().default(0),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [index('financial_accounts_company_idx').on(t.companyId), index('financial_accounts_status_idx').on(t.status)]
+)
+
+export const financialTransactions = sqliteTable(
+  'financial_transactions',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    accountId: integer('account_id')
+      .notNull()
+      .references(() => financialAccounts.id, { onDelete: 'cascade' }),
+    transactionType: text('transaction_type').notNull(),
+    referenceType: text('reference_type'),
+    referenceId: text('reference_id'),
+    amount: real('amount').notNull(),
+    description: text('description'),
+    transactionDate: text('transaction_date').notNull(),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [
+    index('financial_transactions_company_idx').on(t.companyId),
+    index('financial_transactions_account_idx').on(t.accountId),
+    index('financial_transactions_date_idx').on(t.transactionDate)
+  ]
+)
+
+export const documentSeries = sqliteTable(
+  'document_series',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    documentType: text('document_type').notNull(),
+    series: text('series').notNull(),
+    currentNumber: integer('current_number').notNull().default(0),
+    status: text('status').notNull().default('active'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [uniqueIndex('document_series_company_type_series_unique').on(t.companyId, t.documentType, t.series)]
+)
+
+export const numberingSequences = sqliteTable(
+  'numbering_sequences',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    sequenceType: text('sequence_type').notNull(),
+    currentValue: integer('current_value').notNull().default(0),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [uniqueIndex('numbering_sequences_company_type_unique').on(t.companyId, t.sequenceType)]
+)
+
+export const auditLogs = sqliteTable(
+  'audit_logs',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    entityType: text('entity_type').notNull(),
+    entityId: text('entity_id').notNull(),
+    action: text('action').notNull(),
+    userId: integer('user_id').references(() => users.id, { onDelete: 'set null' }),
+    details: text('details'),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [
+    index('audit_logs_company_idx').on(t.companyId),
+    index('audit_logs_entity_idx').on(t.entityType, t.entityId),
+    index('audit_logs_user_idx').on(t.userId)
+  ]
+)
+
+export const attachments = sqliteTable(
+  'attachments',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    entityType: text('entity_type').notNull(),
+    entityId: text('entity_id').notNull(),
+    fileName: text('file_name').notNull(),
+    filePath: text('file_path').notNull(),
+    mimeType: text('mime_type'),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [
+    index('attachments_company_idx').on(t.companyId),
+    index('attachments_entity_idx').on(t.entityType, t.entityId)
+  ]
+)

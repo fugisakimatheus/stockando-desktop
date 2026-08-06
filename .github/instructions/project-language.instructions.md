@@ -10,6 +10,9 @@ applyTo: '**/*'
 - All project documentation must be written in English.
 - This includes README files, Markdown documentation, inline comments, examples, and any other repository-facing written content.
 - Prefer clear, natural English and keep terminology consistent with the project domain.
+- Documentation file names must use lowercase letters by default.
+- The only exception is README.md, which must remain in uppercase as the standard entry-point file.
+- Avoid mixed-case or PascalCase names for documentation files; use lowercase kebab-case when needed.
 
 ## Chat and Copilot interaction language
 

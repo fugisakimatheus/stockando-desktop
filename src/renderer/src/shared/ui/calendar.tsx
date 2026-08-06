@@ -32,13 +32,13 @@ const cellVariants = cva(
         true: '[&:is(:nth-child(2)>[data-selected=true])>div]:rounded-l-(--cell-radius)'
       },
       isToday: {
-        true: 'rounded-(--cell-radius) bg-muted text-foreground data-[selected=true]:rounded-none'
+        true: 'rounded-(--cell-radius) bg-muted/80 text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] data-[selected=true]:rounded-none dark:bg-muted/70'
       },
       isSelectionStart: {
-        true: 'relative isolate z-0 rounded-l-(--cell-radius) bg-muted after:absolute after:inset-y-0 after:right-0 after:w-4 after:bg-muted'
+        true: 'relative isolate z-0 rounded-l-(--cell-radius) bg-muted/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] after:absolute after:inset-y-0 after:right-0 after:w-4 after:bg-muted/80 dark:bg-muted/70 dark:after:bg-muted/70'
       },
       isSelectionEnd: {
-        true: 'relative isolate z-0 rounded-r-(--cell-radius) bg-muted after:absolute after:inset-y-0 after:left-0 after:w-4 after:bg-muted'
+        true: 'relative isolate z-0 rounded-r-(--cell-radius) bg-muted/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] after:absolute after:inset-y-0 after:left-0 after:w-4 after:bg-muted/80 dark:bg-muted/70 dark:after:bg-muted/70'
       },
       isUnavailable: {
         true: 'text-muted-foreground opacity-50 [&>div]:line-through'
@@ -186,7 +186,7 @@ function CalendarInner({
                       }
                       className={cn(
                         buttonVariants({ variant: 'ghost', size: 'icon' }),
-                        'relative isolate z-10 flex aspect-square h-full w-full min-w-(--cell-size) flex-col gap-1 border-0 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-[3px] group-data-[focused=true]/day:ring-ring/50 data-[range-end=true]:rounded-(--cell-radius) data-[range-end=true]:rounded-r-(--cell-radius) data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:rounded-none data-[range-middle=true]:bg-muted data-[range-middle=true]:text-foreground data-[range-start=true]:rounded-(--cell-radius) data-[range-start=true]:rounded-l-(--cell-radius) data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground dark:hover:text-foreground [&>span]:text-xs [&>span]:opacity-70'
+                        'relative isolate z-10 flex aspect-square h-full w-full min-w-(--cell-size) flex-col gap-1 border-0 leading-none font-normal shadow-[0_2px_8px_rgba(15,23,42,0.04)] group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-[3px] group-data-[focused=true]/day:ring-ring/50 data-[range-end=true]:rounded-(--cell-radius) data-[range-end=true]:rounded-r-(--cell-radius) data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:rounded-none data-[range-middle=true]:bg-muted/80 data-[range-middle=true]:text-foreground data-[range-start=true]:rounded-(--cell-radius) data-[range-start=true]:rounded-l-(--cell-radius) data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground dark:hover:text-foreground [&>span]:text-xs [&>span]:opacity-70'
                       )}
                     >
                       {renderCell ? renderCell(renderProps) : renderProps.defaultChildren}

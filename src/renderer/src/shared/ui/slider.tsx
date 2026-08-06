@@ -27,7 +27,7 @@ function Slider<T extends SliderValue = SliderValue>({ className, ...props }: Sl
           <>
             <SliderTrack
               data-slot="slider-track"
-              className="relative grow overflow-hidden rounded-full bg-muted select-none data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1"
+              className="relative grow overflow-hidden rounded-full bg-muted/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] select-none dark:bg-muted/70 data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1"
             >
               <SliderFill
                 data-slot="slider-range"

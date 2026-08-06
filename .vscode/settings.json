@@ -73,5 +73,8 @@
   "editor.formatOnSaveMode": "file",
   "oxc.enable.oxfmt": true,
   "oxc.enable": true,
-  "oxc.enable.oxlint": true
+  "oxc.enable.oxlint": true,
+  "chat.tools.terminal.autoApprove": {
+    "mv": true
+  }
 }
