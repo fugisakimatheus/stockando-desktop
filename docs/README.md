@@ -16,4 +16,5 @@ This folder brings together the project documentation for architecture, product 
 - [development/development-guide.md](./development/development-guide.md) — local setup, workflow, and contributor guidance
 - [development/style-guidelines.md](./development/style-guidelines.md) — coding style, naming, and project patterns
 - [development/visual-style-guidelines.md](./development/visual-style-guidelines.md) — visual direction for light/dark mode, glassmorphism, and gradients
+- [development/testing-guide.md](./development/testing-guide.md) — testing strategy recommendations for unit, component, and end-to-end coverage
 - [operations/build-and-release.md](./operations/build-and-release.md) — build, packaging, and release notes
