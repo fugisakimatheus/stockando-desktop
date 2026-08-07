@@ -5,6 +5,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import { QueryProvider } from './providers/query-provider'
+import { ThemeProvider } from './providers/theme-provider'
 import { router } from './router'
 
 const rootElement = document.getElementById('root')
@@ -15,9 +16,11 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <QueryProvider>
-      <RouterProvider router={router} />
-      <TanstackDevtools router={router} />
-    </QueryProvider>
+    <ThemeProvider>
+      <QueryProvider>
+        <RouterProvider router={router} />
+        <TanstackDevtools router={router} />
+      </QueryProvider>
+    </ThemeProvider>
   </StrictMode>
 )

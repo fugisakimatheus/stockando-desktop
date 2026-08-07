@@ -1,3 +1,4 @@
+import { AppShell } from '@app/app-shell'
 import { CategoriesPage } from '@pages/categories'
 import { HomePage } from '@pages/home'
 import { ProductsPage } from '@pages/products'
@@ -5,7 +6,11 @@ import { SettingsPage } from '@pages/settings'
 import { createRootRoute, createRoute, createRouter, Outlet } from '@tanstack/react-router'
 
 const rootRoute = createRootRoute({
-  component: () => <Outlet />
+  component: () => (
+    <AppShell>
+      <Outlet />
+    </AppShell>
+  )
 })
 
 const homeRoute = createRoute({

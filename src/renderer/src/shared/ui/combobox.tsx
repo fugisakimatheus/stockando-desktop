@@ -220,7 +220,7 @@ function ComboboxChips({ children, className, ...props }: GroupProps) {
     <Group
       data-slot="combobox-chips"
       className={cn(
-        'flex min-h-8 flex-wrap items-center gap-1 rounded-xl border border-border/80 bg-gradient-to-br from-background/90 via-background/80 to-background/70 bg-clip-padding px-2.5 py-1 text-sm shadow-[0_4px_12px_rgba(15,23,42,0.04)] backdrop-blur-sm transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 has-aria-invalid:border-destructive has-aria-invalid:ring-3 has-aria-invalid:ring-destructive/20 has-data-[slot=combobox-chip]:px-1 dark:border-white/10 dark:from-background/80 dark:via-background/70 dark:to-background/60 dark:shadow-[0_4px_14px_rgba(2,6,23,0.16)] dark:has-aria-invalid:border-destructive/50 dark:has-aria-invalid:ring-destructive/40',
+        'flex min-h-8 flex-wrap items-center gap-1 rounded-xl border border-border/80 bg-gradient-to-br from-primary/4 via-primary/2 to-primary/1 bg-clip-padding px-2.5 py-1 text-sm shadow-[0_4px_12px_rgba(15,23,42,0.04)] backdrop-blur-sm transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 has-aria-invalid:border-destructive has-aria-invalid:ring-3 has-aria-invalid:ring-destructive/20 has-data-[slot=combobox-chip]:px-1 dark:border-white/10 dark:from-primary/8 dark:via-primary/5 dark:to-primary/3 dark:shadow-[0_4px_14px_rgba(2,6,23,0.16)] dark:has-aria-invalid:border-destructive/50 dark:has-aria-invalid:ring-destructive/40',
         className
       )}
       {...props}

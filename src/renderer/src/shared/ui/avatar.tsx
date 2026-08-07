@@ -13,7 +13,7 @@ function Avatar({
       data-slot="avatar"
       data-size={size}
       className={cn(
-        'group/avatar relative flex size-8 shrink-0 rounded-full border border-border/70 bg-gradient-to-br from-muted/70 via-background/70 to-muted/50 shadow-[0_4px_12px_rgba(15,23,42,0.05)] select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border/60 after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:border-white/10 dark:from-muted/60 dark:via-background/60 dark:to-muted/40 dark:after:mix-blend-lighten',
+        'group/avatar relative flex size-8 shrink-0 rounded-full border border-border/70 bg-gradient-to-br from-primary/4 via-primary/2 to-primary/1 shadow-[0_4px_12px_rgba(15,23,42,0.05)] select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border/60 after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:border-white/10 dark:from-primary/8 dark:via-primary/5 dark:to-primary/3 dark:after:mix-blend-lighten',
         className
       )}
       {...props}

@@ -32,7 +32,7 @@ function AccordionTrigger({
         slot="trigger"
         data-slot="accordion-trigger"
         className={cn(
-          'group/accordion-trigger relative flex flex-1 items-start justify-between rounded-xl border border-border/60 bg-gradient-to-br from-background/90 via-background/80 to-background/70 px-3 py-2.5 text-left text-sm font-medium shadow-[0_4px_10px_rgba(15,23,42,0.04)] backdrop-blur-sm transition-all outline-none hover:bg-muted/70 hover:underline focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground dark:border-white/10 dark:from-background/80 dark:via-background/70 dark:to-background/60 dark:shadow-[0_6px_16px_rgba(2,6,23,0.2)]',
+          'group/accordion-trigger relative flex flex-1 items-start justify-between rounded-xl border border-border/60 bg-gradient-to-br from-primary/4 via-primary/2 to-primary/1 px-3 py-2.5 text-left text-sm font-medium shadow-[0_4px_10px_rgba(15,23,42,0.04)] backdrop-blur-sm transition-all outline-none hover:bg-muted/70 hover:underline focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground dark:border-white/10 dark:from-primary/8 dark:via-primary/5 dark:to-primary/3 dark:shadow-[0_6px_16px_rgba(2,6,23,0.2)]',
           className
         )}
         {...props}

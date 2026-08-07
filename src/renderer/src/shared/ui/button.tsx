@@ -14,11 +14,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'border-primary/10 bg-gradient-to-br from-primary to-primary/90 text-primary-foreground shadow-[0_10px_24px_rgba(15,23,42,0.12)] hover:shadow-[0_12px_30px_rgba(15,23,42,0.16)] dark:from-primary/90 dark:to-primary',
+          'border-primary/10 bg-gradient-to-br from-primary to-primary/90 text-primary-foreground shadow-[0_10px_24px_rgba(15,23,42,0.12)] hover:shadow-[0_12px_30px_rgba(15,23,42,0.16)] dark:from-primary/62 dark:to-primary/48',
         outline:
-          'border-border/80 bg-gradient-to-br from-background/90 via-background/80 to-background/70 text-foreground shadow-[0_6px_16px_rgba(15,23,42,0.05)] backdrop-blur-sm hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-white/10 dark:from-background/80 dark:via-background/70 dark:to-background/60 dark:shadow-[0_8px_24px_rgba(2,6,23,0.2)]',
+          'border-border/80 bg-gradient-to-br from-primary/4 via-primary/2 to-primary/1 text-foreground shadow-[0_6px_16px_rgba(15,23,42,0.05)] backdrop-blur-sm hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-white/10 dark:from-primary/8 dark:via-primary/5 dark:to-primary/3 dark:shadow-[0_8px_24px_rgba(2,6,23,0.2)]',
         secondary:
-          'border-transparent bg-secondary/90 text-secondary-foreground shadow-[0_6px_16px_rgba(15,23,42,0.05)] hover:bg-secondary aria-expanded:bg-secondary aria-expanded:text-secondary-foreground dark:shadow-[0_8px_24px_rgba(2,6,23,0.18)]',
+          'border-primary/15 bg-gradient-to-br from-primary/10 to-primary/6 text-primary shadow-[0_6px_16px_rgba(15,23,42,0.05)] hover:from-primary/12 hover:to-primary/8 hover:text-primary aria-expanded:from-primary/12 aria-expanded:to-primary/8 dark:from-primary/10 dark:to-primary/6 dark:text-primary-foreground dark:shadow-[0_8px_24px_rgba(2,6,23,0.18)]',
         ghost:
           'border-transparent bg-transparent text-foreground shadow-none hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50',
         destructive:

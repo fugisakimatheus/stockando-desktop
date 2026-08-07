@@ -19,7 +19,7 @@ function Tabs({ className, ...props }: React.ComponentProps<typeof TabsPrimitive
 }
 
 const tabsListVariants = cva(
-  'group/tabs-list inline-flex w-fit items-center justify-center rounded-xl border border-border/70 bg-gradient-to-br from-background/80 via-background/70 to-background/60 p-[3px] text-muted-foreground shadow-[0_4px_12px_rgba(15,23,42,0.04)] backdrop-blur-sm group-data-horizontal/tabs:h-9 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col data-[variant=line]:rounded-none dark:border-white/10 dark:from-background/70 dark:via-background/60 dark:to-background/50',
+  'group/tabs-list inline-flex w-fit items-center justify-center rounded-xl border border-border/70 bg-gradient-to-br from-primary/3 via-primary/2 to-primary/1 p-[3px] text-muted-foreground shadow-[0_4px_12px_rgba(15,23,42,0.04)] backdrop-blur-sm group-data-horizontal/tabs:h-9 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col data-[variant=line]:rounded-none dark:border-white/10 dark:from-primary/7 dark:via-primary/4 dark:to-primary/2',
   {
     variants: {
       variant: {

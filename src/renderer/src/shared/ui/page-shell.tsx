@@ -35,7 +35,7 @@ function PageShell({
 
   const shellContent = (
     <>
-      <div className="rounded-2xl border border-border/70 bg-gradient-to-br from-background/90 via-background/80 to-background/70 p-4 shadow-[0_10px_40px_rgba(15,23,42,0.06)] backdrop-blur-xl dark:border-white/10 dark:from-background/80 dark:via-background/70 dark:to-background/60 dark:shadow-[0_10px_45px_rgba(2,6,23,0.35)]">
+      <div className="rounded-2xl border border-border/70 bg-gradient-to-br from-primary/4 via-primary/2 to-primary/1 p-4 shadow-[0_10px_40px_rgba(15,23,42,0.06)] backdrop-blur-xl dark:border-white/10 dark:from-primary/8 dark:via-primary/5 dark:to-primary/3 dark:shadow-[0_10px_45px_rgba(2,6,23,0.35)]">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
             {title ? <h1 className="text-2xl font-semibold tracking-tight text-foreground">{title}</h1> : null}
@@ -51,7 +51,7 @@ function PageShell({
   return (
     <div
       className={cn(
-        'flex flex-1 flex-col gap-6 bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.08),_transparent_38%),radial-gradient(circle_at_top_right,_rgba(16,185,129,0.08),_transparent_32%)] p-6 dark:bg-[radial-gradient(circle_at_top_left,_rgba(129,140,248,0.14),_transparent_38%),radial-gradient(circle_at_top_right,_rgba(45,212,191,0.12),_transparent_32%)]',
+        'flex flex-1 flex-col gap-6 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.05),_transparent_40%),radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.025),_transparent_34%)] p-6 dark:bg-[radial-gradient(circle_at_top_left,_rgba(96,165,250,0.08),_transparent_38%),radial-gradient(circle_at_bottom_right,_rgba(96,165,250,0.04),_transparent_34%)]',
         className
       )}
     >
@@ -64,7 +64,7 @@ function PageSection({ className, ...props }: ComponentPropsWithoutRef<'section'
   return (
     <section
       className={cn(
-        'rounded-2xl border border-border/70 bg-gradient-to-br from-card/90 via-card/80 to-card/70 p-4 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-sm dark:border-white/10 dark:from-card/80 dark:via-card/70 dark:to-card/60 dark:shadow-[0_10px_35px_rgba(2,6,23,0.25)]',
+        'rounded-2xl border border-border/70 bg-gradient-to-br from-primary/4 via-primary/2 to-primary/1 p-4 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-sm dark:border-white/10 dark:from-primary/8 dark:via-primary/5 dark:to-primary/3 dark:shadow-[0_10px_35px_rgba(2,6,23,0.25)]',
         className
       )}
       {...props}
@@ -76,7 +76,7 @@ function PageWidget({ className, ...props }: ComponentPropsWithoutRef<'div'>) {
   return (
     <div
       className={cn(
-        'rounded-2xl border border-border/70 bg-gradient-to-br from-card/90 via-card/80 to-card/70 p-4 shadow-[0_10px_28px_rgba(15,23,42,0.05)] backdrop-blur-sm dark:border-white/10 dark:from-card/80 dark:via-card/70 dark:to-card/60',
+        'rounded-2xl border border-border/70 bg-gradient-to-br from-primary/4 via-primary/2 to-primary/1 p-4 shadow-[0_10px_28px_rgba(15,23,42,0.05)] backdrop-blur-sm dark:border-white/10 dark:from-primary/8 dark:via-primary/5 dark:to-primary/3',
         className
       )}
       {...props}

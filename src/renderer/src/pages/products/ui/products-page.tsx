@@ -1,24 +1,43 @@
 import { Button } from '@shared/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@shared/ui/card'
+import { EmptyState } from '@shared/ui/empty-state'
 import { PageSection, PageShell } from '@shared/ui/page-shell'
+import { Plus, Search, Sparkles } from 'lucide-react'
 
 function ProductsPage(): React.JSX.Element {
   return (
     <PageShell
       title="Produtos"
       description="Cadastre e organize a base de produtos do negócio."
-      actions={<Button>Novo produto</Button>}
+      actions={
+        <div className="flex items-center gap-2">
+          <Button variant="outline" className="gap-2">
+            <Search className="size-4" />
+            Buscar
+          </Button>
+          <Button className="gap-2">
+            <Plus className="size-4" />
+            Novo produto
+          </Button>
+        </div>
+      }
     >
       <PageSection>
-        <Card className="border-0 bg-transparent shadow-none ring-0">
-          <CardHeader>
-            <CardTitle>Lista de produtos</CardTitle>
-            <CardDescription>Esta área será usada para listar e editar produtos no futuro.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">Ainda sem dados, mas com a estrutura visual já definida.</p>
-          </CardContent>
-        </Card>
+        <div className="rounded-[24px] border border-border/70 bg-gradient-to-br from-primary/4 via-primary/2 to-primary/1 p-4">
+          <div className="mb-4 flex items-center gap-2 text-sm font-medium text-primary">
+            <Sparkles className="size-4" />
+            Gestão de catálogo
+          </div>
+          <EmptyState
+            title="Ainda não há produtos cadastrados"
+            description="Comece adicionando o primeiro item para construir o catálogo da sua operação."
+            action={
+              <Button className="gap-2">
+                <Plus className="size-4" />
+                Adicionar produto
+              </Button>
+            }
+          />
+        </div>
       </PageSection>
     </PageShell>
   )

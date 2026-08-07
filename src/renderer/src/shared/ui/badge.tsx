@@ -7,13 +7,13 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-gradient-to-br from-primary to-primary/90 text-primary-foreground shadow-[0_2px_8px_rgba(15,23,42,0.08)] [a]:hover:bg-primary/80',
+          'bg-gradient-to-br from-primary/85 to-primary/65 text-primary-foreground shadow-[0_2px_8px_rgba(15,23,42,0.08)] [a]:hover:bg-primary/75',
         secondary:
-          'bg-gradient-to-br from-secondary to-secondary/90 text-secondary-foreground shadow-[0_2px_8px_rgba(15,23,42,0.08)] [a]:hover:bg-secondary/80',
+          'border border-primary/15 bg-gradient-to-br from-primary/8 to-primary/5 text-primary shadow-[0_2px_8px_rgba(15,23,42,0.08)] [a]:hover:bg-primary/12',
         destructive:
           'bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 [a]:hover:bg-destructive/20',
         outline:
-          'border-border/70 bg-gradient-to-br from-background/90 via-background/80 to-background/70 text-foreground shadow-[0_2px_8px_rgba(15,23,42,0.04)] backdrop-blur-sm dark:border-white/10 dark:from-background/80 dark:via-background/70 dark:to-background/60 [a]:hover:bg-muted [a]:hover:text-muted-foreground',
+          'border-border/70 bg-gradient-to-br from-primary/4 via-primary/2 to-primary/1 text-foreground shadow-[0_2px_8px_rgba(15,23,42,0.04)] backdrop-blur-sm dark:border-white/10 dark:from-primary/8 dark:via-primary/5 dark:to-primary/3 [a]:hover:bg-muted [a]:hover:text-muted-foreground',
         ghost: 'bg-transparent hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50',
         link: 'text-primary underline-offset-4 hover:underline'
       }

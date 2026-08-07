@@ -97,7 +97,7 @@ function CommandInput({ className, ...props }: InputProps) {
       data-slot="command-input-wrapper"
       className="p-1 pb-0"
     >
-      <InputGroup className="h-9! rounded-xl! border-border/70 bg-gradient-to-br from-background/90 via-background/80 to-background/70 shadow-[0_4px_12px_rgba(15,23,42,0.04)]! backdrop-blur-sm *:data-[slot=input-group-addon]:pl-2! dark:border-white/10 dark:from-background/80 dark:via-background/70 dark:to-background/60 dark:shadow-[0_4px_14px_rgba(2,6,23,0.16)]!">
+      <InputGroup className="h-9! rounded-xl! border-border/70 bg-gradient-to-br from-primary/4 via-primary/2 to-primary/1 shadow-[0_4px_12px_rgba(15,23,42,0.04)]! backdrop-blur-sm *:data-[slot=input-group-addon]:pl-2! dark:border-white/10 dark:from-primary/8 dark:via-primary/5 dark:to-primary/3 dark:shadow-[0_4px_14px_rgba(2,6,23,0.16)]!">
         <Input
           {...props}
           data-slot="command-input"
