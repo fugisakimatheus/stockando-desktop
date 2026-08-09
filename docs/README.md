@@ -8,6 +8,7 @@ This folder brings together the project documentation for architecture, product 
 - [architecture/user-flow.md](./architecture/user-flow.md) — application flow and user journeys
 - [architecture/data-layer.md](./architecture/data-layer.md) — database model, storage responsibilities, and data conventions
 - [features/README.md](./features/README.md) — product capabilities and functional modules
+- [development/application-development-plan.md](./development/application-development-plan.md) — phased product planning, requirements, and roadmap
 - [ui/compound-components.md](./ui/compound-components.md) — shared UI composition conventions
 - [adr/README.md](./adr/README.md) — architecture decision records
 
