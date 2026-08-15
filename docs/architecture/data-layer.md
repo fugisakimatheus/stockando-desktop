@@ -4,7 +4,7 @@ This document describes the current persistence model and the responsibilities o
 
 ## Storage approach
 
-The application uses SQLite through Drizzle ORM, with the main process acting as the orchestration boundary for database access and local services.
+The application uses SQLite through Drizzle ORM and better-sqlite3, with the main process acting as the orchestration boundary for database access and local services.
 
 ## Schema responsibilities
 
@@ -28,7 +28,7 @@ This structure favors an operational desktop workflow with strong tenant scoping
 ## Current implementation notes
 
 - The schema definition lives in src/main/db/schema.ts.
-- The local HTTP service is started from src/main/server.ts.
+- The local HTTP service (Fastify) is started from src/main/server.ts.
 - The renderer should consume data through the preload bridge and application-level APIs rather than interacting with the database directly.
 
 ## Recommended follow-up

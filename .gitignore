@@ -61,7 +61,6 @@ superpowers/
 # ----- Editors & OS ----------------------------------------------------------
 .idea
 .zed
-.kiro
 .vscode-test
 *.sublime*
 .DS_Store

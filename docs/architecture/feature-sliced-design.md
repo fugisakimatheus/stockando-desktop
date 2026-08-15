@@ -17,7 +17,7 @@ src/
 └── renderer/
     ├── app/             # router, providers, app-level shell
     ├── pages/           # route-level screen modules
-    └── shared/          # ui/, lib/, api/
+    └── shared/          # ui/, hooks/, lib/, api/
 ```
 
 ## Base folders that should not be renamed or restructured
@@ -38,7 +38,8 @@ Keep the Electron boundaries intact and grow the app inside them rather than res
 | Preload bridge | [src/preload](../../src/preload) | Exposes safe APIs to the renderer |
 | Renderer shell | [src/renderer/src/app](../../src/renderer/src/app) | Router, providers, global UI shell |
 | Pages | [src/renderer/src/pages](../../src/renderer/src/pages) | Route-level page modules |
-| Shared UI | [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui) | Reusable components and small composites |
+| Shared UI | [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui) | Reusable components and small composites (42 components) |
+| Shared hooks | [src/renderer/src/shared/hooks](../../src/renderer/src/shared/hooks) | Shared React hooks |
 | Shared logic | [src/renderer/src/shared/lib](../../src/renderer/src/shared/lib) | Utilities and helpers |
 | Shared API helpers | [src/renderer/src/shared/api](../../src/renderer/src/shared/api) | Query client and API-facing helpers |
 
@@ -49,6 +50,7 @@ Use the following rules when adding code:
 - keep page-level UI in the matching folder under [src/renderer/src/pages](../../src/renderer/src/pages)
 - keep app-wide shell concerns in [src/renderer/src/app](../../src/renderer/src/app)
 - keep reusable UI primitives in [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui)
+- keep shared hooks in [src/renderer/src/shared/hooks](../../src/renderer/src/shared/hooks)
 - keep shared helpers in [src/renderer/src/shared/lib](../../src/renderer/src/shared/lib)
 - keep API-facing helpers in [src/renderer/src/shared/api](../../src/renderer/src/shared/api)
 - avoid mixing Electron main-process concerns with renderer page code
@@ -62,12 +64,27 @@ Use a simple direction that matches the current codebase:
 - shared should not import from pages
 - avoid circular imports between page modules and shared modules
 
+## Path aliases
+
+The project uses 6 TypeScript path aliases to simplify imports:
+
+| Alias | Maps to |
+|-------|---------|
+| `@main/*` | `./src/main/*` |
+| `@preload/*` | `./src/preload/*` |
+| `@renderer/*` | `./src/renderer/src/*` |
+| `@app/*` | `./src/renderer/src/app/*` |
+| `@pages/*` | `./src/renderer/src/pages/*` |
+| `@shared/*` | `./src/renderer/src/shared/*` |
+
+Use these aliases in import statements rather than long relative paths.
+
 ## How to place new code
 
 When adding new UI or logic, follow this decision flow:
 
 1. If it belongs to a single screen, keep it near that page under [src/renderer/src/pages](../../src/renderer/src/pages).
-2. If it is reused by multiple pages, move it to [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui) or [src/renderer/src/shared/lib](../../src/renderer/src/shared/lib).
+2. If it is reused by multiple pages, move it to [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui), [src/renderer/src/shared/hooks](../../src/renderer/src/shared/hooks), or [src/renderer/src/shared/lib](../../src/renderer/src/shared/lib).
 3. If it is app-wide shell logic, place it in [src/renderer/src/app](../../src/renderer/src/app).
 4. If it touches Electron lifecycle, window creation, or IPC, place it in [src/main](../../src/main) or [src/preload](../../src/preload).
 

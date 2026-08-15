@@ -42,9 +42,23 @@ The current pages are still thin shells for home, products, categories, and sett
 
 ### Renderer organization
 - keep page-specific UI near the owning page under [src/renderer/src/pages](../../src/renderer/src/pages)
-- move reusable UI to [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui)
+- move reusable UI to [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui) (currently 42 shared UI components)
+- keep shared hooks in [src/renderer/src/shared/hooks](../../src/renderer/src/shared/hooks)
 - keep shared utilities in [src/renderer/src/shared/lib](../../src/renderer/src/shared/lib)
 - keep API-facing helpers in [src/renderer/src/shared/api](../../src/renderer/src/shared/api)
+
+### Path aliases
+
+The project defines 6 TypeScript path aliases for clean imports:
+
+| Alias | Maps to |
+|-------|---------|
+| `@main/*` | `./src/main/*` |
+| `@preload/*` | `./src/preload/*` |
+| `@renderer/*` | `./src/renderer/src/*` |
+| `@app/*` | `./src/renderer/src/app/*` |
+| `@pages/*` | `./src/renderer/src/pages/*` |
+| `@shared/*` | `./src/renderer/src/shared/*` |
 
 ### Data architecture
 The data model is company-centric. Most entities are scoped to a company and support inventory, sales, purchasing, and fiscal workflows.
