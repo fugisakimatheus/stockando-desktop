@@ -1,12 +1,20 @@
 # Testing Guide
 
-The project already includes strong static validation through type checking and builds, but it would benefit from a clearer testing strategy as the product grows.
+The project already includes strong static validation through type checking (TypeScript strict mode) and build-time validation. A formal testing framework has not yet been configured, but the intended approach is documented below for when it is introduced.
+
+## Intended testing stack
+
+| Layer | Tool | Purpose |
+|-------|------|---------|
+| Unit | Vitest | Isolated logic, helpers, and pure functions |
+| Component | Vitest + React Testing Library | Shared UI primitives and page interactions |
+| End-to-end | Playwright (Electron support) | Full user flows across the desktop app |
 
 ## Recommended testing layers
 
 ### Unit tests
 
-Use unit tests for isolated logic such as helpers, parsers, and small domain utilities. A lightweight setup based on Vitest is a good fit for this codebase.
+Use unit tests for isolated logic such as helpers, parsers, data transformations, and small domain utilities. Vitest is the chosen test runner because it shares the Vite configuration and provides fast feedback.
 
 ### Component tests
 
@@ -14,21 +22,38 @@ Use component tests for shared UI primitives and page-level interactions. React 
 
 ### End-to-end tests
 
-Use end-to-end tests for critical flows such as creating records, navigating between screens, and handling desktop-specific interactions. Playwright is a solid option for Electron-based workflows.
+Use end-to-end tests for critical flows such as creating records, navigating between screens, and handling desktop-specific interactions. Playwright with Electron support is a solid option for these workflows.
 
 ## Current baseline
 
-At the moment, the project relies mainly on:
+At the moment, the project relies on:
 
-- typecheck validation
-- build validation
+- `pnpm typecheck` — TypeScript type validation for both node and web targets
+- `pnpm lint` — oxlint static analysis
+- `pnpm build` — full build pipeline validation
 - manual verification during local development
 
-As the application grows, the next step is to formalize automated coverage around the most important product flows.
+No test runner or test configuration files exist yet. When introduced, Vitest should be configured to align with the existing electron-vite and path alias setup.
 
 ## Suggested priorities
 
-1. Add tests for shared utilities and data transformation helpers.
-2. Cover the most important page flows with component tests.
-3. Add end-to-end tests for the core business journeys once the UI stabilizes.
-4. Add CI checks so pull requests fail fast when regressions are introduced.
+1. Add Vitest with path alias support and basic configuration.
+2. Add tests for shared utilities and data transformation helpers.
+3. Cover the most important page flows with component tests.
+4. Add end-to-end tests for the core business journeys once the UI stabilizes.
+5. Add CI checks so pull requests fail fast when regressions are introduced.
+
+## Path alias support
+
+When configuring Vitest, ensure the following aliases are resolved:
+
+```ts
+resolve: {
+  alias: {
+    '@renderer': resolve('src/renderer/src'),
+    '@app': resolve('src/renderer/src/app'),
+    '@pages': resolve('src/renderer/src/pages'),
+    '@shared': resolve('src/renderer/src/shared'),
+  }
+}
+```

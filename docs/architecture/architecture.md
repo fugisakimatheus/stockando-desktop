@@ -42,10 +42,11 @@ The current pages are still thin shells for home, products, categories, and sett
 
 ### Renderer organization
 - keep page-specific UI near the owning page under [src/renderer/src/pages](../../src/renderer/src/pages)
-- move reusable UI to [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui) (currently 42 shared UI components)
+- move reusable UI to [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui) (currently 42 shared UI component files)
 - keep shared hooks in [src/renderer/src/shared/hooks](../../src/renderer/src/shared/hooks)
 - keep shared utilities in [src/renderer/src/shared/lib](../../src/renderer/src/shared/lib)
 - keep API-facing helpers in [src/renderer/src/shared/api](../../src/renderer/src/shared/api)
+- keep app-wide providers in [src/renderer/src/app/providers](../../src/renderer/src/app/providers) (theme and query client)
 
 ### Path aliases
 

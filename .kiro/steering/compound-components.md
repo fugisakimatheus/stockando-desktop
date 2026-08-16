@@ -64,5 +64,5 @@ export const SettingsCard = {
 
 ## References
 
-- Full guide: [docs/ui/COMPOUND_COMPONENTS.md](../../docs/ui/COMPOUND_COMPONENTS.md)
+- Full guide: [docs/ui/compound-components.md](../../docs/ui/compound-components.md)
 - Skill: [.agents/skills/compound-components/SKILL.md](../../.agents/skills/compound-components/SKILL.md)

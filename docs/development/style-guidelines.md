@@ -36,9 +36,11 @@ export { ExampleComponent }
 
 ## 4. Styling conventions
 
-- Use Tailwind utility classes for UI styling.
+- Use Tailwind CSS v4 utility classes for UI styling.
 - Keep class names readable and consistent.
 - Prefer shared primitives from the UI layer rather than re-implementing visual patterns in each page.
+- Use the `cn()` helper from `@shared/lib/cn` to merge conditional class names.
+- Follow the shadcn/ui (aria-nova style) conventions for new primitives — components land in `src/renderer/src/shared/ui`.
 - Avoid mixing too many style approaches in the same module.
 
 ## 5. File organization
@@ -53,6 +55,8 @@ export { ExampleComponent }
 
 - Keep data access concerns away from page components when they become reusable.
 - Prefer typed API helpers in the shared layer for data-facing operations.
+- Use TanStack React Query for server-state management (fetching, caching, mutations).
+- Use TanStack Router for route-level data loading and URL state when appropriate.
 - Keep local UI state minimal and focused.
 - Lift state only when multiple components need the same source of truth.
 
@@ -81,3 +85,24 @@ export { ExampleComponent }
 - Extract to shared only when reuse is real and repeated.
 - Keep the architecture predictable rather than over-engineered.
 - Use compound components for richer UI surfaces, not for trivial leaf components.
+
+## 11. Tooling-specific notes
+
+### Linting and formatting
+
+- Use oxlint (not ESLint) for static analysis — it is configured at `.oxlintrc.json`.
+- Use oxfmt for formatting — it is configured at `.oxfmtrc.json`.
+- Run `pnpm lint` and `pnpm format` before committing.
+
+### React 19
+
+- This project uses React 19 with the new JSX transform — no need to import React at the top of files.
+- Use `React.JSX.Element` as the return type for components when explicit typing is needed.
+- Prefer functional components exclusively.
+
+### shadcn/ui
+
+- The project uses the `aria-nova` style variant of shadcn/ui.
+- Add new components via `pnpm dlx shadcn@latest add <component>`.
+- Components are placed in `src/renderer/src/shared/ui` as configured in `components.json`.
+- Icons come from `lucide-react`.

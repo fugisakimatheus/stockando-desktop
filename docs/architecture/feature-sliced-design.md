@@ -38,7 +38,7 @@ Keep the Electron boundaries intact and grow the app inside them rather than res
 | Preload bridge | [src/preload](../../src/preload) | Exposes safe APIs to the renderer |
 | Renderer shell | [src/renderer/src/app](../../src/renderer/src/app) | Router, providers, global UI shell |
 | Pages | [src/renderer/src/pages](../../src/renderer/src/pages) | Route-level page modules |
-| Shared UI | [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui) | Reusable components and small composites (42 components) |
+| Shared UI | [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui) | Reusable components and small composites (42 component files) |
 | Shared hooks | [src/renderer/src/shared/hooks](../../src/renderer/src/shared/hooks) | Shared React hooks |
 | Shared logic | [src/renderer/src/shared/lib](../../src/renderer/src/shared/lib) | Utilities and helpers |
 | Shared API helpers | [src/renderer/src/shared/api](../../src/renderer/src/shared/api) | Query client and API-facing helpers |
