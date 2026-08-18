@@ -18,7 +18,7 @@
     "build:win": "pnpm run build && electron-builder --win",
     "build:mac": "electron-vite build && electron-builder --mac",
     "build:linux": "electron-vite build && electron-builder --linux",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-rebuild -o better-sqlite3"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^2.0.0",
+    "@electron/rebuild": "4.2.0",
     "@nfewizard/types": "^1.0.7",
     "@tanstack/react-devtools": "^0.10.9",
     "@tanstack/react-hotkeys-devtools": "^0.7.0",

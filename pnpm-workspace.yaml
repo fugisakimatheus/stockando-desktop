@@ -5,3 +5,7 @@ allowBuilds:
   esbuild: true
   libxmljs2: true
   xsd-schema-validator: true
+
+peerDependencyRules:
+  allowedVersions:
+    '@base-ui/react>date-fns': '2'
