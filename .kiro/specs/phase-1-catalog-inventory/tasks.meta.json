@@ -1,0 +1,1104 @@
+{
+  "pbtResults": {
+    "2.2 Write property test for uniqueness constraint enforcement (categories)": {
+      "status": "passed",
+      "lastRunTimestamp": 1787100165017
+    },
+    "2.3 Write property test for referential integrity on deletion (categories)": {
+      "status": "passed",
+      "lastRunTimestamp": 1787100170239
+    },
+    "4.2 Write property test for uniqueness constraint enforcement (products)": {
+      "status": "passed",
+      "lastRunTimestamp": 1787100476596
+    },
+    "7.6 Write property test for transfer conservation": {
+      "status": "failed",
+      "failingExample": "Counterexample: [1,1] — Caused by: TypeError: Transaction function cannot return a promise. This is a known infrastructure issue where better-sqlite3@13.0.1 rejects async callbacks passed to db.transaction(). All stock property tests (7.4, 7.5, 7.6) fail with the same root cause. The test logic is correct but the test infrastructure needs better-sqlite3 downgrade or drizzle-orm update to resolve the transaction incompatibility.",
+      "lastRunTimestamp": 1787101135657
+    },
+    "7.5 Write property test for non-negative stock enforcement": {
+      "status": "passed",
+      "lastRunTimestamp": 1787101216733
+    },
+    "7.4 Write property test for stock balance equals net movement sum": {
+      "status": "passed",
+      "lastRunTimestamp": 1787101462780
+    },
+    "7.13 Write property test for trackInventory gate": {
+      "status": "passed",
+      "lastRunTimestamp": 1787102079749
+    },
+    "7.9 Write property test for adjustment creates corresponding movement": {
+      "status": "passed",
+      "lastRunTimestamp": 1787102227227
+    },
+    "7.11 Write property test for reconciliation correctness": {
+      "status": "passed",
+      "lastRunTimestamp": 1787102405703
+    },
+    "7.12 Write property test for transactional atomicity": {
+      "status": "passed",
+      "lastRunTimestamp": 1787102414134
+    },
+    "9.4 Write property test for movement immutability": {
+      "status": "passed",
+      "lastRunTimestamp": 1787102725900
+    },
+    "9.3 Write property test for company data isolation": {
+      "status": "passed",
+      "lastRunTimestamp": 1787102730226
+    }
+  },
+  "executionHistory": {
+    "1.1 Create shared type definitions and constants for the catalog and inventory domain": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145133
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099157689
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099349775
+      }
+    ],
+    "1.2 Create the AuditService for logging entity changes": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145171
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099355027
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099593470
+      }
+    ],
+    "1.3 Add additional composite indexes on stock_movements for performance": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145210
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099158340
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099350794
+      }
+    ],
+    "2.1 Implement CategoryService with CRUD operations": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145278
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099598780
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099974920
+      }
+    ],
+    "2.2 Write property test for uniqueness constraint enforcement (categories)": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145310
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099981698
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100221965
+      }
+    ],
+    "2.3 Write property test for referential integrity on deletion (categories)": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145348
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099982438
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100224703
+      }
+    ],
+    "2.4 Create Fastify route module for categories API": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145380
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099983221
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100222916
+      }
+    ],
+    "3.1 Implement UnitOfMeasureService with CRUD operations": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145419
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099599427
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099975696
+      }
+    ],
+    "3.2 Create Fastify route module for units of measure API": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145459
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099983991
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100223705
+      }
+    ],
+    "4.1 Implement ProductService with CRUD and paginated list": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145500
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099984830
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100220922
+      }
+    ],
+    "4.2 Write property test for uniqueness constraint enforcement (products)": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145540
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100362417
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100495849
+      }
+    ],
+    "4.3 Create Fastify route module for products API": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145580
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100363287
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100496803
+      }
+    ],
+    "5.1 Implement WarehouseService with CRUD operations": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145691
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099600298
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099976529
+      }
+    ],
+    "5.2 Create Fastify route module for warehouses API": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145752
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100236111
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100357327
+      }
+    ],
+    "6. Checkpoint - Core catalog services": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145793
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104623537
+      }
+    ],
+    "7.1 Implement StockService.recordInbound with transactional balance update": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145844
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100507231
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100611375
+      }
+    ],
+    "7.2 Implement StockService.recordOutbound with negative stock protection": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145891
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100616012
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100757013
+      }
+    ],
+    "7.3 Implement StockService.recordTransfer with paired movements": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145941
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100761980
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100904905
+      }
+    ],
+    "7.4 Write property test for stock balance equals net movement sum": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099145982
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100911672
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102109094
+      }
+    ],
+    "7.5 Write property test for non-negative stock enforcement": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146028
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100912477
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102108173
+      }
+    ],
+    "7.6 Write property test for transfer conservation": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146071
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100913241
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102106402
+      }
+    ],
+    "7.7 Implement StockService.getProductBalances and getWarehouseOverview": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146118
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100616832
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100756124
+      }
+    ],
+    "7.8 Implement StockService.createAdjustment with audit trail": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146159
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100762838
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100905843
+      }
+    ],
+    "7.9 Write property test for adjustment creates corresponding movement": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146201
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102120401
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102244329
+      }
+    ],
+    "7.10 Implement StockService.reconcile": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146244
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100914051
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102107304
+      }
+    ],
+    "7.11 Write property test for reconciliation correctness": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146334
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102249556
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102492355
+      }
+    ],
+    "7.12 Write property test for transactional atomicity": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146382
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102250383
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102492893
+      }
+    ],
+    "7.13 Write property test for trackInventory gate": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146438
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100914843
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102109981
+      }
+    ],
+    "8.1 Create Fastify route module for stock API": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146483
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102251144
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102494855
+      }
+    ],
+    "8.2 Create Fastify route module for stock movements API": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146537
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102251951
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102494127
+      }
+    ],
+    "8.3 Create Fastify route module for stock adjustments API": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146581
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102252933
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102495776
+      }
+    ],
+    "9.1 Register all route modules in `src/main/server.ts`": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146629
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102501264
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102582192
+      }
+    ],
+    "9.2 Write integration tests for stock workflow": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146679
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102587538
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102747447
+      }
+    ],
+    "9.3 Write property test for company data isolation": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146727
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102588265
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102748356
+      }
+    ],
+    "9.4 Write property test for movement immutability": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146779
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102589114
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102746797
+      }
+    ],
+    "10. Checkpoint - Backend complete": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146829
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104628420
+      }
+    ],
+    "11.1 Create API client helpers for catalog and inventory endpoints": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146879
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102761061
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102985629
+      }
+    ],
+    "11.2 Create TanStack Query hooks for categories and units of measure": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099146960
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102991089
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103216989
+      }
+    ],
+    "11.3 Create TanStack Query hooks for products": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147003
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102991811
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103217770
+      }
+    ],
+    "11.4 Create TanStack Query hooks for warehouses": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147079
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102992714
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103218491
+      }
+    ],
+    "11.5 Create TanStack Query hooks for stock, movements, and adjustments": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147131
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102993568
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103219443
+      }
+    ],
+    "12.1 Create DataTable component using TanStack Table": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147192
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102994367
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103220388
+      }
+    ],
+    "12.2 Create ConfirmDialog and FilterBar shared components": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147251
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103225608
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103471022
+      }
+    ],
+    "13.1 Build CategoriesPage with list, create, edit, and delete": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147331
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103477010
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103821013
+      }
+    ],
+    "13.2 Build UnitsOfMeasurePage with list, create, edit, and delete": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147381
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103477280
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103821723
+      }
+    ],
+    "14.1 Build ProductsPage with paginated table, search, and filters": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147441
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103478101
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103822667
+      }
+    ],
+    "14.2 Build product create and edit forms": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147498
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104021598
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104306835
+      }
+    ],
+    "14.3 Build ProductDetailPage with stock information": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147550
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104022219
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104307695
+      }
+    ],
+    "15.1 Build WarehousesPage with list, create, edit, and delete": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147601
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103478938
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103823526
+      }
+    ],
+    "16.1 Build StockOverviewPage with warehouse-level and product-level views": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147656
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103479761
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103824550
+      }
+    ],
+    "16.2 Build StockMovementsPage with filtered history": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147706
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103834338
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104015497
+      }
+    ],
+    "17.1 Build StockAdjustmentPage with form and history": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147761
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104023102
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104308739
+      }
+    ],
+    "17.2 Build Transfer form with source/destination validation": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147812
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104023801
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104309629
+      }
+    ],
+    "17.3 Build reconciliation trigger in stock overview": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147919
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104024669
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104310570
+      }
+    ],
+    "18.1 Add page routes to the router configuration": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099147991
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104316070
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104617367
+      }
+    ],
+    "19. Checkpoint - Full feature integration": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099148043
+      },
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104633328
+      }
+    ],
+    "1. Set up service layer foundation and shared types": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787099593511
+      }
+    ],
+    "3. Implement UnitOfMeasureService and units route module": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100223742
+      }
+    ],
+    "2. Implement CategoryService and categories route module": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100224744
+      }
+    ],
+    "5. Implement WarehouseService and warehouses route module": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100357421
+      }
+    ],
+    "4. Implement ProductService and products route module": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787100496849
+      }
+    ],
+    "7. Implement StockService with transactional stock operations": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102492934
+      }
+    ],
+    "8. Create stock, movements, and adjustments route modules": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102495845
+      }
+    ],
+    "9. Wire route modules into Fastify server": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787102748406
+      }
+    ],
+    "11. Create renderer API client and query hooks": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103219521
+      }
+    ],
+    "12. Build shared UI components for catalog pages": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103471068
+      }
+    ],
+    "13. Build Categories and Units of Measure pages": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103821767
+      }
+    ],
+    "15. Build Warehouses page": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787103823577
+      }
+    ],
+    "16. Build Stock Overview and Movements pages": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104015596
+      }
+    ],
+    "14. Build Products page with pagination and filtering": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104307777
+      }
+    ],
+    "17. Build Stock Adjustment and Transfer forms": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104310667
+      }
+    ],
+    "18. Register routes in TanStack Router": [
+      {
+        "executionId": "134d471b-55a5-4cb4-af4c-b8739a5d7378",
+        "chatSessionId": "sess_940132f5-a594-4b92-9635-9df6516e97d4",
+        "timestamp": 1787104617418
+      }
+    ]
+  }
+}

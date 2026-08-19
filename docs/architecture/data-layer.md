@@ -56,17 +56,52 @@ This structure favors an operational desktop workflow with strong tenant scoping
 
 The main process starts a Fastify server (`src/main/server.ts`) on `127.0.0.1:3000`. This service exposes REST endpoints that the renderer consumes via the shared API layer (`src/renderer/src/shared/api`). The renderer uses TanStack React Query to manage server state, caching, and refetching.
 
+### Implemented API routes
+
+| Route prefix | Module | Purpose |
+|--------------|--------|---------|
+| `/api/categories` | `routes/categories.ts` | Category CRUD |
+| `/api/units-of-measure` | `routes/units-of-measure.ts` | Unit of measure CRUD |
+| `/api/products` | `routes/products.ts` | Product CRUD with pagination and filters |
+| `/api/warehouses` | `routes/warehouses.ts` | Warehouse CRUD |
+| `/api/stock` | `routes/stock.ts` | Stock balances and reconciliation |
+| `/api/stock-movements` | `routes/stock-movements.ts` | Movement history and recording (inbound, outbound, transfer) |
+| `/api/stock-adjustments` | `routes/stock-adjustments.ts` | Adjustment creation and history |
+| `/api/companies` | `routes/companies.ts` | Company management |
+| `/api/settings` | `routes/settings.ts` | App settings |
+
+All catalog and inventory routes require the `x-company-id` header for company-scoped data isolation.
+
+### Service layer
+
+Domain logic lives in `src/main/services/`:
+
+| Service | Responsibility |
+|---------|---------------|
+| `category-service.ts` | Category CRUD with parent validation and referential integrity |
+| `unit-of-measure-service.ts` | Unit CRUD with product reference protection |
+| `product-service.ts` | Product CRUD, paginated list with joins, deletion guard |
+| `warehouse-service.ts` | Warehouse CRUD with stock-based deletion protection |
+| `stock-service.ts` | Transactional stock operations (inbound, outbound, transfer, adjustment, reconcile) |
+| `audit-service.ts` | Audit log insertion |
+
+### Error handling
+
+The API uses a structured error hierarchy (`src/main/api/errors.ts`) with typed error classes mapped to HTTP status codes by a global Fastify error handler. Error responses follow the envelope: `{ success: false, error: { code, message, fields? } }`.
+
 ## Current implementation notes
 
 - The Drizzle schema definition lives in `src/main/db/schema.ts`.
-- The local HTTP service is started from `src/main/server.ts` during app bootstrap.
-- The renderer should consume data through the shared API helpers and React Query hooks rather than interacting with the database directly.
-- The preload bridge (`src/preload/index.ts`) currently exposes only the Electron API surface.
+- Migrations use a custom runner in `src/main/db/migrations/`.
+- The service layer uses Drizzle's query builder with typed schemas.
+- Stock operations execute within SQLite transactions for atomicity.
+- Request bodies are validated with Zod schemas at the route level.
+- The renderer consumes data through typed API client functions in `src/renderer/src/shared/api/catalog-api.ts` and React Query hooks colocated with each page.
 
-## Recommended follow-up
+## Growth strategy
 
-As the application grows, it will be helpful to:
-- Add Drizzle migration files and a migration strategy for schema evolution.
-- Introduce a service/repository layer for domain-specific persistence logic in the main process.
-- Expand the Fastify API to cover CRUD operations for the major entity groups.
-- Add request validation (Zod or TypeBox) at the API boundary.
+As the application grows:
+- Add new service modules following the existing pattern (company-scoped, typed errors, audit logging).
+- Add Drizzle migration files for schema evolution beyond the initial migration.
+- Expand the Fastify API as new modules are implemented.
+- Consider adding a repository abstraction if query complexity justifies it.

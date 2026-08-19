@@ -2,9 +2,13 @@ export {
   AppError,
   BusinessRuleError,
   ConflictError,
+  EntityReferencedError,
   ERROR_CODES,
+  InsufficientStockError,
+  InvalidMovementError,
   NotFoundError,
   SystemError,
+  TransferSameWarehouseError,
   ValidationError
 } from './errors'
 export type { ErrorCode } from './errors'

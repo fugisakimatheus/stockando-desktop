@@ -9,11 +9,13 @@ Guidelines for TanStack Router, React Query, and React Table usage in this proje
 
 ## TanStack Router
 
-- The router is file-based at `src/renderer/src/app/router.tsx` using `createRouter` / `createRoute` / `createRootRoute`.
-- The root route renders the `AppShell` with an `<Outlet />`.
+- The router is defined at `src/renderer/src/app/router.tsx` using `createRouter` / `createRoute` / `createRootRoute`.
+- The root route renders the `BootstrapGate` which handles app initialization before showing the shell.
 - Register the router type via the `declare module '@tanstack/react-router'` augmentation.
 - Use `useRouterState` to read route state (e.g., current pathname for active nav).
-- Keep route definitions colocated in the router file unless the app grows large enough to warrant route splitting.
+- Use `lazyRouteComponent(() => import('...'), 'ExportName')` for code-split route components.
+- For routes with params (e.g., `/products/$id`), use `useParams` to extract and parse them.
+- Keep all route definitions in the router file — the current app size does not warrant route splitting.
 
 ## TanStack React Query
 
@@ -23,19 +25,36 @@ Guidelines for TanStack Router, React Query, and React Table usage in this proje
 
 ### Query Key Conventions
 
-- Use arrays with a domain prefix: `['products', 'list']`, `['products', 'detail', id]`.
+- Use arrays with a company ID prefix followed by domain: `[companyId, 'products', 'list']`, `[companyId, 'products', 'detail', id]`.
+- The company ID prefix ensures cache isolation between companies.
+- Use a query key factory object per domain for consistency:
+
+```ts
+const productKeys = {
+  all: (companyId: number) => [companyId, 'products'] as const,
+  lists: (companyId: number) => [...productKeys.all(companyId), 'list'] as const,
+  list: (companyId: number, filters: Filters) => [...productKeys.lists(companyId), filters] as const,
+  details: (companyId: number) => [...productKeys.all(companyId), 'detail'] as const,
+  detail: (companyId: number, id: number) => [...productKeys.details(companyId), id] as const,
+}
+```
+
 - Keep keys stable and serializable.
-- Colocate query keys with their hook or API helper.
+- Colocate query keys with their hook file.
 
 ### Custom Hooks
 
 - Wrap `useQuery` and `useMutation` in domain-specific hooks (e.g., `useProducts`, `useCreateProduct`).
-- Keep hooks in the page folder when used by a single page; move to `@shared/hooks` when reused.
+- Keep hooks colocated with the page that owns them: `pages/<name>/hooks/use-<name>.ts`.
+- Move to `@shared/hooks` only when multiple pages consume the same hook.
+- Accept `companyId` as the first parameter to all hooks.
 - Return typed data — avoid `any` in query function returns.
 
 ### Mutations
 
-- Use `useMutation` with `onSuccess` to invalidate related queries.
+- Use `useMutation` with `onSuccess` to invalidate related queries via `queryClient.invalidateQueries({ queryKey: keys.all(companyId) })`.
+- Invalidate broadly (the `all` prefix) to catch both list and detail queries.
+- For stock mutations, invalidate both `[companyId, 'stock']` and `[companyId, 'stock-movements']` prefixes.
 - Prefer optimistic updates for UI-critical fast feedback paths.
 - Handle error and loading states explicitly in the UI.
 

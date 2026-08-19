@@ -49,6 +49,8 @@ The development command starts Electron via electron-vite, which handles HMR for
 | `pnpm lint` | Run oxlint for static analysis |
 | `pnpm format` | Run oxlint --fix and oxfmt --write |
 | `pnpm typecheck` | Type-check both node and web targets |
+| `pnpm test --run` | Run the test suite (single execution) |
+| `pnpm test` | Run tests in watch mode |
 | `pnpm build` | Full typecheck + electron-vite build |
 | `pnpm build:win` | Package for Windows |
 | `pnpm build:mac` | Package for macOS |
@@ -58,16 +60,20 @@ The development command starts Electron via electron-vite, which handles HMR for
 
 ```text
 src/
-├── main/                # Electron main process, Fastify server, DB
-│   ├── db/schema.ts     # Drizzle ORM schema (SQLite)
-│   ├── index.ts         # Electron bootstrap and window creation
-│   └── server.ts        # Local Fastify HTTP service
-├── preload/             # Secure IPC bridge
+├── main/                  # Electron main process, Fastify server, DB
+│   ├── api/               # Error handler, error classes, response types
+│   ├── db/                # Drizzle schema, migrations, seed
+│   ├── lib/               # Shared utilities (timestamps, etc.)
+│   ├── routes/            # Fastify route modules (REST API endpoints)
+│   ├── services/          # Domain services (CRUD, stock operations)
+│   ├── index.ts           # Electron bootstrap and window creation
+│   └── server.ts          # Local Fastify HTTP service (127.0.0.1:3000)
+├── preload/               # Secure IPC bridge
 └── renderer/
     └── src/
-        ├── app/         # Router, providers, shell, styles
-        ├── pages/       # Route-level screen modules
-        └── shared/      # ui/, hooks/, lib/, api/
+        ├── app/           # Router, providers, shell, styles
+        ├── pages/         # Route-level screen modules with colocated hooks
+        └── shared/        # ui/, hooks/, lib/, api/
 ```
 
 ## Path aliases

@@ -12,19 +12,38 @@ Organize the Electron + React renderer using a simplified FSD structure with cle
 | Concern | Location | Role |
 |---------|----------|------|
 | Electron bootstrap | `src/main` | Process-level bootstrap, DB, server setup |
+| Service layer | `src/main/services` | Domain logic, CRUD, stock operations |
+| API routes | `src/main/routes` | Fastify route handlers with Zod validation |
 | Preload scripts | `src/preload` | Bridge between main and renderer |
 | Renderer entry | `src/renderer/src/app` | Router, providers, global shell |
-| Pages | `src/renderer/src/pages` | Route-level screen containers |
+| Pages | `src/renderer/src/pages` | Route-level screen containers with colocated hooks |
 | Shared UI | `src/renderer/src/shared/ui` | Reusable primitives and composites |
+| Shared API | `src/renderer/src/shared/api` | Typed fetch functions and query client |
 | Shared logic | `src/renderer/src/shared/lib` | Utilities, helpers, cross-cutting logic |
 
 ## Placement Rules
 
 - Keep page-level UI in its corresponding folder under `src/renderer/src/pages`
+- Keep page-specific TanStack Query hooks in `src/renderer/src/pages/<name>/hooks/`
 - Keep reusable UI primitives in `src/renderer/src/shared/ui`
 - Keep shared helpers in `src/renderer/src/shared/lib`
 - Keep app-wide providers and routing in `src/renderer/src/app`
 - Colocate feature-specific UI near its page; move to shared only when multiple pages need it
+
+## Page Module Structure
+
+Each page module follows a consistent structure:
+
+```text
+src/renderer/src/pages/<name>/
+├── hooks/
+│   └── use-<name>.ts        # TanStack Query hooks (queries + mutations)
+├── ui/
+│   └── <name>-page.tsx      # Main page component
+└── index.ts                  # Barrel export
+```
+
+Additional UI components (forms, dialogs) live in the `ui/` folder when page-specific.
 
 ## Import Direction
 

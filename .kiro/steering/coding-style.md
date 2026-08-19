@@ -80,14 +80,27 @@ export { ExampleComponent }
 
 - The project uses oxlint (`.oxlintrc.json`) for linting and oxfmt (`.oxfmtrc.json`) for formatting.
 - Run `pnpm lint` and `pnpm format` before committing.
+- Run `pnpm test --run` to verify tests pass before committing.
 - Do not configure ESLint or Prettier — they are not used in this project.
+
+## Testing
+
+- Use Vitest for all test files (configured in `vitest.config.ts`).
+- Place service tests in `src/main/services/__tests__/`.
+- Use `*.test.ts` for unit/integration tests and `*.property.test.ts` for property-based tests.
+- Mock `getDb()` from `../../server` in service tests.
+- Use in-memory SQLite (`new Database(':memory:')`) for test isolation.
+- Use `fast-check` for property-based testing of domain invariants.
 
 ## Do
 
 - Keep it in the page if only one screen uses it.
 - Extract to `@shared/ui` when multiple pages need the same component.
-- Follow the existing page structure: `pages/<name>/index.ts` + `pages/<name>/ui/<name>-page.tsx`.
+- Follow the existing page structure: `pages/<name>/index.ts` + `pages/<name>/ui/<name>-page.tsx` + `pages/<name>/hooks/use-<name>.ts`.
 - Use the shadcn CLI to add new primitives rather than hand-rolling them.
+- Use `ConfirmDialog` from `@shared/ui` for destructive action confirmations.
+- Use `FilterBar` from `@shared/ui` for search and filter controls on list pages.
+- Use Sonner `toast` for success/error notifications after mutations.
 
 ## Do Not
 

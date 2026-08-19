@@ -35,6 +35,7 @@ class ApiError extends Error {
 interface FetchOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
   body?: unknown
+  headers?: Record<string, string>
 }
 
 /**
@@ -46,9 +47,9 @@ interface FetchOptions {
  * - Wraps network-level errors into a consistent `ApiError` with code `NETWORK_ERROR`.
  */
 async function apiClient<T>(endpoint: string, options?: FetchOptions): Promise<T> {
-  const { method = 'GET', body } = options ?? {}
+  const { method = 'GET', body, headers: customHeaders } = options ?? {}
 
-  const headers: Record<string, string> = {}
+  const headers: Record<string, string> = { ...customHeaders }
   let serializedBody: string | undefined
 
   if (body !== undefined) {

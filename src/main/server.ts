@@ -11,9 +11,16 @@ import { MigrationError, runMigrations } from './db/migrations/index'
 import * as schema from './db/schema'
 import { seedDefaults } from './db/seed'
 import { registerBootstrapRoutes } from './routes/bootstrap'
+import { registerCategoryRoutes } from './routes/categories'
 import { registerCompanyRoutes } from './routes/companies'
 import { registerCompanySettingsRoutes } from './routes/company-settings'
+import { registerProductRoutes } from './routes/products'
 import { registerSettingsRoutes } from './routes/settings'
+import { registerStockRoutes } from './routes/stock'
+import { registerStockAdjustmentRoutes } from './routes/stock-adjustments'
+import { registerStockMovementRoutes } from './routes/stock-movements'
+import { registerUnitOfMeasureRoutes } from './routes/units-of-measure'
+import { registerWarehouseRoutes } from './routes/warehouses'
 
 const HOST = '127.0.0.1'
 const PORT = 3000
@@ -107,12 +114,19 @@ export async function startServer(): Promise<BootstrapResult> {
   registerCompanyRoutes(fastify)
   registerCompanySettingsRoutes(fastify)
   registerSettingsRoutes(fastify)
+  registerCategoryRoutes(fastify)
+  registerUnitOfMeasureRoutes(fastify)
+  registerProductRoutes(fastify)
+  registerWarehouseRoutes(fastify)
+  registerStockRoutes(fastify)
+  registerStockMovementRoutes(fastify)
+  registerStockAdjustmentRoutes(fastify)
 
   // CORS for all routes and methods
   fastify.addHook('onSend', async (_request, reply, payload) => {
     reply.header('Access-Control-Allow-Origin', '*')
     reply.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-    reply.header('Access-Control-Allow-Headers', 'Content-Type')
+    reply.header('Access-Control-Allow-Headers', 'Content-Type, x-company-id')
     return payload
   })
 

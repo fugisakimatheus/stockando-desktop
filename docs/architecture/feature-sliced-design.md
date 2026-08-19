@@ -38,7 +38,7 @@ Keep the Electron boundaries intact and grow the app inside them rather than res
 | Preload bridge | [src/preload](../../src/preload) | Exposes safe APIs to the renderer |
 | Renderer shell | [src/renderer/src/app](../../src/renderer/src/app) | Router, providers, global UI shell |
 | Pages | [src/renderer/src/pages](../../src/renderer/src/pages) | Route-level page modules |
-| Shared UI | [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui) | Reusable components and small composites (42 component files) |
+| Shared UI | [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui) | Reusable components and small composites (44+ component files) |
 | Shared hooks | [src/renderer/src/shared/hooks](../../src/renderer/src/shared/hooks) | Shared React hooks |
 | Shared logic | [src/renderer/src/shared/lib](../../src/renderer/src/shared/lib) | Utilities and helpers |
 | Shared API helpers | [src/renderer/src/shared/api](../../src/renderer/src/shared/api) | Query client and API-facing helpers |
@@ -90,7 +90,9 @@ When adding new UI or logic, follow this decision flow:
 
 ## Project-specific guidance
 
-The current pages are simple route modules such as [src/renderer/src/pages/home/ui/home-page.tsx](../../src/renderer/src/pages/home/ui/home-page.tsx), [src/renderer/src/pages/products/ui/products-page.tsx](../../src/renderer/src/pages/products/ui/products-page.tsx), [src/renderer/src/pages/categories/ui/categories-page.tsx](../../src/renderer/src/pages/categories/ui/categories-page.tsx), and [src/renderer/src/pages/settings/ui/settings-page.tsx](../../src/renderer/src/pages/settings/ui/settings-page.tsx).
+The current pages include fully functional route modules for home, products (list, detail, create/edit), categories, units of measure, warehouses, stock overview (with reconciliation), stock movements, stock adjustments, settings, companies, and a 404 not-found screen.
+
+Each page module follows the pattern `pages/<name>/hooks/` for TanStack Query hooks and `pages/<name>/ui/` for React components.
 
 The renderer router is defined in [src/renderer/src/app/router.tsx](../../src/renderer/src/app/router.tsx), and the Electron bootstrap is centered in [src/main/index.ts](../../src/main/index.ts).
 

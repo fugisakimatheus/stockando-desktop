@@ -13,11 +13,19 @@ The project is a desktop business application built with Electron, React, TypeSc
 ### Main process
 The main process is responsible for:
 - window creation and Electron lifecycle management
-- bootstrap of the local Fastify server
+- bootstrap of the local Fastify server on `127.0.0.1:3000`
 - database initialization and persistence concerns
-- future IPC handlers and business orchestration
+- domain services with business logic (CRUD, stock operations, audit)
+- REST API routes with request validation (Zod) and structured error handling
 
 The main bootstrap is centered in [src/main/index.ts](../../src/main/index.ts), and the local service entry point is [src/main/server.ts](../../src/main/server.ts).
+
+Key structural directories:
+- `src/main/api/` — error hierarchy, error handler, response envelope types
+- `src/main/db/` — Drizzle ORM schema, migrations, seed data
+- `src/main/services/` — domain services (CategoryService, ProductService, StockService, etc.)
+- `src/main/routes/` — Fastify route modules for all REST endpoints
+- `src/main/lib/` — shared main-process utilities
 
 ### Preload layer
 The preload layer should remain minimal and intentionally expose only the API surface the renderer needs. This keeps UI code decoupled from Electron internals and avoids broad access to the main process.
@@ -30,19 +38,23 @@ The renderer is organized around:
 - [src/renderer/src/pages](../../src/renderer/src/pages) for route-level screens
 - [src/renderer/src/shared](../../src/renderer/src/shared) for reusable UI, helpers, and API-facing utilities
 
-The current pages are still thin shells for home, products, categories, and settings, so the architecture favors clarity over premature abstraction.
+The current pages include fully functional CRUD screens for home, products (with paginated list, create/edit forms, and detail view), categories, units of measure, warehouses, stock overview (with reconciliation), stock movements (with filtered history), and stock adjustments, as well as settings and company management.
+
+The renderer router is defined in [src/renderer/src/app/router.tsx](../../src/renderer/src/app/router.tsx), and the Electron bootstrap is centered in [src/main/index.ts](../../src/main/index.ts).
 
 ## Architectural conventions
 
 ### Separation of concerns
-- database logic stays in the main process
+- database logic stays in the main process (service layer)
 - IPC remains narrow and purpose-driven
-- UI components should not directly manipulate the database
-- business rules should be centralized in the main-process layer or in a future service layer
+- UI components consume data exclusively through the local HTTP API (Fastify) via React Query hooks
+- business rules are centralized in domain services (`src/main/services/`)
+- request validation happens at the route level using Zod schemas
+- the renderer never imports from `src/main/` directly
 
 ### Renderer organization
 - keep page-specific UI near the owning page under [src/renderer/src/pages](../../src/renderer/src/pages)
-- move reusable UI to [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui) (currently 42 shared UI component files)
+- move reusable UI to [src/renderer/src/shared/ui](../../src/renderer/src/shared/ui) (currently 44+ shared UI component files)
 - keep shared hooks in [src/renderer/src/shared/hooks](../../src/renderer/src/shared/hooks)
 - keep shared utilities in [src/renderer/src/shared/lib](../../src/renderer/src/shared/lib)
 - keep API-facing helpers in [src/renderer/src/shared/api](../../src/renderer/src/shared/api)

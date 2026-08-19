@@ -37,10 +37,31 @@ Rules for the persistence layer, database schema, and the local Fastify service 
 
 ## Fastify API Patterns
 
-- Define routes in the Fastify instance started from `src/main/server.ts`.
-- Return typed responses — prefer explicit result shapes over raw Drizzle row types.
-- Add CORS headers for the renderer origin.
-- Use Zod or TypeBox for request validation when the API surface grows.
+- Define route modules in `src/main/routes/` — one file per domain (categories, products, warehouses, stock, etc.).
+- Register routes via `register*Routes(fastify)` functions called from `src/main/server.ts`.
+- Use Zod `.strict()` schemas for request body validation in all route handlers.
+- Extract `companyId` from the `x-company-id` request header and validate it as a positive integer.
+- Return structured responses via the `ok()` helper from `src/main/api/types.ts`.
+- Throw typed errors (from `src/main/api/errors.ts`) — the global error handler maps them to HTTP status codes and structured `{ success: false, error: { code, message, fields? } }` responses.
+- Use `reply.status(201)` for resource creation responses.
+- CORS headers include `x-company-id` in `Access-Control-Allow-Headers`.
+
+## Service Layer Patterns
+
+- Domain services live in `src/main/services/` — one file per aggregate (category-service, product-service, stock-service, etc.).
+- Services accept `companyId` as the first parameter to enforce company scoping.
+- Services throw typed errors (`NotFoundError`, `ConflictError`, `EntityReferencedError`, `InsufficientStockError`, etc.) — never raw strings or generic `Error`.
+- Use transactional operations (`db.transaction()`) for multi-step stock operations.
+- Use `onConflictDoUpdate` for upsert patterns (stock record materialization).
+- Catch SQLite `UNIQUE constraint failed` errors and remap to `ConflictError`.
+- Call `logAudit()` after successful mutations for audit trail.
+- Shared types and constants live in `src/main/services/types.ts` (discriminants, request/response interfaces, pagination).
+
+## Error Handling
+
+- Error hierarchy lives in `src/main/api/errors.ts` with classes: `AppError`, `ValidationError`, `NotFoundError`, `ConflictError`, `BusinessRuleError`, `InsufficientStockError`, `EntityReferencedError`, `InvalidMovementError`, `TransferSameWarehouseError`, `SystemError`.
+- Each error class has a `code` (string enum) and `statusCode` (HTTP).
+- The global Fastify error handler in `src/main/api/error-handler.ts` maps errors to responses automatically.
 
 ## Query Client (Renderer Side)
 
@@ -53,6 +74,8 @@ Rules for the persistence layer, database schema, and the local Fastify service 
 - Keep schema definitions declarative and self-contained.
 - Document schema changes through Drizzle migrations when introduced.
 - Keep the Fastify service as the single data gateway for the renderer.
+- Keep services focused on one domain aggregate per file.
+- Run `pnpm test --run` to verify service logic after changes.
 
 ## Do Not
 
@@ -60,3 +83,5 @@ Rules for the persistence layer, database schema, and the local Fastify service 
 - Do not use raw SQL unless Drizzle's query builder cannot express the operation.
 - Do not store sensitive values (passwords, certificates) in plain text without encryption.
 - Do not bypass the company scope for multi-tenant entities.
+- Do not throw raw `Error` or strings from services — use the typed error hierarchy.
+- Do not call database operations directly from route handlers — delegate to the service layer.

@@ -93,37 +93,37 @@ Core features:
 
 ## 4. Recommended development phases
 
-### Phase 0 - Foundation and MVP shell
+### Phase 0 - Foundation and MVP shell ✅ COMPLETE
 
 Goal: establish the base experience and make the app usable as a desktop product.
 
-Planned work:
-- finalize the app shell and navigation structure
-- implement company and user context
-- define the main screens for home, catalog, settings, and future modules
-- wire the database layer and initial seed data
-- create the base UI patterns for forms, tables, dialogs, and empty states
+Delivered:
+- app shell with sidebar navigation (3 groups: Catalog, Inventory, System)
+- company and user context with multi-company selector
+- database layer with SQLite + Drizzle ORM + WAL mode
+- local Fastify HTTP server on `127.0.0.1:3000`
+- initial migration runner and seed data
+- base UI patterns (page shell, empty/loading/error states, dialogs, tables)
+- settings and company configuration pages
+- bootstrap gate with error handling
 
-Deliverables:
-- working desktop application
-- stable routing and layout
-- initial company and settings setup flow
-
-### Phase 1 - Catalog and inventory management
+### Phase 1 - Catalog and inventory management ✅ COMPLETE
 
 Goal: deliver the first operational module for daily business use.
 
-Planned work:
-- categories and products
+Delivered:
+- categories with hierarchical parent-child relationships
 - units of measure
-- warehouse and stock setup
-- stock movement records and adjustments
-- basic search, filters, and listing views
-
-Deliverables:
-- usable product catalog
-- product inventory visibility
-- stock movement history
+- products with paginated list, filters, detail view, and create/edit forms
+- warehouses with CRUD and deletion protection
+- stock overview with per-warehouse and per-product views
+- stock movements (inbound, outbound, transfer) with filtered history
+- stock adjustments with confirmation step and audit trail
+- reconciliation tool comparing computed vs materialized balances
+- 154 tests (unit, property-based, integration) covering all domain invariants
+- typed API client with 22 fetch functions
+- TanStack Query hooks for all domains
+- full routing with code splitting
 
 ### Phase 2 - Sales and purchasing flows
 

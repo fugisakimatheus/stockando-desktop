@@ -1,51 +1,99 @@
 # Testing Guide
 
-The project already includes strong static validation through type checking (TypeScript strict mode) and build-time validation. A formal testing framework has not yet been configured, but the intended approach is documented below for when it is introduced.
+The project uses Vitest as its test runner for the main process service layer. Tests cover unit logic, property-based invariants (via fast-check), and integration workflows.
 
-## Intended testing stack
+## Testing stack
 
 | Layer | Tool | Purpose |
 |-------|------|---------|
-| Unit | Vitest | Isolated logic, helpers, and pure functions |
-| Component | Vitest + React Testing Library | Shared UI primitives and page interactions |
-| End-to-end | Playwright (Electron support) | Full user flows across the desktop app |
+| Unit | Vitest | Service CRUD operations, validation, error handling |
+| Property-based | Vitest + fast-check | Invariant enforcement (uniqueness, non-negativity, atomicity) |
+| Integration | Vitest | Multi-step stock workflows end-to-end within the service layer |
+| Component | Vitest + React Testing Library | Shared UI primitives (not yet introduced) |
+| End-to-end | Playwright (Electron support) | Full user flows (not yet introduced) |
 
-## Recommended testing layers
+## Running tests
 
-### Unit tests
+```bash
+pnpm test --run    # single execution (no watch)
+pnpm test          # watch mode during development
+```
 
-Use unit tests for isolated logic such as helpers, parsers, data transformations, and small domain utilities. Vitest is the chosen test runner because it shares the Vite configuration and provides fast feedback.
+## Current coverage
 
-### Component tests
+The test suite includes 154 tests across 28 test files covering:
 
-Use component tests for shared UI primitives and page-level interactions. React Testing Library is a strong choice for verifying behavior rather than implementation details.
+- **Service unit tests** — CategoryService, UnitOfMeasureService, WarehouseService, AuditService
+- **Property-based tests** — uniqueness constraints, referential integrity, stock balance correctness, non-negative enforcement, transfer conservation, movement immutability, transactional atomicity, trackInventory gate, reconciliation correctness, company data isolation
+- **Integration tests** — complete stock workflow (inbound → outbound → transfer → adjustment → reconcile)
 
-### End-to-end tests
+## Test patterns
 
-Use end-to-end tests for critical flows such as creating records, navigating between screens, and handling desktop-specific interactions. Playwright with Electron support is a solid option for these workflows.
+### In-memory SQLite
 
-## Current baseline
+All tests use an in-memory SQLite database (`new Database(':memory:')`) with the full schema created via SQL statements. This ensures tests run fast and in complete isolation.
 
-At the moment, the project relies on:
+### Mocking `getDb()`
 
-- `pnpm typecheck` — TypeScript type validation for both node and web targets
-- `pnpm lint` — oxlint static analysis
-- `pnpm build` — full build pipeline validation
-- manual verification during local development
+Service functions call `getDb()` to get the Drizzle instance. Tests mock this via:
 
-No test runner or test configuration files exist yet. When introduced, Vitest should be configured to align with the existing electron-vite and path alias setup.
+```ts
+vi.mock('../../server', () => ({ getDb: vi.fn() }))
+import { getDb } from '../../server'
+const mockedGetDb = vi.mocked(getDb)
+```
 
-## Suggested priorities
+### Patching transactions for async compatibility
 
-1. Add Vitest with path alias support and basic configuration.
-2. Add tests for shared utilities and data transformation helpers.
-3. Cover the most important page flows with component tests.
-4. Add end-to-end tests for the core business journeys once the UI stabilizes.
-5. Add CI checks so pull requests fail fast when regressions are introduced.
+The `better-sqlite3` driver rejects async callbacks in `db.transaction()`. Stock tests patch this with a helper that manually manages `BEGIN`/`COMMIT`/`ROLLBACK`:
+
+```ts
+function patchDbTransaction(db, sqlite) {
+  ;(db as any).transaction = async function <T>(fn) {
+    sqlite.exec('BEGIN')
+    try {
+      const result = await fn(db)
+      sqlite.exec('COMMIT')
+      return result
+    } catch (e) {
+      sqlite.exec('ROLLBACK')
+      throw e
+    }
+  }
+}
+```
+
+### Property-based tests with fast-check
+
+Property tests use `fc.assert(fc.asyncProperty(...))` with 50–100 runs per property. Each iteration creates a fresh in-memory database to ensure complete isolation.
+
+## Test file locations
+
+Tests live next to the service code they cover:
+
+```text
+src/main/services/__tests__/
+├── audit-service.test.ts
+├── category-service.test.ts
+├── category-uniqueness.property.test.ts
+├── category-referential-integrity.property.test.ts
+├── company-isolation.property.test.ts
+├── product-uniqueness.property.test.ts
+├── stock-adjustment-movement.property.test.ts
+├── stock-balance-net-sum.property.test.ts
+├── stock-movement-immutability.property.test.ts
+├── stock-non-negative.property.test.ts
+├── stock-reconciliation.property.test.ts
+├── stock-track-inventory-gate.property.test.ts
+├── stock-transactional-atomicity.property.test.ts
+├── stock-transfer-conservation.property.test.ts
+├── stock-workflow.integration.test.ts
+└── warehouse-service.test.ts
+```
 
 ## Path alias support
 
-When configuring Vitest, ensure the following aliases are resolved:
+Vitest resolves the same aliases used in production code:
 
 ```ts
 resolve: {
@@ -57,3 +105,9 @@ resolve: {
   }
 }
 ```
+
+## Next steps
+
+1. Add component tests for shared UI primitives using React Testing Library.
+2. Add end-to-end tests for critical user flows once the UI stabilizes.
+3. Add CI checks so pull requests fail fast when regressions are introduced.

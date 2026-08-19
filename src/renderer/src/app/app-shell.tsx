@@ -13,7 +13,19 @@ import {
   SidebarProvider
 } from '@shared/ui/sidebar'
 import { useRouterState } from '@tanstack/react-router'
-import { HomeIcon, MoonStar, Package2, Settings2, SunMedium, Tags } from 'lucide-react'
+import {
+  ArrowLeftRight,
+  Boxes,
+  ClipboardList,
+  HomeIcon,
+  MoonStar,
+  Package2,
+  Ruler,
+  Settings2,
+  SunMedium,
+  Tags,
+  Warehouse
+} from 'lucide-react'
 import { useTheme } from 'next-themes'
 import type { ReactNode } from 'react'
 
@@ -21,12 +33,21 @@ function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (state) => state.location.pathname })
   const { theme, setTheme } = useTheme()
 
-  const navigationItems = [
+  const mainNavItems = [
     { href: '/', label: 'Início', icon: HomeIcon },
     { href: '/products', label: 'Produtos', icon: Package2 },
     { href: '/categories', label: 'Categorias', icon: Tags },
-    { href: '/settings', label: 'Configurações', icon: Settings2 }
+    { href: '/units-of-measure', label: 'Unidades', icon: Ruler },
+    { href: '/warehouses', label: 'Armazéns', icon: Warehouse }
   ]
+
+  const stockNavItems = [
+    { href: '/stock', label: 'Estoque', icon: Boxes },
+    { href: '/stock-movements', label: 'Movimentações', icon: ArrowLeftRight },
+    { href: '/stock-adjustments', label: 'Ajustes', icon: ClipboardList }
+  ]
+
+  const systemNavItems = [{ href: '/settings', label: 'Configurações', icon: Settings2 }]
 
   return (
     <SidebarProvider defaultOpen>
@@ -39,10 +60,64 @@ function AppShell({ children }: { children: ReactNode }) {
           <SidebarContent className="px-0.5 pb-2 backdrop-blur-sm group-data-[collapsible=icon]:px-1">
             <SidebarGroup className="group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:py-1">
               <SidebarGroupLabel className="px-2 text-[11px] tracking-[0.24em] text-muted-foreground/80 uppercase">
-                Navegação
+                Catálogo
               </SidebarGroupLabel>
               <SidebarMenu className="gap-1 group-data-[collapsible=icon]:items-center">
-                {navigationItems.map(({ href, label, icon: Icon }) => {
+                {mainNavItems.map(({ href, label, icon: Icon }) => {
+                  const isActive = pathname === href
+                  return (
+                    <SidebarMenuItem
+                      key={href}
+                      className="group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center"
+                    >
+                      <SidebarMenuButton
+                        href={href}
+                        isActive={isActive}
+                        tooltip={label}
+                        className="rounded-xl group-data-[collapsible=icon]:size-10 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0"
+                      >
+                        <Icon className="size-4" />
+                        <span>{label}</span>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                })}
+              </SidebarMenu>
+            </SidebarGroup>
+
+            <SidebarGroup className="group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:py-1">
+              <SidebarGroupLabel className="px-2 text-[11px] tracking-[0.24em] text-muted-foreground/80 uppercase">
+                Inventário
+              </SidebarGroupLabel>
+              <SidebarMenu className="gap-1 group-data-[collapsible=icon]:items-center">
+                {stockNavItems.map(({ href, label, icon: Icon }) => {
+                  const isActive = pathname === href
+                  return (
+                    <SidebarMenuItem
+                      key={href}
+                      className="group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center"
+                    >
+                      <SidebarMenuButton
+                        href={href}
+                        isActive={isActive}
+                        tooltip={label}
+                        className="rounded-xl group-data-[collapsible=icon]:size-10 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0"
+                      >
+                        <Icon className="size-4" />
+                        <span>{label}</span>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                })}
+              </SidebarMenu>
+            </SidebarGroup>
+
+            <SidebarGroup className="group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:py-1">
+              <SidebarGroupLabel className="px-2 text-[11px] tracking-[0.24em] text-muted-foreground/80 uppercase">
+                Sistema
+              </SidebarGroupLabel>
+              <SidebarMenu className="gap-1 group-data-[collapsible=icon]:items-center">
+                {systemNavItems.map(({ href, label, icon: Icon }) => {
                   const isActive = pathname === href
                   return (
                     <SidebarMenuItem

@@ -10,6 +10,10 @@ export const ERROR_CODES = {
   NOT_FOUND: 'NOT_FOUND',
   CONFLICT: 'CONFLICT',
   BUSINESS_RULE_ERROR: 'BUSINESS_RULE_ERROR',
+  INSUFFICIENT_STOCK: 'INSUFFICIENT_STOCK',
+  ENTITY_REFERENCED: 'ENTITY_REFERENCED',
+  INVALID_MOVEMENT: 'INVALID_MOVEMENT',
+  TRANSFER_SAME_WAREHOUSE: 'TRANSFER_SAME_WAREHOUSE',
   SYSTEM_ERROR: 'SYSTEM_ERROR'
 } as const
 
@@ -69,9 +73,49 @@ export class ConflictError extends AppError {
  * 422 — Business rule violation (invalid status transition, insufficient stock, etc.).
  */
 export class BusinessRuleError extends AppError {
-  constructor(message: string) {
-    super(message, ERROR_CODES.BUSINESS_RULE_ERROR, 422)
+  constructor(message: string, code: ErrorCode = ERROR_CODES.BUSINESS_RULE_ERROR) {
+    super(message, code, 422)
     this.name = 'BusinessRuleError'
+  }
+}
+
+/**
+ * 422 — Stock operation would cause negative balance.
+ */
+export class InsufficientStockError extends BusinessRuleError {
+  constructor(message = 'Insufficient stock for this operation') {
+    super(message, ERROR_CODES.INSUFFICIENT_STOCK)
+    this.name = 'InsufficientStockError'
+  }
+}
+
+/**
+ * 422 — Entity cannot be deleted because it is referenced by other records.
+ */
+export class EntityReferencedError extends BusinessRuleError {
+  constructor(message = 'Cannot delete entity because it is referenced by other records') {
+    super(message, ERROR_CODES.ENTITY_REFERENCED)
+    this.name = 'EntityReferencedError'
+  }
+}
+
+/**
+ * 422 — Product does not have trackInventory enabled.
+ */
+export class InvalidMovementError extends BusinessRuleError {
+  constructor(message = 'Product does not track inventory') {
+    super(message, ERROR_CODES.INVALID_MOVEMENT)
+    this.name = 'InvalidMovementError'
+  }
+}
+
+/**
+ * 422 — Transfer source and destination warehouses are the same.
+ */
+export class TransferSameWarehouseError extends BusinessRuleError {
+  constructor(message = 'Source and destination warehouses must be different') {
+    super(message, ERROR_CODES.TRANSFER_SAME_WAREHOUSE)
+    this.name = 'TransferSameWarehouseError'
   }
 }
 

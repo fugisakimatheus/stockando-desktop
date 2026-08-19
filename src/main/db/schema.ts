@@ -276,7 +276,9 @@ export const stockMovements = sqliteTable(
   (t) => [
     index('stock_movements_company_idx').on(t.companyId),
     index('stock_movements_product_idx').on(t.productId),
-    index('stock_movements_warehouse_idx').on(t.warehouseId)
+    index('stock_movements_warehouse_idx').on(t.warehouseId),
+    index('stock_movements_company_product_idx').on(t.companyId, t.productId),
+    index('stock_movements_company_warehouse_idx').on(t.companyId, t.warehouseId)
   ]
 )
 
