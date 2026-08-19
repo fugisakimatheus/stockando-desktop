@@ -1,5 +1,6 @@
 import { cn } from '@shared/lib/cn'
 import { cva, type VariantProps } from 'class-variance-authority'
+import { Loader2Icon } from 'lucide-react'
 import type * as React from 'react'
 import {
   Button as ButtonPrimitive,
@@ -48,20 +49,40 @@ function Button({
   className,
   variant = 'default',
   size = 'default',
+  isLoading = false,
+  isDisabled,
+  children,
   ...props
 }: Omit<ButtonPrimitiveProps, 'className'> &
   React.RefAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants> & {
     className?: string
+    isLoading?: boolean
   }) {
   return (
     <ButtonPrimitive
       data-slot="button"
       data-variant={variant}
       data-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
+      isDisabled={isLoading || isDisabled}
+      aria-busy={isLoading || undefined}
+      className={cn(buttonVariants({ variant, size, className }), isLoading && 'relative')}
       {...props}
-    />
+    >
+      {(renderProps) => {
+        const content = typeof children === 'function' ? children(renderProps) : children
+        return isLoading ? (
+          <>
+            <span className="absolute inset-0 flex items-center justify-center">
+              <Loader2Icon data-slot="spinner" className="size-4 animate-spin" aria-hidden="true" />
+            </span>
+            <span className="invisible inline-flex items-center gap-1.5">{content}</span>
+          </>
+        ) : (
+          content
+        )
+      }}
+    </ButtonPrimitive>
   )
 }
 

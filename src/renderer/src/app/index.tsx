@@ -1,5 +1,6 @@
 import './styles/globals.css'
 import { TanstackDevtools } from '@renderer/shared/ui'
+import { Toaster } from '@shared/ui/sonner'
 import { RouterProvider } from '@tanstack/react-router'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
@@ -19,6 +20,7 @@ createRoot(rootElement).render(
     <ThemeProvider>
       <QueryProvider>
         <RouterProvider router={router} />
+        <Toaster position="bottom-right" richColors closeButton />
         <TanstackDevtools router={router} />
       </QueryProvider>
     </ThemeProvider>

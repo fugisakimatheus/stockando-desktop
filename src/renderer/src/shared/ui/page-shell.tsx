@@ -60,7 +60,12 @@ function PageShell({
   )
 }
 
-function PageSection({ className, ...props }: ComponentPropsWithoutRef<'section'>) {
+interface PageSectionProps extends ComponentPropsWithoutRef<'section'> {
+  title?: string
+  description?: string
+}
+
+function PageSection({ title, description, className, children, ...props }: PageSectionProps) {
   return (
     <section
       className={cn(
@@ -68,7 +73,15 @@ function PageSection({ className, ...props }: ComponentPropsWithoutRef<'section'
         className
       )}
       {...props}
-    />
+    >
+      {(title || description) && (
+        <div className="mb-4 space-y-1">
+          {title && <h2 className="text-lg font-semibold tracking-tight text-foreground">{title}</h2>}
+          {description && <p className="text-sm text-muted-foreground">{description}</p>}
+        </div>
+      )}
+      {children}
+    </section>
   )
 }
 
@@ -84,4 +97,4 @@ function PageWidget({ className, ...props }: ComponentPropsWithoutRef<'div'>) {
   )
 }
 
-export { PageSection, PageShell, PageWidget }
+export { PageSection, PageSection as Section, PageShell, PageWidget }

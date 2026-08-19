@@ -1,40 +1,33 @@
-import { AppShell } from '@app/app-shell'
-import { CategoriesPage } from '@pages/categories'
-import { HomePage } from '@pages/home'
-import { ProductsPage } from '@pages/products'
-import { SettingsPage } from '@pages/settings'
-import { createRootRoute, createRoute, createRouter, Outlet } from '@tanstack/react-router'
+import { BootstrapGate } from '@app/ui/bootstrap-gate'
+import { createRootRoute, createRoute, createRouter, lazyRouteComponent } from '@tanstack/react-router'
 
 const rootRoute = createRootRoute({
-  component: () => (
-    <AppShell>
-      <Outlet />
-    </AppShell>
-  )
+  component: BootstrapGate,
+  notFoundComponent: lazyRouteComponent(() => import('@pages/not-found/ui/not-found-page'), 'NotFoundPage')
 })
 
 const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: HomePage
+  component: lazyRouteComponent(() => import('@pages/home/ui/home-page'), 'HomePage')
 })
 
 const settingsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/settings',
-  component: SettingsPage
+  component: lazyRouteComponent(() => import('@pages/settings/ui/settings-page'), 'SettingsPage')
 })
 
 const productsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/products',
-  component: ProductsPage
+  component: lazyRouteComponent(() => import('@pages/products/ui/products-page'), 'ProductsPage')
 })
 
 const categoriesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/categories',
-  component: CategoriesPage
+  component: lazyRouteComponent(() => import('@pages/categories/ui/categories-page'), 'CategoriesPage')
 })
 
 const routeTree = rootRoute.addChildren([homeRoute, settingsRoute, productsRoute, categoriesRoute])

@@ -2,12 +2,14 @@ import { cn } from '@shared/lib/cn'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 
 function EmptyState({
+  icon,
   title,
   description,
   action,
   className,
   ...props
 }: ComponentPropsWithoutRef<'div'> & {
+  icon?: ReactNode
   title: ReactNode
   description?: ReactNode
   action?: ReactNode
@@ -21,6 +23,9 @@ function EmptyState({
       )}
       {...props}
     >
+      {icon ? (
+        <div className="mb-3 flex items-center justify-center text-muted-foreground [&_svg]:size-10">{icon}</div>
+      ) : null}
       <div className="space-y-2">
         <h3 className="text-base font-semibold text-foreground">{title}</h3>
         {description ? <p className="text-sm text-muted-foreground">{description}</p> : null}

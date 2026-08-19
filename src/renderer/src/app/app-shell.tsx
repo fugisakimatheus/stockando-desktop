@@ -1,3 +1,4 @@
+import { CompanySelector } from '@app/company-selector'
 import {
   Sidebar,
   SidebarContent,
@@ -32,15 +33,7 @@ function AppShell({ children }: { children: ReactNode }) {
       <div className="flex min-h-svh w-full bg-[radial-gradient(circle_at_6%_14%,_rgba(59,130,246,0.05),_transparent_44%),radial-gradient(circle_at_78%_88%,_rgba(59,130,246,0.03),_transparent_42%)] dark:bg-[radial-gradient(circle_at_6%_14%,_rgba(96,165,250,0.1),_transparent_46%),radial-gradient(circle_at_78%_88%,_rgba(96,165,250,0.06),_transparent_44%)]">
         <Sidebar variant="inset" collapsible="icon" className="border-0 bg-transparent">
           <SidebarHeader className="p-2 group-data-[collapsible=icon]:p-1.5">
-            <div className="flex items-center gap-2 rounded-xl border border-border/70 bg-background/80 px-2 py-2 shadow-[0_4px_14px_rgba(15,23,42,0.05)] backdrop-blur-sm transition-all duration-200 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:gap-0 group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:px-1.5 group-data-[collapsible=icon]:py-1.5">
-              <div className="flex size-8 min-h-8 min-w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 text-sm font-semibold text-primary-foreground transition-all duration-200 group-data-[collapsible=icon]:size-8 group-data-[collapsible=icon]:min-h-8 group-data-[collapsible=icon]:min-w-8">
-                S
-              </div>
-              <div className="min-w-0 group-data-[collapsible=icon]:hidden">
-                <p className="truncate text-sm font-medium">Stockando</p>
-                <p className="truncate text-xs text-muted-foreground">Painel principal</p>
-              </div>
-            </div>
+            <CompanySelector />
           </SidebarHeader>
 
           <SidebarContent className="px-0.5 pb-2 backdrop-blur-sm group-data-[collapsible=icon]:px-1">

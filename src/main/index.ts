@@ -56,7 +56,13 @@ app.whenReady().then(async () => {
   ipcMain.on('ping', () => console.log('pong'))
 
   try {
-    await startServer()
+    const result = await startServer()
+
+    if (result.status === 'error') {
+      console.error('Bootstrap failed:', result.error?.message)
+      app.quit()
+      return
+    }
   } catch (error) {
     console.error('Failed to start local HTTP server', error)
     app.quit()

@@ -1,5 +1,17 @@
 import { index, integer, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core'
 
+// ---------------------------------------------------------------------------
+// App-level settings (not scoped to a company)
+// ---------------------------------------------------------------------------
+
+export const appSettings = sqliteTable('app_settings', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  key: text('key').notNull().unique(),
+  value: text('value').notNull(),
+  createdAt: text('created_at').notNull(),
+  updatedAt: text('updated_at').notNull()
+})
+
 export const companies = sqliteTable(
   'companies',
   {
@@ -724,3 +736,22 @@ export const attachments = sqliteTable(
     index('attachments_entity_idx').on(t.entityType, t.entityId)
   ]
 )
+
+// ---------------------------------------------------------------------------
+// Phase 0 inferred types
+// ---------------------------------------------------------------------------
+
+export type Company = typeof companies.$inferSelect
+export type CompanyInsert = typeof companies.$inferInsert
+
+export type CompanySettings = typeof companySettings.$inferSelect
+export type CompanySettingsInsert = typeof companySettings.$inferInsert
+
+export type AppSetting = typeof appSettings.$inferSelect
+export type AppSettingInsert = typeof appSettings.$inferInsert
+
+export type User = typeof users.$inferSelect
+export type UserInsert = typeof users.$inferInsert
+
+export type AuditLog = typeof auditLogs.$inferSelect
+export type AuditLogInsert = typeof auditLogs.$inferInsert
