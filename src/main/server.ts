@@ -8,14 +8,21 @@ import Fastify, { type FastifyInstance } from 'fastify'
 import { registerErrorHandler } from './api/error-handler'
 import { migration001 } from './db/migrations/001-initial-schema'
 import { migration002 } from './db/migrations/002-phase2-commercial'
+import { migration003 } from './db/migrations/003-phase3-finance-fiscal'
 import { MigrationError, runMigrations } from './db/migrations/index'
 import * as schema from './db/schema'
 import { seedDefaults } from './db/seed'
+import { registerAttachmentRoutes } from './routes/attachments'
+import { registerAuditLogRoutes } from './routes/audit-logs'
 import { registerBootstrapRoutes } from './routes/bootstrap'
 import { registerCategoryRoutes } from './routes/categories'
 import { registerCompanyRoutes } from './routes/companies'
 import { registerCompanySettingsRoutes } from './routes/company-settings'
 import { registerCustomerRoutes } from './routes/customers'
+import { registerFinancialAccountRoutes } from './routes/financial-accounts'
+import { registerFinancialTransactionRoutes } from './routes/financial-transactions'
+import { registerFiscalDocumentRoutes } from './routes/fiscal-documents'
+import { registerInstallmentRoutes } from './routes/installments'
 import { registerProductRoutes } from './routes/products'
 import { registerPurchaseOrderRoutes } from './routes/purchase-orders'
 import { registerQuoteRoutes } from './routes/quotes'
@@ -82,7 +89,7 @@ export async function startServer(): Promise<BootstrapResult> {
 
   // 2. Run pending migrations
   try {
-    runMigrations(sqlite, [migration001, migration002])
+    runMigrations(sqlite, [migration001, migration002, migration003])
   } catch (error) {
     if (error instanceof MigrationError) {
       return {
@@ -132,6 +139,12 @@ export async function startServer(): Promise<BootstrapResult> {
   registerSalesOrderRoutes(fastify)
   registerSupplierRoutes(fastify)
   registerCustomerRoutes(fastify)
+  registerFinancialTransactionRoutes(fastify)
+  registerInstallmentRoutes(fastify)
+  registerFinancialAccountRoutes(fastify)
+  registerFiscalDocumentRoutes(fastify)
+  registerAuditLogRoutes(fastify)
+  registerAttachmentRoutes(fastify)
 
   // CORS for all routes and methods
   fastify.addHook('onSend', async (_request, reply, payload) => {

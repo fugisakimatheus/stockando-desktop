@@ -152,6 +152,31 @@ const purchaseOrderDetailRoute = createRoute({
   )
 })
 
+// Finance routes
+
+const financeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/finance',
+  component: lazyRouteComponent(() => import('@pages/finance/ui/financial-overview-page'), 'FinancialOverviewPage')
+})
+
+// Fiscal document routes
+
+const fiscalDocumentsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/fiscal-documents',
+  component: lazyRouteComponent(() => import('@pages/fiscal-documents/ui/fiscal-documents-page'), 'FiscalDocumentsPage')
+})
+
+const fiscalDocumentDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/fiscal-documents/$id',
+  component: lazyRouteComponent(
+    () => import('@pages/fiscal-documents/ui/fiscal-document-detail-page'),
+    'FiscalDocumentDetailPage'
+  )
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   settingsRoute,
@@ -172,7 +197,10 @@ const routeTree = rootRoute.addChildren([
   salesOrdersRoute,
   salesOrderDetailRoute,
   purchaseOrdersRoute,
-  purchaseOrderDetailRoute
+  purchaseOrderDetailRoute,
+  financeRoute,
+  fiscalDocumentsRoute,
+  fiscalDocumentDetailRoute
 ])
 
 const router = createRouter({ routeTree })

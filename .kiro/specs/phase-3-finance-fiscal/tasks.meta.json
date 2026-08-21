@@ -1,0 +1,1166 @@
+{
+  "pbtResults": {
+    "5.2 Write property test for AttachmentService": {
+      "status": "passed",
+      "lastRunTimestamp": 1787278797576
+    },
+    "4.2 Write property tests for AuditService": {
+      "status": "passed",
+      "lastRunTimestamp": 1787278805513
+    },
+    "6.3 Write property tests for financial services": {
+      "status": "passed",
+      "lastRunTimestamp": 1787279056638
+    },
+    "9.2 Write property test for DocumentSeriesService": {
+      "status": "passed",
+      "lastRunTimestamp": 1787279209114
+    },
+    "7.2 Write property tests for InstallmentService": {
+      "status": "passed",
+      "lastRunTimestamp": 1787279515686
+    },
+    "10.5 Write property tests for FiscalDocumentService": {
+      "status": "passed",
+      "lastRunTimestamp": 1787280468908
+    },
+    "11.2 Write property test for order cancellation guard": {
+      "status": "passed",
+      "lastRunTimestamp": 1787280724937
+    },
+    "17.2 Write property test for company data isolation": {
+      "status": "passed",
+      "lastRunTimestamp": 1787281333874
+    }
+  },
+  "executionHistory": {
+    "2.5 Create fiscal file path generation utility": [
+      {
+        "executionId": "ea48ab94-2022-4703-8704-b513adf085a3",
+        "chatSessionId": "sess_389a792a-c33e-4958-a7bc-43046d55b75f",
+        "timestamp": 1787276829467
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484591
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277832040
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278423880
+      }
+    ],
+    "1.1 Create the `installments` table schema in `src/main/db/schema.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484290
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277497592
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277613497
+      }
+    ],
+    "1.2 Create the `invoice_events` table schema in `src/main/db/schema.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484342
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277498394
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277687549
+      }
+    ],
+    "1.3 Add new columns to `invoices` table in `src/main/db/schema.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484371
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277499286
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277758622
+      }
+    ],
+    "1.4 Add `fileSize` column to `attachments` table in `src/main/db/schema.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484400
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277500196
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277814924
+      }
+    ],
+    "1.5 Create Drizzle migration for all schema changes": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484428
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277824592
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278328548
+      }
+    ],
+    "2.1 Create shared type definitions for Phase 3 in `src/main/types/finance.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484458
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277825439
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278329553
+      }
+    ],
+    "2.2 Create error code constants and ApiErrorResponse type in `src/main/types/errors.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484495
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277826163
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278330714
+      }
+    ],
+    "2.3 Create fiscal document status transition utilities": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484538
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277827116
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278331445
+      }
+    ],
+    "2.4 Create financial status derivation utilities": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484562
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277827746
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278332326
+      }
+    ],
+    "3. Checkpoint - Ensure schema and types compile correctly": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484620
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278438184
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278486438
+      }
+    ],
+    "4.1 Implement AuditService in `src/main/services/audit-service.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484657
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278491414
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278650640
+      }
+    ],
+    "4.2 Write property tests for AuditService": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484681
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278656145
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278864949
+      }
+    ],
+    "5.1 Implement AttachmentService in `src/main/services/attachment-service.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484714
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278492291
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278651522
+      }
+    ],
+    "5.2 Write property test for AttachmentService": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484737
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278656928
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278865729
+      }
+    ],
+    "6.1 Implement FinancialAccountService in `src/main/services/financial-account-service.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484783
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278657831
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278866744
+      }
+    ],
+    "6.2 Implement FinancialTransactionService in `src/main/services/financial-transaction-service.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484811
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278658701
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278867670
+      }
+    ],
+    "6.3 Write property tests for financial services": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484839
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278872881
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279084568
+      }
+    ],
+    "7.1 Implement InstallmentService in `src/main/services/installment-service.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484869
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278873708
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279085555
+      }
+    ],
+    "7.2 Write property tests for InstallmentService": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484901
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279091470
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279542653
+      }
+    ],
+    "8. Checkpoint - Ensure all financial services pass": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484930
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280940456
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281052666
+      }
+    ],
+    "9.1 Implement DocumentSeriesService in `src/main/services/document-series-service.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484958
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278874653
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279086424
+      }
+    ],
+    "9.2 Write property test for DocumentSeriesService": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277484990
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279092082
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279543550
+      }
+    ],
+    "10.1 Implement FiscalDocumentService `create` in `src/main/services/fiscal-document-service.ts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485019
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279092944
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279544607
+      }
+    ],
+    "10.2 Implement FiscalDocumentService `authorize` and `cancel`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485049
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279554523
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279834475
+      }
+    ],
+    "10.3 Implement FiscalDocumentService `list`, `detail`, `searchByAccessKey`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485081
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279555395
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279835339
+      }
+    ],
+    "10.4 Implement FiscalDocumentService `generateDanfe`, `getXml`, `getDanfePath`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485117
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279556285
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279836087
+      }
+    ],
+    "10.5 Write property tests for FiscalDocumentService": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485156
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279841607
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280497981
+      }
+    ],
+    "11.1 Add fiscal document check to Sales_Order cancellation flow": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485182
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279842329
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280498932
+      }
+    ],
+    "11.2 Write property test for order cancellation guard": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485209
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280511359
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280743554
+      }
+    ],
+    "12. Checkpoint - Ensure all services pass": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485236
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280941260
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281051938
+      }
+    ],
+    "13.1 Implement Installments route module at `/api/installments`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485268
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280512118
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280744721
+      }
+    ],
+    "13.2 Implement Financial Transactions route module at `/api/financial-transactions`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485299
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280513013
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280745652
+      }
+    ],
+    "13.3 Implement Financial Accounts route module at `/api/financial-accounts`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485331
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280513911
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280746480
+      }
+    ],
+    "14.1 Implement Fiscal Documents route module at `/api/fiscal-documents`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485362
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280751814
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280916902
+      }
+    ],
+    "15.1 Implement Attachments route module at `/api/attachments`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485391
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280752664
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280917708
+      }
+    ],
+    "15.2 Implement Audit Logs route module at `/api/audit-logs`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485423
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280753508
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280918568
+      }
+    ],
+    "16. Checkpoint - Ensure all API routes compile and basic tests pass": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485458
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280942053
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281053351
+      }
+    ],
+    "17.1 Implement company scoping middleware and verify isolation across all endpoints": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485494
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280942923
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281054289
+      }
+    ],
+    "17.2 Write property test for company data isolation": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485522
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281065534
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281508475
+      }
+    ],
+    "18.1 Create installment query hooks in `src/renderer/src/pages/finance/hooks/`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485550
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281066358
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281509584
+      }
+    ],
+    "18.2 Create financial account and transaction hooks": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485582
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281067159
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281510374
+      }
+    ],
+    "18.3 Create fiscal document query hooks in `src/renderer/src/pages/fiscal-documents/hooks/`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485612
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281067986
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281511281
+      }
+    ],
+    "18.4 Create attachment and audit hooks in `src/renderer/src/shared/hooks/`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485640
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281068916
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281512005
+      }
+    ],
+    "19.1 Create shared finance/fiscal UI components in `src/renderer/src/shared/ui/`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485671
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281522798
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282264085
+      }
+    ],
+    "19.2 Create installment-specific UI components": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485696
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281523538
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282264845
+      }
+    ],
+    "19.3 Create fiscal document-specific UI components": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485728
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281524435
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282265681
+      }
+    ],
+    "20.1 Create FinancialOverviewPage at `src/renderer/src/pages/finance/`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485758
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282271398
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282637263
+      }
+    ],
+    "21.1 Create InstallmentPanel component embedded in order detail screens": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485787
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282644923
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282855102
+      }
+    ],
+    "22.1 Create FiscalDocumentsPage at `src/renderer/src/pages/fiscal-documents/`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485821
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282644241
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282856117
+      }
+    ],
+    "23.1 Create FiscalDocumentDetailPage at `src/renderer/src/pages/fiscal-documents/`": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485861
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282862027
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787283112197
+      }
+    ],
+    "24.1 Integrate AttachmentPanel on entity detail screens (orders, fiscal documents)": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485892
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282862894
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787283113276
+      }
+    ],
+    "24.2 Integrate AuditHistoryPanel on entity detail screens": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485923
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282863793
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787283114185
+      }
+    ],
+    "25.1 Register new routes in the TanStack Router configuration": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485953
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282272207
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282638082
+      }
+    ],
+    "26. Checkpoint - Ensure renderer compiles and components render correctly": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277485980
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787283130663
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787283270372
+      }
+    ],
+    "27.1 Add database indexes for performance requirements": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277486010
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787283131329
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787283271136
+      }
+    ],
+    "28. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787277486038
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787283276557
+      },
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787283436362
+      }
+    ],
+    "1. Database schema additions and migrations": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278328603
+      }
+    ],
+    "2. Core type definitions and shared utilities": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278423934
+      }
+    ],
+    "4. Audit Service implementation": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278864983
+      }
+    ],
+    "5. Attachment Service implementation": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787278865765
+      }
+    ],
+    "6. Financial Account and Transaction Services": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279084605
+      }
+    ],
+    "7. Installment Service implementation": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279542697
+      }
+    ],
+    "9. Document Series Service implementation": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787279543589
+      }
+    ],
+    "10. Fiscal Document Service implementation": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280498014
+      }
+    ],
+    "11. Order cancellation guard integration": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280743619
+      }
+    ],
+    "13. Fastify route modules - Financial APIs": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280746515
+      }
+    ],
+    "14. Fastify route modules - Fiscal APIs": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280916950
+      }
+    ],
+    "15. Fastify route modules - Attachments and Audit APIs": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787280918667
+      }
+    ],
+    "17. Company data isolation enforcement": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281508524
+      }
+    ],
+    "18. Renderer — Query hooks and API client extensions": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787281512044
+      }
+    ],
+    "19. Renderer — Shared UI components": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282265716
+      }
+    ],
+    "20. Renderer — Financial Overview page": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282637315
+      }
+    ],
+    "25. Renderer — Route registration and navigation": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282638138
+      }
+    ],
+    "21. Renderer — Installment Panel on Order Detail": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282855162
+      }
+    ],
+    "22. Renderer — Fiscal Documents list page": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787282856157
+      }
+    ],
+    "23. Renderer — Fiscal Document detail page": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787283112275
+      }
+    ],
+    "24. Renderer — Attachment and Audit panels integration": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787283114237
+      }
+    ],
+    "27. Performance optimization and indexing": [
+      {
+        "executionId": "3bd6336a-ab25-4541-9a0d-b035514f297d",
+        "chatSessionId": "sess_bed191e9-e070-4cdf-ac70-25ae0fdbe9be",
+        "timestamp": 1787283271176
+      }
+    ]
+  }
+}

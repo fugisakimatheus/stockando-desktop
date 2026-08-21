@@ -17,10 +17,12 @@ import {
   ArrowLeftRight,
   Boxes,
   ClipboardList,
+  DollarSign,
   FileText,
   HomeIcon,
   MoonStar,
   Package2,
+  Receipt,
   Ruler,
   Settings2,
   ShoppingCart,
@@ -57,6 +59,11 @@ function AppShell({ children }: { children: ReactNode }) {
     { href: '/quotes', label: 'Orçamentos', icon: FileText },
     { href: '/sales-orders', label: 'Pedidos de Venda', icon: ShoppingCart },
     { href: '/purchase-orders', label: 'Pedidos de Compra', icon: ClipboardList }
+  ]
+
+  const financeNavItems = [
+    { href: '/finance', label: 'Finanças', icon: DollarSign },
+    { href: '/fiscal-documents', label: 'Documentos Fiscais', icon: Receipt }
   ]
 
   const systemNavItems = [{ href: '/settings', label: 'Configurações', icon: Settings2 }]
@@ -130,6 +137,33 @@ function AppShell({ children }: { children: ReactNode }) {
               </SidebarGroupLabel>
               <SidebarMenu className="gap-1 group-data-[collapsible=icon]:items-center">
                 {commercialNavItems.map(({ href, label, icon: Icon }) => {
+                  const isActive = pathname === href || pathname.startsWith(href + '/')
+                  return (
+                    <SidebarMenuItem
+                      key={href}
+                      className="group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center"
+                    >
+                      <SidebarMenuButton
+                        href={href}
+                        isActive={isActive}
+                        tooltip={label}
+                        className="rounded-xl group-data-[collapsible=icon]:size-10 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0"
+                      >
+                        <Icon className="size-4" />
+                        <span>{label}</span>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                })}
+              </SidebarMenu>
+            </SidebarGroup>
+
+            <SidebarGroup className="group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:py-1">
+              <SidebarGroupLabel className="px-2 text-[11px] tracking-[0.24em] text-muted-foreground/80 uppercase">
+                Financeiro
+              </SidebarGroupLabel>
+              <SidebarMenu className="gap-1 group-data-[collapsible=icon]:items-center">
+                {financeNavItems.map(({ href, label, icon: Icon }) => {
                   const isActive = pathname === href || pathname.startsWith(href + '/')
                   return (
                     <SidebarMenuItem

@@ -616,19 +616,26 @@ export const invoices = sqliteTable(
     taxRuleId: integer('tax_rule_id').references(() => taxRules.id, { onDelete: 'set null' }),
     documentType: text('document_type').notNull(),
     documentNumber: text('document_number').notNull(),
+    series: text('series'),
     accessKey: text('access_key'),
+    protocolNumber: text('protocol_number'),
     issueDate: text('issue_date').notNull(),
     status: text('status').notNull().default('draft'),
     subtotal: real('subtotal').notNull().default(0),
+    discountAmount: real('discount_amount').notNull().default(0),
     taxAmount: real('tax_amount').notNull().default(0),
     totalAmount: real('total_amount').notNull().default(0),
+    authorizedAt: text('authorized_at'),
+    cancelledAt: text('cancelled_at'),
+    cancellationJustification: text('cancellation_justification'),
     createdAt: text('created_at').notNull(),
     updatedAt: text('updated_at').notNull()
   },
   (t) => [
     uniqueIndex('invoices_company_document_unique').on(t.companyId, t.documentType, t.documentNumber),
     index('invoices_company_idx').on(t.companyId),
-    index('invoices_status_idx').on(t.status)
+    index('invoices_status_idx').on(t.status),
+    index('invoices_company_status_date_idx').on(t.companyId, t.status, t.issueDate)
   ]
 )
 
@@ -691,7 +698,8 @@ export const financialTransactions = sqliteTable(
   (t) => [
     index('financial_transactions_company_idx').on(t.companyId),
     index('financial_transactions_account_idx').on(t.accountId),
-    index('financial_transactions_date_idx').on(t.transactionDate)
+    index('financial_transactions_date_idx').on(t.transactionDate),
+    index('financial_transactions_account_date_idx').on(t.accountId, t.transactionDate)
   ]
 )
 
@@ -744,7 +752,8 @@ export const auditLogs = sqliteTable(
   (t) => [
     index('audit_logs_company_idx').on(t.companyId),
     index('audit_logs_entity_idx').on(t.entityType, t.entityId),
-    index('audit_logs_user_idx').on(t.userId)
+    index('audit_logs_user_idx').on(t.userId),
+    index('audit_logs_entity_date_idx').on(t.entityType, t.entityId, t.createdAt)
   ]
 )
 
@@ -760,12 +769,58 @@ export const attachments = sqliteTable(
     fileName: text('file_name').notNull(),
     filePath: text('file_path').notNull(),
     mimeType: text('mime_type'),
+    fileSize: integer('file_size'),
     createdAt: text('created_at').notNull()
   },
   (t) => [
     index('attachments_company_idx').on(t.companyId),
     index('attachments_entity_idx').on(t.entityType, t.entityId)
   ]
+)
+
+// ---------------------------------------------------------------------------
+// Phase 3 tables
+// ---------------------------------------------------------------------------
+
+export const installments = sqliteTable(
+  'installments',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    orderId: integer('order_id').notNull(),
+    orderType: text('order_type').notNull(),
+    installmentNumber: integer('installment_number').notNull(),
+    amount: real('amount').notNull(),
+    dueDate: text('due_date').notNull(),
+    status: text('status').notNull().default('pending'),
+    settledAt: text('settled_at'),
+    accountId: integer('account_id').references(() => financialAccounts.id, { onDelete: 'set null' }),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    index('installments_company_order_idx').on(t.companyId, t.orderId, t.orderType),
+    index('installments_company_status_idx').on(t.companyId, t.status),
+    index('installments_company_type_status_idx').on(t.companyId, t.orderType, t.status)
+  ]
+)
+
+export const invoiceEvents = sqliteTable(
+  'invoice_events',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    invoiceId: integer('invoice_id')
+      .notNull()
+      .references(() => invoices.id, { onDelete: 'cascade' }),
+    eventType: text('event_type').notNull(),
+    protocolNumber: text('protocol_number'),
+    justification: text('justification'),
+    eventDate: text('event_date').notNull(),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [index('invoice_events_invoice_idx').on(t.invoiceId)]
 )
 
 // ---------------------------------------------------------------------------
@@ -823,3 +878,31 @@ export type PurchaseOrderItemInsert = typeof purchaseOrderItems.$inferInsert
 
 export type PurchaseOrderPayment = typeof purchaseOrderPayments.$inferSelect
 export type PurchaseOrderPaymentInsert = typeof purchaseOrderPayments.$inferInsert
+
+// ---------------------------------------------------------------------------
+// Phase 3 inferred types
+// ---------------------------------------------------------------------------
+
+export type Installment = typeof installments.$inferSelect
+export type InstallmentInsert = typeof installments.$inferInsert
+
+export type FinancialAccount = typeof financialAccounts.$inferSelect
+export type FinancialAccountInsert = typeof financialAccounts.$inferInsert
+
+export type FinancialTransaction = typeof financialTransactions.$inferSelect
+export type FinancialTransactionInsert = typeof financialTransactions.$inferInsert
+
+export type Invoice = typeof invoices.$inferSelect
+export type InvoiceInsert = typeof invoices.$inferInsert
+
+export type InvoiceItem = typeof invoiceItems.$inferSelect
+export type InvoiceItemInsert = typeof invoiceItems.$inferInsert
+
+export type DocumentSeriesRow = typeof documentSeries.$inferSelect
+export type DocumentSeriesInsert = typeof documentSeries.$inferInsert
+
+export type Attachment = typeof attachments.$inferSelect
+export type AttachmentInsert = typeof attachments.$inferInsert
+
+export type InvoiceEvent = typeof invoiceEvents.$inferSelect
+export type InvoiceEventInsert = typeof invoiceEvents.$inferInsert

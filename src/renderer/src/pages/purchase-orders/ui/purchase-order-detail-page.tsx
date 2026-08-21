@@ -19,6 +19,8 @@ import {
   useUpdatePurchaseOrder
 } from '@shared/hooks/use-purchase-orders'
 import { useSuppliers } from '@shared/hooks/use-suppliers'
+import { AttachmentPanel } from '@shared/ui/attachment-panel'
+import { AuditExpandablePanel } from '@shared/ui/audit-expandable-panel'
 import { Button } from '@shared/ui/button'
 import { DocumentItemsEditor } from '@shared/ui/document-items-editor'
 import type { DocumentItemRow, ProductOption } from '@shared/ui/document-items-editor'
@@ -544,6 +546,20 @@ function PurchaseOrderDetailPage(): React.JSX.Element {
               />
             </div>
           )}
+        </PageSection>
+      )}
+
+      {/* Attachments panel */}
+      {!isNew && purchaseOrderId && (
+        <PageSection>
+          <AttachmentPanel companyId={companyId} entityType="purchase_order" entityId={String(purchaseOrderId)} />
+        </PageSection>
+      )}
+
+      {/* Audit history panel */}
+      {!isNew && purchaseOrderId && (
+        <PageSection>
+          <AuditExpandablePanel companyId={companyId} entityType="purchase_order" entityId={String(purchaseOrderId)} />
         </PageSection>
       )}
     </PageShell>

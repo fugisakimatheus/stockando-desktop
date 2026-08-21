@@ -17,6 +17,8 @@ import {
   useTransitionSalesOrderStatus,
   useUpdateSalesOrder
 } from '@shared/hooks/use-sales-orders'
+import { AttachmentPanel } from '@shared/ui/attachment-panel'
+import { AuditExpandablePanel } from '@shared/ui/audit-expandable-panel'
 import { Button } from '@shared/ui/button'
 import { DocumentItemsEditor } from '@shared/ui/document-items-editor'
 import type { DocumentItemRow, ProductOption } from '@shared/ui/document-items-editor'
@@ -444,6 +446,20 @@ function SalesOrderDetailPage(): React.JSX.Element {
               />
             </div>
           )}
+        </PageSection>
+      )}
+
+      {/* Attachments panel */}
+      {!isNew && orderId && (
+        <PageSection>
+          <AttachmentPanel companyId={companyId} entityType="sales_order" entityId={String(orderId)} />
+        </PageSection>
+      )}
+
+      {/* Audit history panel */}
+      {!isNew && orderId && (
+        <PageSection>
+          <AuditExpandablePanel companyId={companyId} entityType="sales_order" entityId={String(orderId)} />
         </PageSection>
       )}
     </PageShell>

@@ -15,8 +15,8 @@
 
 import { and, count, eq, like } from 'drizzle-orm'
 
-import { BusinessRuleError, NotFoundError, ValidationError } from '../api/errors'
-import { customers, orderItems, orderPayments, orders, products } from '../db/schema'
+import { BusinessRuleError, NotFoundError, OrderHasActiveFiscalDocError, ValidationError } from '../api/errors'
+import { customers, invoices, orderItems, orderPayments, orders, products } from '../db/schema'
 import { getDb } from '../server'
 import { logAudit } from './audit-service'
 import { computeDocumentTotals, computeSalesLineTotal } from './commercial-utils'
@@ -560,6 +560,19 @@ export async function transitionStatus(
   }
 
   if (targetStatus === 'cancelled') {
+    // Requirement 11.3: Block cancellation if an authorized fiscal document exists
+    const [activeFiscalDoc] = await db
+      .select({ id: invoices.id, documentNumber: invoices.documentNumber })
+      .from(invoices)
+      .where(and(eq(invoices.orderId, id), eq(invoices.companyId, companyId), eq(invoices.status, 'authorized')))
+      .limit(1)
+
+    if (activeFiscalDoc) {
+      throw new OrderHasActiveFiscalDocError(
+        `Cannot cancel order: fiscal document #${activeFiscalDoc.documentNumber} is authorized and must be cancelled first`
+      )
+    }
+
     updateData.cancelledAt = now
   }
 
