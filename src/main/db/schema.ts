@@ -379,6 +379,9 @@ export const orders = sqliteTable(
     taxAmount: real('tax_amount').notNull().default(0),
     totalAmount: real('total_amount').notNull().default(0),
     paymentStatus: text('payment_status').notNull().default('pending'),
+    confirmedAt: text('confirmed_at'),
+    fulfilledAt: text('fulfilled_at'),
+    cancelledAt: text('cancelled_at'),
     createdAt: text('created_at').notNull(),
     updatedAt: text('updated_at').notNull()
   },
@@ -405,6 +408,8 @@ export const quotes = sqliteTable(
     taxAmount: real('tax_amount').notNull().default(0),
     totalAmount: real('total_amount').notNull().default(0),
     notes: text('notes'),
+    cancelledAt: text('cancelled_at'),
+    convertedAt: text('converted_at'),
     createdAt: text('created_at').notNull(),
     updatedAt: text('updated_at').notNull()
   },
@@ -517,6 +522,7 @@ export const purchaseOrders = sqliteTable(
     totalAmount: real('total_amount').notNull().default(0),
     expectedDeliveryDate: text('expected_delivery_date'),
     paymentStatus: text('payment_status').notNull().default('pending'),
+    cancelledAt: text('cancelled_at'),
     createdAt: text('created_at').notNull(),
     updatedAt: text('updated_at').notNull()
   },
@@ -539,6 +545,7 @@ export const purchaseOrderItems = sqliteTable(
       .notNull()
       .references(() => products.id, { onDelete: 'restrict' }),
     quantity: real('quantity').notNull(),
+    receivedQuantity: real('received_quantity').notNull().default(0),
     unitCost: real('unit_cost').notNull(),
     discountAmount: real('discount_amount').notNull().default(0),
     taxAmount: real('tax_amount').notNull().default(0),
@@ -548,6 +555,28 @@ export const purchaseOrderItems = sqliteTable(
   (t) => [
     index('purchase_order_items_purchase_order_idx').on(t.purchaseOrderId),
     index('purchase_order_items_product_idx').on(t.productId)
+  ]
+)
+
+export const purchaseOrderPayments = sqliteTable(
+  'purchase_order_payments',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    purchaseOrderId: integer('purchase_order_id')
+      .notNull()
+      .references(() => purchaseOrders.id, { onDelete: 'cascade' }),
+    paymentMethodId: integer('payment_method_id')
+      .notNull()
+      .references(() => paymentMethods.id, { onDelete: 'restrict' }),
+    amount: real('amount').notNull(),
+    status: text('status').notNull().default('pending'),
+    transactionReference: text('transaction_reference'),
+    paidAt: text('paid_at'),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [
+    index('purchase_order_payments_purchase_order_idx').on(t.purchaseOrderId),
+    index('purchase_order_payments_payment_method_idx').on(t.paymentMethodId)
   ]
 )
 
@@ -757,3 +786,40 @@ export type UserInsert = typeof users.$inferInsert
 
 export type AuditLog = typeof auditLogs.$inferSelect
 export type AuditLogInsert = typeof auditLogs.$inferInsert
+
+// ---------------------------------------------------------------------------
+// Phase 2 inferred types
+// ---------------------------------------------------------------------------
+
+export type Order = typeof orders.$inferSelect
+export type OrderInsert = typeof orders.$inferInsert
+
+export type OrderItem = typeof orderItems.$inferSelect
+export type OrderItemInsert = typeof orderItems.$inferInsert
+
+export type OrderPayment = typeof orderPayments.$inferSelect
+export type OrderPaymentInsert = typeof orderPayments.$inferInsert
+
+export type Quote = typeof quotes.$inferSelect
+export type QuoteInsert = typeof quotes.$inferInsert
+
+export type QuoteItem = typeof quoteItems.$inferSelect
+export type QuoteItemInsert = typeof quoteItems.$inferInsert
+
+export type QuoteOrderConversion = typeof quoteOrderConversions.$inferSelect
+export type QuoteOrderConversionInsert = typeof quoteOrderConversions.$inferInsert
+
+export type Customer = typeof customers.$inferSelect
+export type CustomerInsert = typeof customers.$inferInsert
+
+export type Supplier = typeof suppliers.$inferSelect
+export type SupplierInsert = typeof suppliers.$inferInsert
+
+export type PurchaseOrder = typeof purchaseOrders.$inferSelect
+export type PurchaseOrderInsert = typeof purchaseOrders.$inferInsert
+
+export type PurchaseOrderItem = typeof purchaseOrderItems.$inferSelect
+export type PurchaseOrderItemInsert = typeof purchaseOrderItems.$inferInsert
+
+export type PurchaseOrderPayment = typeof purchaseOrderPayments.$inferSelect
+export type PurchaseOrderPaymentInsert = typeof purchaseOrderPayments.$inferInsert

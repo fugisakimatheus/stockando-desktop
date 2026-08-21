@@ -33,7 +33,7 @@ class ApiError extends Error {
 }
 
 interface FetchOptions {
-  method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
+  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
   body?: unknown
   headers?: Record<string, string>
 }

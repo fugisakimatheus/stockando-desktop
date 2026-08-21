@@ -15,6 +15,7 @@ import { join } from 'node:path'
 import Database from 'better-sqlite3'
 
 import { migration001 } from '../src/main/db/migrations/001-initial-schema'
+import { migration002 } from '../src/main/db/migrations/002-phase2-commercial'
 import { runMigrations } from '../src/main/db/migrations/index'
 import { seedDefaults } from '../src/main/db/seed'
 
@@ -48,7 +49,7 @@ function resolveDbPath(): string {
 // All registered migrations (add new ones here as the app grows)
 // ---------------------------------------------------------------------------
 
-const ALL_MIGRATIONS = [migration001]
+const ALL_MIGRATIONS = [migration001, migration002]
 
 // ---------------------------------------------------------------------------
 // Main

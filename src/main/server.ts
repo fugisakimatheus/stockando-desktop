@@ -7,6 +7,7 @@ import Fastify, { type FastifyInstance } from 'fastify'
 
 import { registerErrorHandler } from './api/error-handler'
 import { migration001 } from './db/migrations/001-initial-schema'
+import { migration002 } from './db/migrations/002-phase2-commercial'
 import { MigrationError, runMigrations } from './db/migrations/index'
 import * as schema from './db/schema'
 import { seedDefaults } from './db/seed'
@@ -14,11 +15,16 @@ import { registerBootstrapRoutes } from './routes/bootstrap'
 import { registerCategoryRoutes } from './routes/categories'
 import { registerCompanyRoutes } from './routes/companies'
 import { registerCompanySettingsRoutes } from './routes/company-settings'
+import { registerCustomerRoutes } from './routes/customers'
 import { registerProductRoutes } from './routes/products'
+import { registerPurchaseOrderRoutes } from './routes/purchase-orders'
+import { registerQuoteRoutes } from './routes/quotes'
+import { registerSalesOrderRoutes } from './routes/sales-orders'
 import { registerSettingsRoutes } from './routes/settings'
 import { registerStockRoutes } from './routes/stock'
 import { registerStockAdjustmentRoutes } from './routes/stock-adjustments'
 import { registerStockMovementRoutes } from './routes/stock-movements'
+import { registerSupplierRoutes } from './routes/suppliers'
 import { registerUnitOfMeasureRoutes } from './routes/units-of-measure'
 import { registerWarehouseRoutes } from './routes/warehouses'
 
@@ -76,7 +82,7 @@ export async function startServer(): Promise<BootstrapResult> {
 
   // 2. Run pending migrations
   try {
-    runMigrations(sqlite, [migration001])
+    runMigrations(sqlite, [migration001, migration002])
   } catch (error) {
     if (error instanceof MigrationError) {
       return {
@@ -121,11 +127,16 @@ export async function startServer(): Promise<BootstrapResult> {
   registerStockRoutes(fastify)
   registerStockMovementRoutes(fastify)
   registerStockAdjustmentRoutes(fastify)
+  registerPurchaseOrderRoutes(fastify)
+  registerQuoteRoutes(fastify)
+  registerSalesOrderRoutes(fastify)
+  registerSupplierRoutes(fastify)
+  registerCustomerRoutes(fastify)
 
   // CORS for all routes and methods
   fastify.addHook('onSend', async (_request, reply, payload) => {
     reply.header('Access-Control-Allow-Origin', '*')
-    reply.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+    reply.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
     reply.header('Access-Control-Allow-Headers', 'Content-Type, x-company-id')
     return payload
   })

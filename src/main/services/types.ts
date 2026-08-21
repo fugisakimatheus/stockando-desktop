@@ -7,13 +7,17 @@
 
 import type {
   categories,
+  customers,
   products,
+  quotes,
   stock,
   stockAdjustments,
   stockMovements,
+  suppliers,
   unitsOfMeasure,
   warehouses
 } from '../db/schema'
+import type { QuoteStatus, SalesOrderStatus, PurchaseOrderStatus } from './status-transitions'
 
 // ---------------------------------------------------------------------------
 // Drizzle inferred types
@@ -39,6 +43,13 @@ export type StockMovementInsert = typeof stockMovements.$inferInsert
 
 export type StockAdjustment = typeof stockAdjustments.$inferSelect
 export type StockAdjustmentInsert = typeof stockAdjustments.$inferInsert
+
+export type Supplier = typeof suppliers.$inferSelect
+export type SupplierInsert = typeof suppliers.$inferInsert
+
+export type Quote = typeof quotes.$inferSelect
+
+export type Customer = typeof customers.$inferSelect
 
 // ---------------------------------------------------------------------------
 // Discriminant constants
@@ -279,4 +290,399 @@ export interface AuditLogEntry {
   action: string
   userId?: number
   details?: string
+}
+
+// ---------------------------------------------------------------------------
+// Customer request/response types
+// ---------------------------------------------------------------------------
+
+export interface CustomerListFilters extends Pagination {
+  search?: string
+  status?: string
+}
+
+export interface CreateCustomerInput {
+  name: string
+  documentNumber?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  customerType?: 'individual' | 'business'
+}
+
+export interface UpdateCustomerInput {
+  name?: string
+  documentNumber?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  status?: 'active' | 'inactive'
+}
+
+export interface CustomerListItem {
+  id: number
+  name: string
+  documentNumber: string | null
+  email: string | null
+  phone: string | null
+  status: string
+}
+
+export interface CustomerDetail {
+  id: number
+  companyId: number
+  name: string
+  documentNumber: string | null
+  email: string | null
+  phone: string | null
+  address: string | null
+  customerType: string
+  status: string
+  createdAt: string
+  updatedAt: string
+  quoteCount: number
+  salesOrderCount: number
+}
+
+// ---------------------------------------------------------------------------
+// Supplier request/response types
+// ---------------------------------------------------------------------------
+
+export interface SupplierListFilters extends Pagination {
+  search?: string
+  status?: string
+}
+
+export interface CreateSupplierInput {
+  name: string
+  documentNumber: string
+  tradeName?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+}
+
+export interface UpdateSupplierInput {
+  name?: string
+  tradeName?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  status?: 'active' | 'inactive'
+}
+
+export interface SupplierListItem {
+  id: number
+  name: string
+  documentNumber: string
+  tradeName: string | null
+  email: string | null
+  status: string
+}
+
+export interface SupplierDetail {
+  id: number
+  companyId: number
+  name: string
+  documentNumber: string
+  tradeName: string | null
+  email: string | null
+  phone: string | null
+  address: string | null
+  status: string
+  createdAt: string
+  updatedAt: string
+  purchaseOrderCount: number
+}
+
+// ---------------------------------------------------------------------------
+// Quote request/response types
+// ---------------------------------------------------------------------------
+
+export interface QuoteListFilters extends Pagination {
+  customerId?: number
+  status?: QuoteStatus
+  search?: string
+}
+
+export interface QuoteItemInput {
+  productId: number
+  quantity: number
+  unitPrice: number
+  discountAmount?: number
+}
+
+export interface CreateQuoteInput {
+  customerId: number
+  validUntil?: string | null
+  notes?: string | null
+  items: QuoteItemInput[]
+}
+
+export interface UpdateQuoteInput {
+  customerId?: number
+  validUntil?: string | null
+  notes?: string | null
+  items?: QuoteItemInput[]
+}
+
+export interface QuoteListItem {
+  id: number
+  quoteNumber: string
+  customerName: string | null
+  status: string
+  totalAmount: number
+  validUntil: string | null
+  createdAt: string
+}
+
+export interface QuoteDetailItem {
+  id: number
+  productId: number
+  productName: string
+  productSku: string
+  quantity: number
+  unitPrice: number
+  discountAmount: number
+  taxAmount: number
+  totalAmount: number
+  createdAt: string
+}
+
+export interface QuoteDetail {
+  id: number
+  companyId: number
+  customerId: number | null
+  customerName: string | null
+  quoteNumber: string
+  status: string
+  validUntil: string | null
+  subtotal: number
+  discountAmount: number
+  taxAmount: number
+  totalAmount: number
+  notes: string | null
+  cancelledAt: string | null
+  convertedAt: string | null
+  createdAt: string
+  updatedAt: string
+  items: QuoteDetailItem[]
+}
+
+// ---------------------------------------------------------------------------
+// Sales Order request/response types
+// ---------------------------------------------------------------------------
+
+export interface SalesOrderListFilters extends Pagination {
+  customerId?: number
+  status?: SalesOrderStatus
+  paymentStatus?: PaymentStatusValue
+  search?: string
+}
+
+export interface OrderItemInput {
+  productId: number
+  quantity: number
+  unitPrice: number
+  discountAmount?: number
+}
+
+export interface CreateSalesOrderInput {
+  customerId: number
+  items: OrderItemInput[]
+}
+
+export interface UpdateSalesOrderInput {
+  customerId?: number
+  items?: OrderItemInput[]
+}
+
+export interface SalesOrderListItem {
+  id: number
+  orderNumber: string
+  customerName: string | null
+  status: string
+  totalAmount: number
+  paymentStatus: PaymentStatusValue
+  createdAt: string
+}
+
+export interface SalesOrderDetailItem {
+  id: number
+  productId: number
+  productName: string
+  productSku: string
+  quantity: number
+  unitPrice: number
+  discountAmount: number
+  taxAmount: number
+  totalAmount: number
+  createdAt: string
+}
+
+export interface SalesOrderPaymentRecord {
+  id: number
+  paymentMethodId: number
+  amount: number
+  status: string
+  transactionReference: string | null
+  paidAt: string | null
+  createdAt: string
+}
+
+export interface SalesOrderDetail {
+  id: number
+  companyId: number
+  customerId: number | null
+  customerName: string | null
+  orderNumber: string
+  orderType: string
+  status: string
+  subtotal: number
+  discountAmount: number
+  taxAmount: number
+  totalAmount: number
+  paymentStatus: PaymentStatusValue
+  confirmedAt: string | null
+  fulfilledAt: string | null
+  cancelledAt: string | null
+  createdAt: string
+  updatedAt: string
+  items: SalesOrderDetailItem[]
+  payments: SalesOrderPaymentRecord[]
+  totalPaid: number
+  remainingBalance: number
+}
+
+// ---------------------------------------------------------------------------
+// Purchase Order request/response types
+// ---------------------------------------------------------------------------
+
+export type PaymentStatusValue = 'unpaid' | 'partially_paid' | 'paid'
+
+export interface PurchaseOrderListFilters extends Pagination {
+  supplierId?: number
+  status?: PurchaseOrderStatus
+  paymentStatus?: PaymentStatusValue
+  search?: string
+}
+
+export interface PurchaseOrderItemInput {
+  productId: number
+  quantity: number
+  unitCost: number
+  discountAmount?: number
+}
+
+export interface CreatePurchaseOrderInput {
+  supplierId: number
+  expectedDeliveryDate?: string | null
+  items: PurchaseOrderItemInput[]
+}
+
+export interface UpdatePurchaseOrderInput {
+  supplierId?: number
+  expectedDeliveryDate?: string | null
+  items?: PurchaseOrderItemInput[]
+}
+
+export interface PurchaseOrderListItem {
+  id: number
+  orderNumber: string
+  supplierName: string
+  status: string
+  totalAmount: number
+  paymentStatus: PaymentStatusValue
+  expectedDeliveryDate: string | null
+  createdAt: string
+}
+
+export interface PurchaseOrderDetailItem {
+  id: number
+  productId: number
+  productName: string
+  productSku: string
+  quantity: number
+  receivedQuantity: number
+  unitCost: number
+  discountAmount: number
+  taxAmount: number
+  totalAmount: number
+  createdAt: string
+}
+
+export interface PurchaseOrderPaymentRecord {
+  id: number
+  paymentMethodId: number
+  amount: number
+  status: string
+  transactionReference: string | null
+  paidAt: string | null
+  createdAt: string
+}
+
+export interface PurchaseOrderDetail {
+  id: number
+  companyId: number
+  supplierId: number
+  supplierName: string
+  orderNumber: string
+  status: string
+  subtotal: number
+  discountAmount: number
+  taxAmount: number
+  totalAmount: number
+  expectedDeliveryDate: string | null
+  paymentStatus: PaymentStatusValue
+  cancelledAt: string | null
+  createdAt: string
+  updatedAt: string
+  items: PurchaseOrderDetailItem[]
+  payments: PurchaseOrderPaymentRecord[]
+  totalPaid: number
+  remainingBalance: number
+}
+
+// ---------------------------------------------------------------------------
+// Payment Service request/response types
+// ---------------------------------------------------------------------------
+
+export interface RegisterPaymentInput {
+  paymentMethodId: number
+  amount: number
+  transactionReference?: string | null
+  paidAt: string
+}
+
+export interface PaymentRecord {
+  id: number
+  paymentMethodId: number
+  amount: number
+  status: string
+  transactionReference: string | null
+  paidAt: string | null
+  createdAt: string
+}
+
+export interface PaymentSummary {
+  payments: PaymentRecord[]
+  documentTotal: number
+  totalPaid: number
+  remainingBalance: number
+  paymentStatus: PaymentStatusValue
+}
+
+// ---------------------------------------------------------------------------
+// Purchase Order Receipt types
+// ---------------------------------------------------------------------------
+
+export interface ReceiptItemInput {
+  purchaseOrderItemId: number
+  receivedQuantity: number
+  warehouseId: number
+}
+
+export interface ReceiptInput {
+  items: ReceiptItemInput[]
+  notes?: string
 }

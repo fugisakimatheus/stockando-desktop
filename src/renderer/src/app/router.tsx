@@ -87,6 +87,71 @@ const stockAdjustmentsRoute = createRoute({
   )
 })
 
+// Commercial routes
+
+const customersRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/customers',
+  component: lazyRouteComponent(() => import('@pages/customers/ui/customers-page'), 'CustomersPage')
+})
+
+const customerDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/customers/$id',
+  component: lazyRouteComponent(() => import('@pages/customers/ui/customer-detail-page'), 'CustomerDetailPage')
+})
+
+const suppliersRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/suppliers',
+  component: lazyRouteComponent(() => import('@pages/suppliers/ui/suppliers-page'), 'SuppliersPage')
+})
+
+const supplierDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/suppliers/$id',
+  component: lazyRouteComponent(() => import('@pages/suppliers/ui/supplier-detail-page'), 'SupplierDetailPage')
+})
+
+const quotesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quotes',
+  component: lazyRouteComponent(() => import('@pages/quotes/ui/quotes-page'), 'QuotesPage')
+})
+
+const quoteDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/quotes/$id',
+  component: lazyRouteComponent(() => import('@pages/quotes/ui/quote-detail-page'), 'QuoteDetailPage')
+})
+
+const salesOrdersRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/sales-orders',
+  component: lazyRouteComponent(() => import('@pages/sales-orders/ui/sales-orders-page'), 'SalesOrdersPage')
+})
+
+const salesOrderDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/sales-orders/$id',
+  component: lazyRouteComponent(() => import('@pages/sales-orders/ui/sales-order-detail-page'), 'SalesOrderDetailPage')
+})
+
+const purchaseOrdersRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/purchase-orders',
+  component: lazyRouteComponent(() => import('@pages/purchase-orders/ui/purchase-orders-page'), 'PurchaseOrdersPage')
+})
+
+const purchaseOrderDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/purchase-orders/$id',
+  component: lazyRouteComponent(
+    () => import('@pages/purchase-orders/ui/purchase-order-detail-page'),
+    'PurchaseOrderDetailPage'
+  )
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   settingsRoute,
@@ -97,7 +162,17 @@ const routeTree = rootRoute.addChildren([
   warehousesRoute,
   stockRoute,
   stockMovementsRoute,
-  stockAdjustmentsRoute
+  stockAdjustmentsRoute,
+  customersRoute,
+  customerDetailRoute,
+  suppliersRoute,
+  supplierDetailRoute,
+  quotesRoute,
+  quoteDetailRoute,
+  salesOrdersRoute,
+  salesOrderDetailRoute,
+  purchaseOrdersRoute,
+  purchaseOrderDetailRoute
 ])
 
 const router = createRouter({ routeTree })

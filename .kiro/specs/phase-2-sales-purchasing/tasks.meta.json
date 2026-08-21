@@ -1,0 +1,884 @@
+{
+  "pbtResults": {
+    "3.3 Write property tests for CustomerService and SupplierService": {
+      "status": "passed",
+      "lastRunTimestamp": 1787272335092
+    },
+    "4.4 Write property tests for quote and sales order logic": {
+      "status": "passed",
+      "lastRunTimestamp": 1787273249328
+    },
+    "5.4 Write property tests for purchase order and payment logic": {
+      "status": "passed",
+      "lastRunTimestamp": 1787273435668
+    }
+  },
+  "executionHistory": {
+    "1.1 Add schema columns and new table for purchase order payments": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042083
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264051973
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264316183
+      }
+    ],
+    "1.2 Implement shared calculation utilities": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042142
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264052695
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264317104
+      }
+    ],
+    "1.3 Implement status transition validation utilities": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042180
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264053463
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264320413
+      }
+    ],
+    "1.4 Implement shared number generation utility": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042211
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264054223
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264320439
+      }
+    ],
+    "2. Checkpoint - Ensure schema and utilities compile": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042254
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276189788
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276249907
+      }
+    ],
+    "3.1 Implement CustomerService": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042288
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264329200
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264708473
+      }
+    ],
+    "3.2 Implement SupplierService": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042319
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264329860
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264709123
+      }
+    ],
+    "3.3 Write property tests for CustomerService and SupplierService": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042349
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264718442
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272419897
+      }
+    ],
+    "4.1 Implement QuoteService": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042380
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264719073
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272420643
+      }
+    ],
+    "4.2 Implement quote-to-order conversion": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042416
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272430053
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272742150
+      }
+    ],
+    "4.3 Implement SalesOrderService": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042452
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272430700
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272739856
+      }
+    ],
+    "4.4 Write property tests for quote and sales order logic": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042478
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272747117
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273459071
+      }
+    ],
+    "5.1 Implement PurchaseOrderService": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042521
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264719830
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272421412
+      }
+    ],
+    "5.2 Implement purchase order receipt recording": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042549
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272431434
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272741337
+      }
+    ],
+    "5.3 Implement PaymentService": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042576
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272432214
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272740553
+      }
+    ],
+    "5.4 Write property tests for purchase order and payment logic": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042610
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272747865
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273459826
+      }
+    ],
+    "6. Checkpoint - Ensure all service layer tests pass": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042640
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276254971
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276311111
+      }
+    ],
+    "7.1 Implement customers API routes": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042669
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273465077
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273796908
+      }
+    ],
+    "7.2 Implement suppliers API routes": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042695
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273465800
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273796135
+      }
+    ],
+    "7.3 Implement quotes API routes": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042722
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273466612
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273795523
+      }
+    ],
+    "7.4 Implement sales orders API routes": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042749
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273467311
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273794798
+      }
+    ],
+    "7.5 Implement purchase orders API routes": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042782
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273467972
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273794053
+      }
+    ],
+    "7.6 Write integration tests for API routes": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042822
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273802128
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274159737
+      }
+    ],
+    "8. Checkpoint - Ensure all API routes respond correctly": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042848
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276317645
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276388187
+      }
+    ],
+    "9.1 Implement DocumentItemsEditor component": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042875
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273802738
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274160388
+      }
+    ],
+    "9.2 Implement StatusBadge and StatusTransitionActions components": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042903
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273803524
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274161474
+      }
+    ],
+    "9.3 Implement PaymentForm and PaymentHistory components": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042932
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273804378
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274162217
+      }
+    ],
+    "9.4 Implement ReceiptForm component": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042959
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273805219
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274162876
+      }
+    ],
+    "10.1 Implement customer and supplier query hooks": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264042991
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274168837
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274667195
+      }
+    ],
+    "10.2 Implement quote query hooks": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043020
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274169426
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274667779
+      }
+    ],
+    "10.3 Implement sales order query hooks": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043048
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274170202
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274668544
+      }
+    ],
+    "10.4 Implement purchase order query hooks": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043079
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274170996
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274669412
+      }
+    ],
+    "11.1 Implement CustomersPage": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043110
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274674562
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275151133
+      }
+    ],
+    "11.2 Implement CustomerDetailPage": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043138
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275159390
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275727812
+      }
+    ],
+    "11.3 Implement SuppliersPage": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043165
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274675165
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275151699
+      }
+    ],
+    "11.4 Implement SupplierDetailPage": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043192
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275159934
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275728652
+      }
+    ],
+    "12.1 Implement QuotesPage": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043219
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274675902
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275152418
+      }
+    ],
+    "12.2 Implement QuoteDetailPage": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043246
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275160774
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275729315
+      }
+    ],
+    "12.3 Implement SalesOrdersPage": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043274
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275161707
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275730044
+      }
+    ],
+    "12.4 Implement SalesOrderDetailPage": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043301
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275736457
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276048934
+      }
+    ],
+    "13.1 Implement PurchaseOrdersPage": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043329
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274677682
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275153217
+      }
+    ],
+    "13.2 Implement PurchaseOrderDetailPage": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043373
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275162475
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275730833
+      }
+    ],
+    "14.1 Register commercial routes in TanStack Router": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043401
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275737400
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276048176
+      }
+    ],
+    "15. Checkpoint - Ensure full UI renders and navigates correctly": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043426
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276397035
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276457563
+      }
+    ],
+    "16.1 Ensure audit log entries for all commercial status transitions and operations": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043453
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276054605
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276179552
+      }
+    ],
+    "17. Final checkpoint - Ensure all tests pass and typecheck succeeds": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787264043481
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276463862
+      },
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276529226
+      }
+    ],
+    "3. Customer and Supplier services": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787272419933
+      }
+    ],
+    "4. Quote and Sales Order services": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273459119
+      }
+    ],
+    "5. Purchase Order and Payment services": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787273459868
+      }
+    ],
+    "7. API route modules": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274159803
+      }
+    ],
+    "9. Renderer shared components": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274162947
+      }
+    ],
+    "10. Renderer query hooks": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787274669452
+      }
+    ],
+    "11. Renderer pages — Customer and Supplier": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275728714
+      }
+    ],
+    "13. Renderer pages — Purchase Orders": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787275730883
+      }
+    ],
+    "14. Router integration and navigation": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276048226
+      }
+    ],
+    "12. Renderer pages — Quotes and Sales Orders": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276048974
+      }
+    ],
+    "16. Audit logging integration": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276179588
+      }
+    ],
+    "1. Schema adaptations and shared utilities": [
+      {
+        "executionId": "e2791853-7610-462e-8ec9-77e5280faa05",
+        "chatSessionId": "sess_4ed2656d-8a5f-416b-a7fa-e28095149408",
+        "timestamp": 1787276545752
+      }
+    ]
+  }
+}
