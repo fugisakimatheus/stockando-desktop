@@ -20,9 +20,10 @@ and its tabs, a card and its image/title/price) *or* when consumers need to
 `items={[…]}` + `renderItem` config monolith, which forces every new layout need
 into a new prop.
 
-Pairs with [frontend-ui-engineering](../frontend-ui-engineering/SKILL.md) (composition over configuration, a11y, design-system adherence).
-
-**Gengar monorepo:** prefer this pattern whenever it fits — including **app-local custom** components — see [docs/COMPOUND_COMPONENTS.md](../../../docs/COMPOUND_COMPONENTS.md) and [`.cursor/rules/compound-components.mdc`](../../../.cursor/rules/compound-components.mdc).
+Pairs with [component-architecture](../component-architecture/SKILL.md) (each part is
+a small, single-responsibility component), [type-safety](../../type-safety/SKILL.md)
+(the context value and props are precise types), and
+[performance](../performance/SKILL.md) (the context value is memoized).
 
 ## Why a composer, not a wall of props
 
@@ -313,8 +314,8 @@ every composer:
 
 | Bucket | Holds | Examples |
 | --- | --- | --- |
-| `state` | the reactive data the parts render | the `wizard`, `isReady`, loaded flags |
-| `actions` | callbacks (grouped where they belong together) | `update`, `reveal: { isRevealed, show, hide }` |
+| `state` | the reactive data the parts render | the `wizard`, `isRevealed`, loaded flags |
+| `actions` | callbacks (grouped where they belong together) | `update`, `reveal: { show, hide }` |
 | `meta` | **non-reactive** shared handles — refs, animated refs, shared values, static config | `portraitRef`, a Reanimated `SharedValue`, layout offsets |
 
 `meta` is the home for **refs** and anything a part needs to reach but that must
@@ -327,13 +328,13 @@ re-rendering the whole subtree.
 import { createContext, useContext, type RefObject } from 'react'
 
 type WizardCardState = {
+  isRevealed: boolean
   wizard: Wizard
 }
 
 type WizardCardActions = {
   reveal: {
     hide: () => void
-    isRevealed: boolean
     show: () => void
   }
   update?: (patch: Partial<Wizard>) => void
@@ -379,7 +380,7 @@ export const WizardCardPortrait: FC = () => {
 
   return (
     <div ref={meta.portraitRef} onClick={actions.reveal.show}>
-      {actions.reveal.isRevealed ? (
+      {state.isRevealed ? (
         <Portrait wizard={state.wizard} />
       ) : (
         <CardBack />
@@ -406,7 +407,7 @@ import { WizardCardContext, type WizardCardActions, type WizardCardContextValue,
 type WizardCardProviderProps = {
   actions?: Pick<WizardCardActions, 'update'> // suppliable from above; the rest is internal
   children: ReactNode
-  state: WizardCardState
+  state: Pick<WizardCardState, 'wizard'> // suppliable from above; internal UI state is merged in
 }
 
 const WizardCardProvider: FC<WizardCardProviderProps> = ({ actions, children, state }) => {
@@ -419,11 +420,11 @@ const WizardCardProvider: FC<WizardCardProviderProps> = ({ actions, children, st
   const value = useMemo<WizardCardContextValue>(
     () => ({
       actions: {
-        reveal: { hide, isRevealed, show },
+        reveal: { hide, show },
         update: actions?.update,
       },
       meta: { portraitRef },
-      state,
+      state: { ...state, isRevealed },
     }),
     [actions, hide, isRevealed, show, state],
   )
@@ -522,4 +523,3 @@ a Client Component — mark its file `'use client'` (see
 - [ ] The compound is the only export; parts assembled via `Object.assign` / a literal.
 - [ ] `Root` is uncontrolled by default and controllable via `value` + `onValueChange`.
 - [ ] Each part is a small, single-responsibility component with a named prop `type`.
-- [ ] In Gengar: prefer this pattern for design-system **and** app-local custom UI when it fits — [COMPOUND_COMPONENTS.md](../../../docs/COMPOUND_COMPONENTS.md).

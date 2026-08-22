@@ -160,11 +160,3 @@ import { cn } from "@/lib/utils"
 ## No manual z-index on overlay components
 
 `Dialog`, `Sheet`, `Drawer`, `AlertDialog`, `DropdownMenu`, `Popover`, `Tooltip`, `HoverCard` handle their own stacking. Never add `z-50` or `z-[999]`.
-
----
-
-## Gengar overlay glass
-
-In this monorepo, floating overlay surfaces use shared Tailwind class constants from `@gengar/design-system/lib/overlay-glass.styles` — not one-off `bg-*/30` + `backdrop-blur-*`. See [`packages/design-system/docs/overlay-glass.md`](../../../../packages/design-system/docs/overlay-glass.md).
-
-OS CRM detail cards use a separate token file (`apps/os/src/features/crm-ui/crm-detail-card.styles.ts`) — translucent in-page shells, not overlay glass. Customer PWA `bg-white/*` glass is app-local and must not be copied into OS / ID / Backstage.

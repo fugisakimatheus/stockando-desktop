@@ -7,19 +7,19 @@ description: >
   icons, fonts, PDFs), grouping closely related slices, defining public APIs
   and import boundaries, resolving cross-imports or evaluating the @x pattern,
   deciding whether to create or remove an entity, evaluating whether the
-  entities layer is needed at all, deciding whether logic should remain local
-  or be extracted, migrating from FSD v2.0 or a non-FSD codebase, integrating
-  FSD with frameworks (Next.js App Router and Pages Router, Nuxt, Vite,
-  Astro), or implementing common patterns such as authentication, API
-  handling, Redux, and TanStack Query (React Query) within FSD.
+  entities layer is needed at all, deciding where page layouts belong or
+  whether to use the widgets layer (discouraged), deciding whether logic
+  should remain local or be extracted, migrating from FSD v2.0 or a non-FSD
+  codebase, integrating FSD with frameworks (Next.js App Router and Pages
+  Router, Nuxt, Vite, Astro), or implementing common patterns such as
+  authentication, API handling, Redux, and TanStack Query (React Query)
+  within FSD.
 ---
 
 # Feature-Sliced Design (FSD) v2.1
 
 > **Source**: [fsd.how](https://fsd.how) | Strictness can be adjusted based on
 > project scale and team context.
-
----
 
 ## 1. Core Philosophy & Layer Overview
 
@@ -32,19 +32,40 @@ the usages do not always change together, and the boundary has a focused
 responsibility.
 
 **Not all layers are required.** Most projects can start with only `shared/`,
-`pages/`, and `app/`. Add `widgets/`, `features/`, `entities/` only when they
-provide clear value. Do not create empty layer folders "just in case."
+`pages/`, and `app/`. Add `features/` and `entities/` only when they provide
+clear value. Do not create empty layer folders "just in case." The `widgets/`
+layer is **discouraged** (see the callout below).
 
 FSD uses 6 standardized layers, listed here from highest to lowest:
 
 ```text
 app/       → App initialization, providers, routing
 pages/     → Route-level composition, owns its own logic
-widgets/   → Large composite UI blocks reused across multiple pages
+widgets/   → Reusable UI blocks (discouraged, see the callout below)
 features/  → Reusable user interactions (only when used in 2+ places)
 entities/  → Reusable business domain models (only when used in 2+ places)
 shared/    → Infrastructure with no business logic (UI kit, utils, API client)
 ```
+
+**This guide discourages using the Widgets layer.** Widgets may seem useful
+for representing independent UI blocks. However, in real frontend code, UI
+blocks often include logic required for user flows, such as data fetching,
+state management, and event handling. In this case, the responsibilities of
+Features, which handle user flows, and Widgets, which handle UI blocks, can
+overlap, making the boundary between the two layers unclear.
+
+Not creating a widget does not mean simply moving that UI block to another
+layer. Compositions that are specific to a particular screen should stay in
+`pages`. When a user action is reused across multiple pages, both the action
+and the UI composition required to perform it should be extracted into
+`features`. Shared UI without business context should be separated into
+`shared`. UI such as app-wide layouts can be handled in `app`.
+
+This does not mean removing the `widgets/` layer entirely. It means
+recommending against actively adopting it. Projects already using widgets
+can keep using them as before.
+
+See `references/layer-structure.md` for details and layout placement.
 
 **Import rule**: A module may only import from layers strictly below it.
 Cross-imports between slices on the same layer are forbidden.
@@ -61,8 +82,6 @@ import { likePost } from "@/features/like-post"; // features → features
 
 **Note**: The `processes/` layer is **deprecated** in v2.1. For migration
 details, read `references/migration-guide.md`.
-
----
 
 ## 2. Decision Framework
 
@@ -103,8 +122,6 @@ with stable boundaries?**
 **Golden Rule: When in doubt, keep it in `pages/`. Extract only when the
 same code is actively used in multiple places and the boundary is clear.**
 
----
-
 ## 3. Quick Placement Table
 
 | Scenario              | Single use                                  | Confirmed multi-use                   |
@@ -119,8 +136,6 @@ same code is actively used in multiple places and the boundary is clear.**
 | Modal manager         |                                             | `shared/ui/modal-manager/`            |
 | Modal content         | `pages/[page]/ui/SomeModal.tsx`             |                                       |
 | Date formatting util  |                                             | `shared/lib/format-date.ts`           |
-
----
 
 ## 4. Architectural Rules (MUST)
 
@@ -199,8 +214,6 @@ export const calculateUserReputation = (user) => { ... };
 export const calculateUserReputation = (user) => { ... };
 ```
 
----
-
 ## 5. Recommendations (SHOULD)
 
 ### 5-1. Pages First: place code where it is used
@@ -252,9 +265,9 @@ src/
   shared/      ← UI kit, utils, API client
 
 // Add layers only when an actual use case requires them:
-// + widgets/   ← UI blocks currently reused across multiple pages
 // + features/  ← User interactions currently reused across multiple pages
 // + entities/  ← Domain models currently reused across pages or features
+// (widgets/ is discouraged; see Section 1 for where that code goes instead)
 ```
 
 ### 5-4. Validate with the Steiger linter
@@ -272,10 +285,11 @@ npm install -D @feature-sliced/steiger
 npx steiger src
 ```
 
----
-
 ## 6. Anti-patterns (AVOID)
 
+- **Do not adopt the `widgets/` layer by default.** UI blocks often include
+  user-flow logic, making the boundary with Features unclear (see Section 1
+  for where widget-like code goes instead).
 - **Do not create entities prematurely.** Data structures used in only one
   place belong in that place.
 - **Do not put CRUD in entities.** Use `shared/api/`. Consider entities only
@@ -292,14 +306,12 @@ npx steiger src
   (see Rule 4-4).
 - **Be cautious adding UI to entities.** Entity UI tempts cross-imports from
   other entities. If you add UI segments to entities, only import them from
-  higher layers (features, widgets, pages), never from other entities.
+  higher layers (features, pages, app), never from other entities.
 - **Do not create god slices.** Slices with excessively broad responsibilities
   should be split into focused slices (e.g., split `user-management/` into
   `auth/`, `profile-edit/`, `password-reset/`).
 - **Do not create a top-level `assets/` segment.** Place static assets next
   to the code that uses them. See `references/asset-handling.md`.
-
----
 
 ## 7. Cross-Import Resolution
 
@@ -322,7 +334,7 @@ In `features` and `widgets`, choose based on context:
 
 - **Strategy A: Slice merge.** Two slices always change together → merge.
 - **Strategy B: Push to entities.** Shared domain logic → move to
-  `entities/`, keep UI in features/widgets.
+  `entities/`, keep UI in the feature.
 - **Strategy C: Compose from upper layer (IoC).** The parent (pages or app)
   imports both slices and connects them via render props, slots, or DI.
 - **Strategy D: Public API access.** When reuse is genuinely unavoidable,
@@ -348,8 +360,6 @@ do not apply).
 
 For detailed code examples of each strategy, read
 `references/cross-import-patterns.md`.
-
----
 
 ## 8. Segments & Structure Rules
 
@@ -387,8 +397,6 @@ api/update-settings.ts   ← Settings update
 If a segment has only one domain concern, the filename may match the slice
 name (e.g., `features/auth/model/auth.ts`).
 
----
-
 ## 9. Shared Layer Guide
 
 Shared contains infrastructure with **no business logic**. It is organized by
@@ -408,17 +416,17 @@ Shared **may** contain application-aware code (route constants, API endpoints,
 branding assets, common types). It must **never** contain business logic,
 feature-specific code, or entity-specific code.
 
----
-
 ## 10. Quick Reference
 
 - **Import direction**: `app → pages → widgets → features → entities → shared`
 - **Minimal FSD**: `app/` + `pages/` + `shared/`
+- **Widgets layer**: Discouraged for new adoption. Projects already using
+  widgets can keep them (see Section 1). Route new code to Pages, Features,
+  Shared, or App.
 - **Create entities when**: the same business domain model is currently
-  used across multiple pages, features, or widgets, with stable
-  boundaries.
+  used across multiple pages or features, with stable boundaries.
 - **Create features when**: the same user interaction is currently used
-  across multiple pages or widgets, with stable boundaries.
+  across multiple pages, with stable boundaries.
 - **Breaking rules**: Only as an intentional design choice. Document the
   reason in code (comment or ADR).
 - **Cross-import resolution (entities)**: Merge boundaries first; `@x` is a
@@ -434,17 +442,16 @@ feature-specific code, or entity-specific code.
   has no segments and no public API.
 - **Processes layer**: Deprecated. See `references/migration-guide.md`.
 
----
-
 ## 11. Conditional References
 
 Read the following reference files **only** when the specific situation applies.
 Do **not** preload all references.
 
 - **When creating, reviewing, or reorganizing folder and file structure** for
-  FSD layers and slices, including grouping closely related slices into a
-  parent folder for navigation (e.g., "set up project structure", "where does
-  this folder go", "how do I group these payment entities"):
+  FSD layers and slices, deciding where a page layout belongs, routing
+  widget-like code to another layer, or grouping closely related slices into
+  a parent folder for navigation (e.g., "set up project structure", "where
+  does this folder go", "how do I group these payment entities"):
   → Read `references/layer-structure.md`
 
 - **When resolving cross-import issues** between slices on the same layer,
@@ -464,7 +471,8 @@ Do **not** preload all references.
   → Read `references/asset-handling.md`
 
 - **When migrating** from FSD v2.0 to v2.1, converting a non-FSD codebase to
-  FSD, or deprecating the processes layer:
+  FSD, phasing out an existing widgets layer, or deprecating the processes
+  layer:
   → Read `references/migration-guide.md`
 
 - **When integrating FSD with a specific framework** (Next.js with App Router
