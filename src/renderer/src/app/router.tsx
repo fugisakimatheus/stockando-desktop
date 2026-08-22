@@ -177,6 +177,41 @@ const fiscalDocumentDetailRoute = createRoute({
   )
 })
 
+// Phase 4 routes
+
+const dashboardRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/dashboard',
+  component: lazyRouteComponent(() => import('@pages/dashboard/ui/dashboard-page'), 'DashboardPage')
+})
+
+const reportsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/reports',
+  component: lazyRouteComponent(() => import('@pages/reports/ui/reports-page'), 'ReportsPage')
+})
+
+const importExportRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/import-export',
+  component: lazyRouteComponent(() => import('@pages/import-export/ui/import-export-page'), 'ImportExportPage')
+})
+
+const automationSettingsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/settings/automation',
+  component: lazyRouteComponent(
+    () => import('@pages/settings/automation/ui/automation-rules-page'),
+    'AutomationRulesPage'
+  )
+})
+
+const integrationsSettingsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/settings/integrations',
+  component: lazyRouteComponent(() => import('@pages/settings/integrations/ui/integrations-page'), 'IntegrationsPage')
+})
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   settingsRoute,
@@ -200,7 +235,12 @@ const routeTree = rootRoute.addChildren([
   purchaseOrderDetailRoute,
   financeRoute,
   fiscalDocumentsRoute,
-  fiscalDocumentDetailRoute
+  fiscalDocumentDetailRoute,
+  dashboardRoute,
+  reportsRoute,
+  importExportRoute,
+  automationSettingsRoute,
+  integrationsSettingsRoute
 ])
 
 const router = createRouter({ routeTree })

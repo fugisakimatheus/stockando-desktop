@@ -1,0 +1,923 @@
+{
+  "pbtResults": {
+    "2.2 Write property tests for dashboard aggregate computation": {
+      "status": "passed",
+      "lastRunTimestamp": 1787354224227
+    },
+    "4.3 Write property tests for report generation": {
+      "status": "passed",
+      "lastRunTimestamp": 1787354497029
+    },
+    "4.4 Write property test for CSV export encoding": {
+      "status": "passed",
+      "lastRunTimestamp": 1787354527752
+    },
+    "5.2 Write property tests for import validation and commit": {
+      "status": "passed",
+      "lastRunTimestamp": 1787354941985
+    },
+    "6.2 Write property test for export-import round-trip": {
+      "status": "passed",
+      "lastRunTimestamp": 1787355107949
+    },
+    "9.2 Write property tests for reminder lifecycle": {
+      "status": "passed",
+      "lastRunTimestamp": 1787355564246
+    },
+    "8.2 Write property tests for automation rule evaluation": {
+      "status": "passed",
+      "lastRunTimestamp": 1787355569888
+    },
+    "12.2 Write property test for company data isolation": {
+      "status": "passed",
+      "lastRunTimestamp": 1787357422846
+    }
+  },
+  "executionHistory": {
+    "1.1 Add Phase 4 tables to Drizzle schema": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348491907
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348512800
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787350901889
+      }
+    ],
+    "1.2 Create shared TypeScript type definitions for Phase 4": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348491967
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348513467
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787350902665
+      }
+    ],
+    "2.1 Implement DashboardService with in-memory cache": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492003
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787350908065
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787353890240
+      }
+    ],
+    "2.2 Write property tests for dashboard aggregate computation": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492037
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787353895456
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354281747
+      }
+    ],
+    "2.3 Register dashboard Fastify routes": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492066
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787353896192
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354283383
+      }
+    ],
+    "3. Checkpoint — Dashboard service": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492099
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362751765
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362865958
+      }
+    ],
+    "4.1 Define report templates as static configuration": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492130
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787350908716
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787353890921
+      }
+    ],
+    "4.2 Implement ReportService": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492160
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787353896983
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354282521
+      }
+    ],
+    "4.3 Write property tests for report generation": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492189
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354288606
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354578899
+      }
+    ],
+    "4.4 Write property test for CSV export encoding": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492227
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354289383
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354579734
+      }
+    ],
+    "4.5 Register report Fastify routes": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492260
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354290098
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354580631
+      }
+    ],
+    "5.1 Implement ImportService with two-phase flow": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492287
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354290897
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354581555
+      }
+    ],
+    "5.2 Write property tests for import validation and commit": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492309
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354586774
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354964088
+      }
+    ],
+    "5.3 Register import Fastify routes": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492341
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354587505
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354964916
+      }
+    ],
+    "6.1 Implement ExportService": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492375
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354588283
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354965728
+      }
+    ],
+    "6.2 Write property test for export-import round-trip": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492400
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354971587
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787355327293
+      }
+    ],
+    "6.3 Register export Fastify routes": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492441
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354972359
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787355328178
+      }
+    ],
+    "7. Checkpoint — Report, Import, Export services": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492469
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362870440
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362875278
+      }
+    ],
+    "8.1 Implement AutomationService": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492491
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354973158
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787355328914
+      }
+    ],
+    "8.2 Write property tests for automation rule evaluation": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492516
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787355335581
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787356258504
+      }
+    ],
+    "8.3 Register automation rules Fastify routes": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492544
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787355336310
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787356259407
+      }
+    ],
+    "9.1 Implement ReminderService": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492571
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354973954
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787355329756
+      }
+    ],
+    "9.2 Write property tests for reminder lifecycle": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492599
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787355337106
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787356260207
+      }
+    ],
+    "9.3 Register reminder Fastify routes": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492633
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787355337843
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787356261018
+      }
+    ],
+    "10.1 Implement IntegrationService": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492658
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787355338616
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787356261839
+      }
+    ],
+    "10.2 Write property test for integration connection test isolation": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492705
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787356273514
+      }
+    ],
+    "10.3 Register integration Fastify routes": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492733
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787356274125
+      }
+    ],
+    "11. Checkpoint — All backend services complete": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492765
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362879440
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362883620
+      }
+    ],
+    "12.1 Add company scoping integration tests": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492792
+      },
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787356274958
+      }
+    ],
+    "12.2 Write property test for company data isolation": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492821
+      },
+      {
+        "executionId": "9a51fe3d-170f-4a5d-9bcc-bde10fb97f60",
+        "chatSessionId": "sess_0aa0e185-c55d-4f20-bafb-6b4db49e5d05",
+        "timestamp": 1787357120107
+      },
+      {
+        "executionId": "9a51fe3d-170f-4a5d-9bcc-bde10fb97f60",
+        "chatSessionId": "sess_0aa0e185-c55d-4f20-bafb-6b4db49e5d05",
+        "timestamp": 1787357494502
+      }
+    ],
+    "13.1 Create dashboard query hooks": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492849
+      },
+      {
+        "executionId": "9a51fe3d-170f-4a5d-9bcc-bde10fb97f60",
+        "chatSessionId": "sess_0aa0e185-c55d-4f20-bafb-6b4db49e5d05",
+        "timestamp": 1787357120665
+      },
+      {
+        "executionId": "9a51fe3d-170f-4a5d-9bcc-bde10fb97f60",
+        "chatSessionId": "sess_0aa0e185-c55d-4f20-bafb-6b4db49e5d05",
+        "timestamp": 1787357492899
+      }
+    ],
+    "13.2 Create report query hooks": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492879
+      },
+      {
+        "executionId": "9a51fe3d-170f-4a5d-9bcc-bde10fb97f60",
+        "chatSessionId": "sess_0aa0e185-c55d-4f20-bafb-6b4db49e5d05",
+        "timestamp": 1787357121433
+      },
+      {
+        "executionId": "9a51fe3d-170f-4a5d-9bcc-bde10fb97f60",
+        "chatSessionId": "sess_0aa0e185-c55d-4f20-bafb-6b4db49e5d05",
+        "timestamp": 1787357493508
+      }
+    ],
+    "14.1 Create import/export query hooks": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492908
+      },
+      {
+        "executionId": "9a51fe3d-170f-4a5d-9bcc-bde10fb97f60",
+        "chatSessionId": "sess_0aa0e185-c55d-4f20-bafb-6b4db49e5d05",
+        "timestamp": 1787357515420
+      }
+    ],
+    "14.2 Create automation and reminder query hooks": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492937
+      },
+      {
+        "executionId": "9a51fe3d-170f-4a5d-9bcc-bde10fb97f60",
+        "chatSessionId": "sess_0aa0e185-c55d-4f20-bafb-6b4db49e5d05",
+        "timestamp": 1787357516150
+      }
+    ],
+    "14.3 Create integration query hooks": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492968
+      },
+      {
+        "executionId": "9a51fe3d-170f-4a5d-9bcc-bde10fb97f60",
+        "chatSessionId": "sess_0aa0e185-c55d-4f20-bafb-6b4db49e5d05",
+        "timestamp": 1787357516906
+      }
+    ],
+    "15.1 Create shared reporting UI primitives": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348492997
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787360890237
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361289539
+      }
+    ],
+    "15.2 Create shared import/export UI primitives": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348493026
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787360890979
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361290240
+      }
+    ],
+    "15.3 Create shared automation and reminder UI primitives": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348493056
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787360891808
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361291172
+      }
+    ],
+    "16.1 Implement Dashboard page": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348493081
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361300552
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361685703
+      }
+    ],
+    "17.1 Implement Reports page": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348493108
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361301123
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361686355
+      }
+    ],
+    "18.1 Implement Import/Export page": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348493136
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361301872
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361687097
+      }
+    ],
+    "19.1 Implement Automation Rules settings page": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348493164
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361696124
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362384699
+      }
+    ],
+    "20.1 Implement Reminders panel in navigation": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348493192
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361696723
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362385440
+      }
+    ],
+    "21.1 Implement Integrations settings page": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348493218
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361697506
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362386192
+      }
+    ],
+    "22.1 Register all new routes and update navigation": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348493246
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362395982
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362715851
+      }
+    ],
+    "23. Final checkpoint — Full integration": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787348493274
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362888224
+      },
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362892626
+      }
+    ],
+    "1. Database schema additions and shared types": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787350902701
+      }
+    ],
+    "2. Dashboard aggregate service and API": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354283436
+      }
+    ],
+    "4. Report generation service and API": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354580676
+      }
+    ],
+    "5. Import service and API": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787354964950
+      }
+    ],
+    "6. Export service and API": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787355328210
+      }
+    ],
+    "8. Automation rules service and API": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787356259448
+      }
+    ],
+    "9. Reminder service and API": [
+      {
+        "executionId": "9a927856-2b5a-463e-a30f-d6b4d7f68e7b",
+        "chatSessionId": "sess_ff3da018-e2e8-4e2a-9333-6c87c9b76fbd",
+        "timestamp": 1787356261059
+      }
+    ],
+    "13. Renderer query hooks — Dashboard and Reports": [
+      {
+        "executionId": "9a51fe3d-170f-4a5d-9bcc-bde10fb97f60",
+        "chatSessionId": "sess_0aa0e185-c55d-4f20-bafb-6b4db49e5d05",
+        "timestamp": 1787357493558
+      }
+    ],
+    "15. Shared UI components for Phase 4": [
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361291222
+      }
+    ],
+    "16. Dashboard page UI": [
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361685743
+      }
+    ],
+    "17. Reports page UI": [
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361686410
+      }
+    ],
+    "18. Import/Export page UI": [
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787361687150
+      }
+    ],
+    "19. Automation rules page UI": [
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362384751
+      }
+    ],
+    "20. Reminders panel UI": [
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362385491
+      }
+    ],
+    "21. Integrations settings page UI": [
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362386248
+      }
+    ],
+    "22. Route registration and navigation wiring": [
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362715900
+      }
+    ],
+    "10. Integration service and API": [
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362911744
+      }
+    ],
+    "12. Company data isolation enforcement": [
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362912291
+      }
+    ],
+    "14. Renderer query hooks — Import, Export, Automation, Reminders, Integrations": [
+      {
+        "executionId": "54879b3b-04c4-463e-93b3-c5c583272a58",
+        "chatSessionId": "sess_3de33244-8af7-4a22-a7e0-3ea186a15a13",
+        "timestamp": 1787362913401
+      }
+    ]
+  }
+}

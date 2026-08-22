@@ -1,4 +1,7 @@
 import { CompanySelector } from '@app/company-selector'
+import { useActiveReminderCount } from '@shared/hooks/use-reminders'
+import { ReminderBadge } from '@shared/ui/reminder-badge'
+import { RemindersPanel } from '@shared/ui/reminders-panel'
 import {
   Sidebar,
   SidebarContent,
@@ -15,11 +18,16 @@ import {
 import { useRouterState } from '@tanstack/react-router'
 import {
   ArrowLeftRight,
+  ArrowUpDown,
+  Bell,
   Boxes,
+  Cable,
   ClipboardList,
   DollarSign,
+  FileBarChart,
   FileText,
   HomeIcon,
+  LayoutDashboard,
   MoonStar,
   Package2,
   Receipt,
@@ -30,14 +38,18 @@ import {
   Tags,
   Truck,
   Users,
-  Warehouse
+  Warehouse,
+  Zap
 } from 'lucide-react'
 import { useTheme } from 'next-themes'
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 
 function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (state) => state.location.pathname })
   const { theme, setTheme } = useTheme()
+  const [remindersOpen, setRemindersOpen] = useState(false)
+  const { data: reminderCount } = useActiveReminderCount(1)
+  const activeReminders = reminderCount?.count ?? 0
 
   const mainNavItems = [
     { href: '/', label: 'Início', icon: HomeIcon },
@@ -66,7 +78,17 @@ function AppShell({ children }: { children: ReactNode }) {
     { href: '/fiscal-documents', label: 'Documentos Fiscais', icon: Receipt }
   ]
 
-  const systemNavItems = [{ href: '/settings', label: 'Configurações', icon: Settings2 }]
+  const reportingNavItems = [
+    { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { href: '/reports', label: 'Relatórios', icon: FileBarChart },
+    { href: '/import-export', label: 'Importar / Exportar', icon: ArrowUpDown }
+  ]
+
+  const systemNavItems = [
+    { href: '/settings', label: 'Configurações', icon: Settings2 },
+    { href: '/settings/automation', label: 'Automação', icon: Zap },
+    { href: '/settings/integrations', label: 'Integrações', icon: Cable }
+  ]
 
   return (
     <SidebarProvider defaultOpen>
@@ -187,11 +209,38 @@ function AppShell({ children }: { children: ReactNode }) {
 
             <SidebarGroup className="group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:py-1">
               <SidebarGroupLabel className="px-2 text-[11px] tracking-[0.24em] text-muted-foreground/80 uppercase">
+                Relatórios
+              </SidebarGroupLabel>
+              <SidebarMenu className="gap-1 group-data-[collapsible=icon]:items-center">
+                {reportingNavItems.map(({ href, label, icon: Icon }) => {
+                  const isActive = pathname === href || pathname.startsWith(href + '/')
+                  return (
+                    <SidebarMenuItem
+                      key={href}
+                      className="group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center"
+                    >
+                      <SidebarMenuButton
+                        href={href}
+                        isActive={isActive}
+                        tooltip={label}
+                        className="rounded-xl group-data-[collapsible=icon]:size-10 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0"
+                      >
+                        <Icon className="size-4" />
+                        <span>{label}</span>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                })}
+              </SidebarMenu>
+            </SidebarGroup>
+
+            <SidebarGroup className="group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:py-1">
+              <SidebarGroupLabel className="px-2 text-[11px] tracking-[0.24em] text-muted-foreground/80 uppercase">
                 Sistema
               </SidebarGroupLabel>
               <SidebarMenu className="gap-1 group-data-[collapsible=icon]:items-center">
                 {systemNavItems.map(({ href, label, icon: Icon }) => {
-                  const isActive = pathname === href
+                  const isActive = pathname === href || pathname.startsWith(href + '/')
                   return (
                     <SidebarMenuItem
                       key={href}
@@ -214,6 +263,24 @@ function AppShell({ children }: { children: ReactNode }) {
           </SidebarContent>
 
           <SidebarFooter className="px-2 pt-0 pb-1.5 group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:px-1.5">
+            <SidebarMenu className="gap-1 group-data-[collapsible=icon]:items-center">
+              <SidebarMenuItem className="group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center">
+                <SidebarMenuButton
+                  onClick={() => setRemindersOpen(true)}
+                  tooltip="Lembretes"
+                  className="rounded-xl group-data-[collapsible=icon]:size-10 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0"
+                >
+                  <div className="relative">
+                    <Bell className="size-4" />
+                    {activeReminders > 0 && (
+                      <ReminderBadge count={activeReminders} className="absolute -top-1 -right-1 size-4 text-[8px]" />
+                    )}
+                  </div>
+                  <span>Lembretes</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+
             <div className="flex items-center justify-between rounded-xl border border-border/70 bg-background/70 px-2 py-1.5 shadow-[0_2px_8px_rgba(15,23,42,0.04)] transition-all duration-200 group-data-[collapsible=icon]:hidden">
               <div className="text-[9px] font-semibold tracking-[0.2em] text-muted-foreground uppercase">Tema</div>
               <button
@@ -251,6 +318,8 @@ function AppShell({ children }: { children: ReactNode }) {
           <div className="min-h-svh overflow-hidden">{children}</div>
         </SidebarInset>
       </div>
+
+      <RemindersPanel open={remindersOpen} onOpenChange={setRemindersOpen} />
     </SidebarProvider>
   )
 }

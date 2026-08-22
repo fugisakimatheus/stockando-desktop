@@ -14,18 +14,24 @@ import * as schema from './db/schema'
 import { seedDefaults } from './db/seed'
 import { registerAttachmentRoutes } from './routes/attachments'
 import { registerAuditLogRoutes } from './routes/audit-logs'
+import { registerAutomationRoutes } from './routes/automation-routes'
 import { registerBootstrapRoutes } from './routes/bootstrap'
 import { registerCategoryRoutes } from './routes/categories'
 import { registerCompanyRoutes } from './routes/companies'
 import { registerCompanySettingsRoutes } from './routes/company-settings'
 import { registerCustomerRoutes } from './routes/customers'
+import { registerDashboardRoutes } from './routes/dashboard-routes'
+import { registerExportRoutes } from './routes/export-routes'
 import { registerFinancialAccountRoutes } from './routes/financial-accounts'
 import { registerFinancialTransactionRoutes } from './routes/financial-transactions'
 import { registerFiscalDocumentRoutes } from './routes/fiscal-documents'
+import { registerImportRoutes } from './routes/import-routes'
 import { registerInstallmentRoutes } from './routes/installments'
 import { registerProductRoutes } from './routes/products'
 import { registerPurchaseOrderRoutes } from './routes/purchase-orders'
 import { registerQuoteRoutes } from './routes/quotes'
+import { registerReminderRoutes } from './routes/reminder-routes'
+import { registerReportRoutes } from './routes/report-routes'
 import { registerSalesOrderRoutes } from './routes/sales-orders'
 import { registerSettingsRoutes } from './routes/settings'
 import { registerStockRoutes } from './routes/stock'
@@ -145,6 +151,12 @@ export async function startServer(): Promise<BootstrapResult> {
   registerFiscalDocumentRoutes(fastify)
   registerAuditLogRoutes(fastify)
   registerAttachmentRoutes(fastify)
+  registerDashboardRoutes(fastify)
+  registerReportRoutes(fastify)
+  registerImportRoutes(fastify)
+  registerExportRoutes(fastify)
+  registerReminderRoutes(fastify)
+  registerAutomationRoutes(fastify)
 
   // CORS for all routes and methods
   fastify.addHook('onSend', async (_request, reply, payload) => {

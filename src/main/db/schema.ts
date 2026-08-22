@@ -824,6 +824,142 @@ export const invoiceEvents = sqliteTable(
 )
 
 // ---------------------------------------------------------------------------
+// Phase 4 tables
+// ---------------------------------------------------------------------------
+
+export const dashboardAggregates = sqliteTable(
+  'dashboard_aggregates',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    periodKey: text('period_key').notNull(),
+    metricName: text('metric_name').notNull(),
+    value: real('value').notNull(),
+    computedAt: text('computed_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('dashboard_aggregates_company_period_metric_unique').on(t.companyId, t.periodKey, t.metricName),
+    index('dashboard_aggregates_company_idx').on(t.companyId)
+  ]
+)
+
+export const automationRules = sqliteTable(
+  'automation_rules',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    triggerType: text('trigger_type').notNull(),
+    triggerParams: text('trigger_params').notNull(),
+    actionType: text('action_type').notNull(),
+    actionParams: text('action_params').notNull(),
+    enabled: integer('enabled', { mode: 'boolean' }).notNull().default(true),
+    lastEvaluatedAt: text('last_evaluated_at'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    index('automation_rules_company_idx').on(t.companyId),
+    index('automation_rules_company_enabled_idx').on(t.companyId, t.enabled)
+  ]
+)
+
+export const ruleEvaluations = sqliteTable(
+  'rule_evaluations',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    ruleId: integer('rule_id')
+      .notNull()
+      .references(() => automationRules.id, { onDelete: 'cascade' }),
+    entityType: text('entity_type').notNull(),
+    entityId: text('entity_id').notNull(),
+    actionTaken: text('action_taken').notNull(),
+    evaluatedAt: text('evaluated_at').notNull()
+  },
+  (t) => [
+    uniqueIndex('rule_evaluations_rule_entity_unique').on(t.ruleId, t.entityType, t.entityId),
+    index('rule_evaluations_rule_idx').on(t.ruleId)
+  ]
+)
+
+export const reminders = sqliteTable(
+  'reminders',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    entityType: text('entity_type').notNull(),
+    entityId: text('entity_id').notNull(),
+    entitySummary: text('entity_summary').notNull().default(''),
+    message: text('message').notNull(),
+    dueDate: text('due_date').notNull(),
+    status: text('status').notNull().default('active'),
+    ruleId: integer('rule_id').references(() => automationRules.id, { onDelete: 'set null' }),
+    dismissedAt: text('dismissed_at'),
+    completedAt: text('completed_at'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    index('reminders_company_idx').on(t.companyId),
+    index('reminders_company_status_idx').on(t.companyId, t.status),
+    index('reminders_company_due_date_idx').on(t.companyId, t.dueDate),
+    index('reminders_rule_idx').on(t.ruleId)
+  ]
+)
+
+export const integrationConfigs = sqliteTable(
+  'integration_configs',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    providerType: text('provider_type').notNull(),
+    endpointUrl: text('endpoint_url').notNull(),
+    credentialsRef: text('credentials_ref'),
+    description: text('description'),
+    active: integer('active', { mode: 'boolean' }).notNull().default(true),
+    lastTestedAt: text('last_tested_at'),
+    lastTestResult: text('last_test_result'),
+    createdAt: text('created_at').notNull(),
+    updatedAt: text('updated_at').notNull()
+  },
+  (t) => [
+    index('integration_configs_company_idx').on(t.companyId),
+    index('integration_configs_company_provider_idx').on(t.companyId, t.providerType)
+  ]
+)
+
+export const importJobs = sqliteTable(
+  'import_jobs',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    companyId: integer('company_id')
+      .notNull()
+      .references(() => companies.id, { onDelete: 'cascade' }),
+    entityType: text('entity_type').notNull(),
+    fileName: text('file_name').notNull(),
+    status: text('status').notNull().default('pending'),
+    totalRows: integer('total_rows'),
+    importedRows: integer('imported_rows'),
+    skippedRows: integer('skipped_rows'),
+    failedRows: integer('failed_rows'),
+    errorDetails: text('error_details'),
+    createdAt: text('created_at').notNull()
+  },
+  (t) => [
+    index('import_jobs_company_idx').on(t.companyId),
+    index('import_jobs_company_status_idx').on(t.companyId, t.status)
+  ]
+)
+
+// ---------------------------------------------------------------------------
 // Phase 0 inferred types
 // ---------------------------------------------------------------------------
 
@@ -906,3 +1042,25 @@ export type AttachmentInsert = typeof attachments.$inferInsert
 
 export type InvoiceEvent = typeof invoiceEvents.$inferSelect
 export type InvoiceEventInsert = typeof invoiceEvents.$inferInsert
+
+// ---------------------------------------------------------------------------
+// Phase 4 inferred types
+// ---------------------------------------------------------------------------
+
+export type DashboardAggregate = typeof dashboardAggregates.$inferSelect
+export type DashboardAggregateInsert = typeof dashboardAggregates.$inferInsert
+
+export type AutomationRule = typeof automationRules.$inferSelect
+export type AutomationRuleInsert = typeof automationRules.$inferInsert
+
+export type RuleEvaluation = typeof ruleEvaluations.$inferSelect
+export type RuleEvaluationInsert = typeof ruleEvaluations.$inferInsert
+
+export type Reminder = typeof reminders.$inferSelect
+export type ReminderInsert = typeof reminders.$inferInsert
+
+export type IntegrationConfig = typeof integrationConfigs.$inferSelect
+export type IntegrationConfigInsert = typeof integrationConfigs.$inferInsert
+
+export type ImportJob = typeof importJobs.$inferSelect
+export type ImportJobInsert = typeof importJobs.$inferInsert
