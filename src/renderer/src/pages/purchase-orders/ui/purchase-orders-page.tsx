@@ -133,7 +133,7 @@ function PurchaseOrdersPage(): React.JSX.Element {
       title="Pedidos de Compra"
       description="Gerencie pedidos de compra, recebimentos e pagamentos."
       actions={
-        <Button onPress={handleNewPurchaseOrder} className="gap-2">
+        <Button onPress={handleNewPurchaseOrder} className="gap-1.5">
           <Plus className="size-4" />
           Novo pedido
         </Button>
@@ -224,7 +224,7 @@ function PurchaseOrdersPage(): React.JSX.Element {
             }
             action={
               !hasActiveFilters ? (
-                <Button onPress={handleNewPurchaseOrder} className="gap-2">
+                <Button variant="outline" onPress={handleNewPurchaseOrder} className="gap-1.5">
                   <Plus className="size-4" />
                   Criar pedido de compra
                 </Button>
@@ -237,15 +237,13 @@ function PurchaseOrdersPage(): React.JSX.Element {
           <>
             <Table aria-label="Lista de pedidos de compra">
               <TableHeader>
-                <TableRow>
-                  <TableHead isRowHeader>Número</TableHead>
-                  <TableHead>Fornecedor</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Total</TableHead>
-                  <TableHead>Pagamento</TableHead>
-                  <TableHead>Entrega Prevista</TableHead>
-                  <TableHead>Criado em</TableHead>
-                </TableRow>
+                <TableHead isRowHeader>Número</TableHead>
+                <TableHead>Fornecedor</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Total</TableHead>
+                <TableHead>Pagamento</TableHead>
+                <TableHead>Entrega Prevista</TableHead>
+                <TableHead>Criado em</TableHead>
               </TableHeader>
               <TableBody items={purchaseOrders}>
                 {(po: PurchaseOrderListItem) => (
@@ -276,9 +274,9 @@ function PurchaseOrdersPage(): React.JSX.Element {
               </TableBody>
             </Table>
 
-            <div className="flex items-center justify-between border-t border-border/70 pt-4">
-              <p className="text-sm text-muted-foreground">
-                {total} {total === 1 ? 'pedido' : 'pedidos'} • Página {currentPage} de {totalPages}
+            <div className="flex items-center justify-between border-t border-border/50 pt-3 dark:border-white/6">
+              <p className="text-xs text-muted-foreground tabular-nums">
+                {total} {total === 1 ? 'pedido' : 'pedidos'} · Página {currentPage} de {totalPages}
               </p>
               <div className="flex items-center gap-2">
                 <Button

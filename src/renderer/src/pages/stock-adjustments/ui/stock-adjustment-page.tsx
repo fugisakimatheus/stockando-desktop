@@ -475,15 +475,13 @@ function StockAdjustmentPage(): React.JSX.Element {
           <>
             <Table aria-label="Histórico de ajustes de estoque">
               <TableHeader>
-                <TableRow>
-                  <TableHead isRowHeader>ID</TableHead>
-                  <TableHead>Tipo</TableHead>
-                  <TableHead>Produto ID</TableHead>
-                  <TableHead>Armazém ID</TableHead>
-                  <TableHead>Quantidade</TableHead>
-                  <TableHead>Motivo</TableHead>
-                  <TableHead>Data</TableHead>
-                </TableRow>
+                <TableHead isRowHeader>ID</TableHead>
+                <TableHead>Tipo</TableHead>
+                <TableHead>Produto ID</TableHead>
+                <TableHead>Armazém ID</TableHead>
+                <TableHead>Quantidade</TableHead>
+                <TableHead>Motivo</TableHead>
+                <TableHead>Data</TableHead>
               </TableHeader>
               <TableBody items={adjustments}>
                 {(adjustment: StockAdjustment) => (
@@ -514,9 +512,9 @@ function StockAdjustmentPage(): React.JSX.Element {
               </TableBody>
             </Table>
 
-            <div className="flex items-center justify-between border-t border-border/70 pt-4">
-              <p className="text-sm text-muted-foreground">
-                {total} {total === 1 ? 'ajuste' : 'ajustes'} • Página {currentPage} de {totalPages}
+            <div className="flex items-center justify-between border-t border-border/50 pt-3 dark:border-white/6">
+              <p className="text-xs text-muted-foreground tabular-nums">
+                {total} {total === 1 ? 'ajuste' : 'ajustes'} · Página {currentPage} de {totalPages}
               </p>
               <div className="flex items-center gap-2">
                 <Button

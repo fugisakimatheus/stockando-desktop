@@ -189,12 +189,12 @@ function AutomationRulesPage(): React.JSX.Element {
             onPress={handleEvaluate}
             isDisabled={evaluateRules.isPending}
             isLoading={evaluateRules.isPending}
-            className="gap-2"
+            className="gap-1.5"
           >
             <Play className="size-4" />
             Avaliar Regras
           </Button>
-          <Button onPress={() => setIsCreateOpen(true)} className="gap-2">
+          <Button onPress={() => setIsCreateOpen(true)} className="gap-1.5">
             <Plus className="size-4" />
             Nova Regra
           </Button>
@@ -220,7 +220,7 @@ function AutomationRulesPage(): React.JSX.Element {
             title="Nenhuma regra configurada"
             description="Crie sua primeira regra para automatizar ações do negócio."
             action={
-              <Button onPress={() => setIsCreateOpen(true)} className="gap-2">
+              <Button variant="outline" onPress={() => setIsCreateOpen(true)} className="gap-1.5">
                 <Plus className="size-4" />
                 Criar regra
               </Button>

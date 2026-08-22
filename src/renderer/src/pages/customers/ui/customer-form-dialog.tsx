@@ -16,6 +16,19 @@ function FieldError({ message }: { message: string | undefined }): React.JSX.Ele
 }
 
 // ---------------------------------------------------------------------------
+// Form Section
+// ---------------------------------------------------------------------------
+
+function FormSection({ title, children }: { title: string; children: React.ReactNode }): React.JSX.Element {
+  return (
+    <fieldset className="space-y-3">
+      <legend className="text-xs font-medium tracking-wide text-muted-foreground uppercase">{title}</legend>
+      {children}
+    </fieldset>
+  )
+}
+
+// ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
@@ -161,92 +174,95 @@ function CustomerFormDialog({
         <DialogDescription>{description}</DialogDescription>
       </DialogHeader>
 
-      <div className="flex flex-col gap-4 py-2">
-        {/* Name */}
-        <div className="space-y-1.5">
-          <Label htmlFor="customer-name">Nome *</Label>
-          <Input
-            id="customer-name"
-            value={form.name}
-            onChange={(e) => updateField('name', e.target.value)}
-            placeholder="Ex: João da Silva"
-            aria-invalid={!!errors.name}
-          />
-          <FieldError message={errors.name} />
-        </div>
-
-        {/* Document Number */}
-        <div className="space-y-1.5">
-          <Label htmlFor="customer-document">CPF/CNPJ</Label>
-          <Input
-            id="customer-document"
-            value={form.documentNumber}
-            onChange={(e) => updateField('documentNumber', e.target.value)}
-            placeholder="Ex: 000.000.000-00"
-          />
-          <FieldError message={errors.documentNumber} />
-        </div>
-
-        {/* Email and Phone row */}
-        <div className="grid grid-cols-2 gap-3">
+      <div className="flex flex-col gap-5 py-3">
+        {/* Identification */}
+        <FormSection title="Dados pessoais">
           <div className="space-y-1.5">
-            <Label htmlFor="customer-email">Email</Label>
+            <Label htmlFor="customer-name">Nome *</Label>
             <Input
-              id="customer-email"
-              type="email"
-              value={form.email}
-              onChange={(e) => updateField('email', e.target.value)}
-              placeholder="email@exemplo.com"
-              aria-invalid={!!errors.email}
+              id="customer-name"
+              value={form.name}
+              onChange={(e) => updateField('name', e.target.value)}
+              placeholder="Ex: João da Silva"
+              aria-invalid={!!errors.name}
             />
-            <FieldError message={errors.email} />
+            <FieldError message={errors.name} />
           </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="customer-document">CPF/CNPJ</Label>
+              <Input
+                id="customer-document"
+                value={form.documentNumber}
+                onChange={(e) => updateField('documentNumber', e.target.value)}
+                placeholder="000.000.000-00"
+              />
+              <FieldError message={errors.documentNumber} />
+            </div>
+
+            {mode === 'create' && (
+              <div className="space-y-1.5">
+                <Label>Tipo</Label>
+                <Select
+                  selectedKey={form.customerType}
+                  onSelectionChange={(key) => updateField('customerType', key as 'individual' | 'business')}
+                  aria-label="Tipo de cliente"
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem id="individual" textValue="Pessoa Física">
+                      Pessoa Física
+                    </SelectItem>
+                    <SelectItem id="business" textValue="Pessoa Jurídica">
+                      Pessoa Jurídica
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+          </div>
+        </FormSection>
+
+        {/* Contact */}
+        <FormSection title="Contato">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="customer-email">Email</Label>
+              <Input
+                id="customer-email"
+                type="email"
+                value={form.email}
+                onChange={(e) => updateField('email', e.target.value)}
+                placeholder="email@exemplo.com"
+                aria-invalid={!!errors.email}
+              />
+              <FieldError message={errors.email} />
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="customer-phone">Telefone</Label>
+              <Input
+                id="customer-phone"
+                value={form.phone}
+                onChange={(e) => updateField('phone', e.target.value)}
+                placeholder="(00) 00000-0000"
+              />
+              <FieldError message={errors.phone} />
+            </div>
+          </div>
+
           <div className="space-y-1.5">
-            <Label htmlFor="customer-phone">Telefone</Label>
+            <Label htmlFor="customer-address">Endereço</Label>
             <Input
-              id="customer-phone"
-              value={form.phone}
-              onChange={(e) => updateField('phone', e.target.value)}
-              placeholder="(00) 00000-0000"
+              id="customer-address"
+              value={form.address}
+              onChange={(e) => updateField('address', e.target.value)}
+              placeholder="Rua, número, bairro, cidade"
             />
-            <FieldError message={errors.phone} />
           </div>
-        </div>
-
-        {/* Address */}
-        <div className="space-y-1.5">
-          <Label htmlFor="customer-address">Endereço</Label>
-          <Input
-            id="customer-address"
-            value={form.address}
-            onChange={(e) => updateField('address', e.target.value)}
-            placeholder="Rua, número, bairro, cidade"
-          />
-        </div>
-
-        {/* Customer Type — only on create */}
-        {mode === 'create' && (
-          <div className="space-y-1.5">
-            <Label>Tipo de cliente</Label>
-            <Select
-              selectedKey={form.customerType}
-              onSelectionChange={(key) => updateField('customerType', key as 'individual' | 'business')}
-              aria-label="Tipo de cliente"
-            >
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem id="individual" textValue="Pessoa Física">
-                  Pessoa Física
-                </SelectItem>
-                <SelectItem id="business" textValue="Pessoa Jurídica">
-                  Pessoa Jurídica
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        )}
+        </FormSection>
       </div>
 
       <DialogFooter>

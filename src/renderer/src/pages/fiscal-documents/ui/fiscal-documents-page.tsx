@@ -178,7 +178,7 @@ function FiscalDocumentsPage(): React.JSX.Element {
             value={filters.startDate ?? ''}
             onChange={handleStartDateChange}
             aria-label="Data inicial"
-            className="w-36"
+            className="h-8 w-36 border-transparent bg-background/80 text-sm shadow-none focus-visible:border-ring dark:border-transparent dark:bg-background/60"
           />
 
           <Input
@@ -186,7 +186,7 @@ function FiscalDocumentsPage(): React.JSX.Element {
             value={filters.endDate ?? ''}
             onChange={handleEndDateChange}
             aria-label="Data final"
-            className="w-36"
+            className="h-8 w-36 border-transparent bg-background/80 text-sm shadow-none focus-visible:border-ring dark:border-transparent dark:bg-background/60"
           />
         </FilterBar>
 
@@ -216,15 +216,13 @@ function FiscalDocumentsPage(): React.JSX.Element {
           <>
             <Table aria-label="Lista de documentos fiscais">
               <TableHeader>
-                <TableRow>
-                  <TableHead isRowHeader>Número</TableHead>
-                  <TableHead>Tipo</TableHead>
-                  <TableHead>Série</TableHead>
-                  <TableHead>Cliente</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Valor Total</TableHead>
-                  <TableHead>Emissão</TableHead>
-                </TableRow>
+                <TableHead isRowHeader>Número</TableHead>
+                <TableHead>Tipo</TableHead>
+                <TableHead>Série</TableHead>
+                <TableHead>Cliente</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Valor Total</TableHead>
+                <TableHead>Emissão</TableHead>
               </TableHeader>
               <TableBody items={fiscalDocs}>
                 {(doc: FiscalDocumentListItem) => (
@@ -245,7 +243,9 @@ function FiscalDocumentsPage(): React.JSX.Element {
                       <FiscalStatusBadge status={doc.status} />
                     </TableCell>
                     <TableCell>
-                      <span className="font-medium text-foreground">{formatCurrency(doc.totalAmount)}</span>
+                      <span className="font-medium text-foreground tabular-nums">
+                        {formatCurrency(doc.totalAmount)}
+                      </span>
                     </TableCell>
                     <TableCell>
                       <span className="text-xs text-muted-foreground">{formatDate(doc.issueDate)}</span>
@@ -255,9 +255,9 @@ function FiscalDocumentsPage(): React.JSX.Element {
               </TableBody>
             </Table>
 
-            <div className="flex items-center justify-between border-t border-border/70 pt-4">
-              <p className="text-sm text-muted-foreground">
-                {total} {total === 1 ? 'documento' : 'documentos'} • Página {currentPage} de {totalPages}
+            <div className="flex items-center justify-between border-t border-border/50 pt-3 dark:border-white/6">
+              <p className="text-xs text-muted-foreground tabular-nums">
+                {total} {total === 1 ? 'documento' : 'documentos'} · Página {currentPage} de {totalPages}
               </p>
               <div className="flex items-center gap-2">
                 <Button

@@ -295,7 +295,7 @@ function CategoriesPage(): React.JSX.Element {
             title="Nenhuma categoria criada ainda"
             description="Crie categorias para organizar os produtos do catálogo."
             action={
-              <Button onPress={() => setIsCreateOpen(true)} className="gap-1.5">
+              <Button variant="outline" onPress={() => setIsCreateOpen(true)} className="gap-1.5">
                 <Plus className="size-4" />
                 Criar primeira categoria
               </Button>
@@ -304,12 +304,10 @@ function CategoriesPage(): React.JSX.Element {
         ) : (
           <Table aria-label="Lista de categorias">
             <TableHeader>
-              <TableRow>
-                <TableHead isRowHeader>Nome</TableHead>
-                <TableHead>Categoria pai</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="w-24 text-right">Ações</TableHead>
-              </TableRow>
+              <TableHead isRowHeader>Nome</TableHead>
+              <TableHead>Categoria pai</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="w-24 text-right">Ações</TableHead>
             </TableHeader>
             <TableBody>
               {categoryList.map((category) => (

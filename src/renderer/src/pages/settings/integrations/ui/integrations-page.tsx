@@ -205,7 +205,7 @@ function IntegrationFormDialog({
 
       <DialogFooter>
         <DialogClose variant="outline">Cancelar</DialogClose>
-        <Button onPress={handleSubmit} isDisabled={isLoading} className="gap-2">
+        <Button onPress={handleSubmit} isDisabled={isLoading} className="gap-1.5">
           {isLoading ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
           {mode === 'create' ? 'Criar' : 'Salvar'}
         </Button>
@@ -423,7 +423,7 @@ function IntegrationsPage(): React.JSX.Element {
       title="Integrações"
       description="Gerencie conexões com serviços externos e provedores fiscais."
       actions={
-        <Button onPress={() => setIsCreateOpen(true)} className="gap-2">
+        <Button onPress={() => setIsCreateOpen(true)} className="gap-1.5">
           <Plus className="size-4" />
           Nova integração
         </Button>
@@ -446,7 +446,7 @@ function IntegrationsPage(): React.JSX.Element {
             title="Nenhuma integração configurada"
             description="Adicione uma conexão com serviço externo para começar."
             action={
-              <Button onPress={() => setIsCreateOpen(true)} className="gap-2">
+              <Button variant="outline" onPress={() => setIsCreateOpen(true)} className="gap-1.5">
                 <Plus className="size-4" />
                 Adicionar integração
               </Button>

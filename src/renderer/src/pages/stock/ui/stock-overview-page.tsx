@@ -124,13 +124,11 @@ function WarehouseView(): React.JSX.Element {
         <>
           <Table aria-label="Estoque do armazém">
             <TableHeader>
-              <TableRow>
-                <TableHead isRowHeader>Produto</TableHead>
-                <TableHead>SKU</TableHead>
-                <TableHead>Quantidade</TableHead>
-                <TableHead>Reservado</TableHead>
-                <TableHead>Disponível</TableHead>
-              </TableRow>
+              <TableHead isRowHeader>Produto</TableHead>
+              <TableHead>SKU</TableHead>
+              <TableHead>Quantidade</TableHead>
+              <TableHead>Reservado</TableHead>
+              <TableHead>Disponível</TableHead>
             </TableHeader>
             <TableBody items={stockData.data}>
               {(item) => (
@@ -237,13 +235,11 @@ function ProductView(): React.JSX.Element {
       ) : (
         <Table aria-label="Saldos do produto por armazém">
           <TableHeader>
-            <TableRow>
-              <TableHead isRowHeader>Armazém</TableHead>
-              <TableHead>Código</TableHead>
-              <TableHead>Quantidade</TableHead>
-              <TableHead>Reservado</TableHead>
-              <TableHead>Disponível</TableHead>
-            </TableRow>
+            <TableHead isRowHeader>Armazém</TableHead>
+            <TableHead>Código</TableHead>
+            <TableHead>Quantidade</TableHead>
+            <TableHead>Reservado</TableHead>
+            <TableHead>Disponível</TableHead>
           </TableHeader>
           <TableBody items={balances}>
             {(balance) => (

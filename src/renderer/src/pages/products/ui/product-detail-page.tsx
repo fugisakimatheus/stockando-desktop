@@ -116,13 +116,11 @@ function ProductDetailPage({ productId }: { productId: number }): React.JSX.Elem
           {stockQuery.isSuccess && balances.length > 0 && (
             <Table aria-label="Estoque por armazém">
               <TableHeader>
-                <TableRow>
-                  <TableHead isRowHeader>Armazém</TableHead>
-                  <TableHead>Código</TableHead>
-                  <TableHead>Quantidade</TableHead>
-                  <TableHead>Reservado</TableHead>
-                  <TableHead>Disponível</TableHead>
-                </TableRow>
+                <TableHead isRowHeader>Armazém</TableHead>
+                <TableHead>Código</TableHead>
+                <TableHead>Quantidade</TableHead>
+                <TableHead>Reservado</TableHead>
+                <TableHead>Disponível</TableHead>
               </TableHeader>
               <TableBody>
                 {balances.map((balance: StockBalance) => (

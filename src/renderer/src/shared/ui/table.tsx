@@ -26,7 +26,7 @@ function Table({ className, ...props }: TableProps) {
 }
 
 function TableHeader<T>({ className, ...props }: TableHeaderProps<T>) {
-  return <TableHeaderPrimitive data-slot="table-header" className={cn('[&_tr]:border-b', className)} {...props} />
+  return <TableHeaderPrimitive data-slot="table-header" className={cn('border-b', className)} {...props} />
 }
 
 function TableBody<T>({ className, ...props }: TableBodyProps<T>) {

@@ -353,7 +353,7 @@ function SuppliersPage(): React.JSX.Element {
       title="Fornecedores"
       description="Cadastre e gerencie os fornecedores do negócio."
       actions={
-        <Button onPress={() => setIsCreateOpen(true)} className="gap-2">
+        <Button onPress={() => setIsCreateOpen(true)} className="gap-1.5">
           <Plus className="size-4" />
           Novo fornecedor
         </Button>
@@ -405,7 +405,7 @@ function SuppliersPage(): React.JSX.Element {
             }
             action={
               !filters.search && !filters.status ? (
-                <Button onPress={() => setIsCreateOpen(true)} className="gap-2">
+                <Button variant="outline" onPress={() => setIsCreateOpen(true)} className="gap-1.5">
                   <Plus className="size-4" />
                   Adicionar fornecedor
                 </Button>
@@ -418,14 +418,12 @@ function SuppliersPage(): React.JSX.Element {
           <>
             <Table aria-label="Lista de fornecedores">
               <TableHeader>
-                <TableRow>
-                  <TableHead isRowHeader>Nome</TableHead>
-                  <TableHead>CNPJ/CPF</TableHead>
-                  <TableHead>Nome fantasia</TableHead>
-                  <TableHead>E-mail</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="w-24 text-right">Ações</TableHead>
-                </TableRow>
+                <TableHead isRowHeader>Nome</TableHead>
+                <TableHead>CNPJ/CPF</TableHead>
+                <TableHead>Nome fantasia</TableHead>
+                <TableHead>E-mail</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead className="w-24 text-right">Ações</TableHead>
               </TableHeader>
               <TableBody items={suppliers}>
                 {(supplier: SupplierListItem) => (
@@ -473,9 +471,9 @@ function SuppliersPage(): React.JSX.Element {
               </TableBody>
             </Table>
 
-            <div className="flex items-center justify-between border-t border-border/70 pt-4">
-              <p className="text-sm text-muted-foreground">
-                {total} {total === 1 ? 'fornecedor' : 'fornecedores'} • Página {currentPage} de {totalPages}
+            <div className="flex items-center justify-between border-t border-border/50 pt-3 dark:border-white/6">
+              <p className="text-xs text-muted-foreground tabular-nums">
+                {total} {total === 1 ? 'fornecedor' : 'fornecedores'} · Página {currentPage} de {totalPages}
               </p>
               <div className="flex items-center gap-2">
                 <Button

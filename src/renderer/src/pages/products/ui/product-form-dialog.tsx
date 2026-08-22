@@ -20,6 +20,19 @@ function FieldError({ message }: { message: string | undefined }): React.JSX.Ele
 }
 
 // ---------------------------------------------------------------------------
+// Form Section
+// ---------------------------------------------------------------------------
+
+function FormSection({ title, children }: { title: string; children: React.ReactNode }): React.JSX.Element {
+  return (
+    <fieldset className="space-y-3">
+      <legend className="text-xs font-medium tracking-wide text-muted-foreground uppercase">{title}</legend>
+      {children}
+    </fieldset>
+  )
+}
+
+// ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
@@ -209,162 +222,169 @@ function ProductFormDialog({
         <DialogDescription>{description}</DialogDescription>
       </DialogHeader>
 
-      <div className="flex flex-col gap-4 py-2">
-        {/* SKU — only on create */}
-        {mode === 'create' && (
+      <div className="flex flex-col gap-5 py-3">
+        {/* Identification */}
+        <FormSection title="Identificação">
+          {mode === 'create' && (
+            <div className="space-y-1.5">
+              <Label htmlFor="product-sku">SKU *</Label>
+              <Input
+                id="product-sku"
+                value={form.sku}
+                onChange={(e) => updateField('sku', e.target.value)}
+                placeholder="Ex: PROD-001"
+                aria-invalid={!!errors.sku}
+              />
+              <FieldError message={errors.sku} />
+            </div>
+          )}
+
           <div className="space-y-1.5">
-            <Label htmlFor="product-sku">SKU *</Label>
+            <Label htmlFor="product-name">Nome *</Label>
             <Input
-              id="product-sku"
-              value={form.sku}
-              onChange={(e) => updateField('sku', e.target.value)}
-              placeholder="Ex: PROD-001"
-              aria-invalid={!!errors.sku}
+              id="product-name"
+              value={form.name}
+              onChange={(e) => updateField('name', e.target.value)}
+              placeholder="Ex: Camiseta Básica"
+              aria-invalid={!!errors.name}
             />
-            <FieldError message={errors.sku} />
+            <FieldError message={errors.name} />
           </div>
-        )}
 
-        {/* Name */}
-        <div className="space-y-1.5">
-          <Label htmlFor="product-name">Nome *</Label>
-          <Input
-            id="product-name"
-            value={form.name}
-            onChange={(e) => updateField('name', e.target.value)}
-            placeholder="Ex: Camiseta Básica"
-            aria-invalid={!!errors.name}
-          />
-          <FieldError message={errors.name} />
-        </div>
-
-        {/* Description */}
-        <div className="space-y-1.5">
-          <Label htmlFor="product-description">Descrição</Label>
-          <Textarea
-            id="product-description"
-            value={form.description}
-            onChange={(e) => updateField('description', e.target.value)}
-            placeholder="Descrição do produto (opcional)"
-          />
-        </div>
-
-        {/* Barcode */}
-        <div className="space-y-1.5">
-          <Label htmlFor="product-barcode">Código de barras</Label>
-          <Input
-            id="product-barcode"
-            value={form.barcode}
-            onChange={(e) => updateField('barcode', e.target.value)}
-            placeholder="Ex: 7891234567890"
-          />
-          <FieldError message={errors.barcode} />
-        </div>
-
-        {/* Prices row */}
-        <div className="grid grid-cols-2 gap-3">
           <div className="space-y-1.5">
-            <Label htmlFor="product-cost-price">Preço de custo</Label>
-            <Input
-              id="product-cost-price"
-              value={form.costPrice}
-              onChange={(e) => updateField('costPrice', e.target.value)}
-              placeholder="0,00"
-              inputMode="decimal"
-              aria-invalid={!!errors.costPrice}
+            <Label htmlFor="product-description">Descrição</Label>
+            <Textarea
+              id="product-description"
+              value={form.description}
+              onChange={(e) => updateField('description', e.target.value)}
+              placeholder="Descrição do produto (opcional)"
+              className="min-h-[72px] resize-none"
             />
-            <FieldError message={errors.costPrice} />
           </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="product-sale-price">Preço de venda</Label>
-            <Input
-              id="product-sale-price"
-              value={form.salePrice}
-              onChange={(e) => updateField('salePrice', e.target.value)}
-              placeholder="0,00"
-              inputMode="decimal"
-              aria-invalid={!!errors.salePrice}
-            />
-            <FieldError message={errors.salePrice} />
-          </div>
-        </div>
 
-        {/* Category select */}
-        <div className="space-y-1.5">
-          <Label>Categoria</Label>
-          <Select
-            placeholder="Selecione uma categoria"
-            selectedKey={form.categoryId}
-            onSelectionChange={(key) =>
-              updateField('categoryId', key === null || key === 'none' ? null : (Number(key) as number | null))
-            }
-            aria-label="Categoria do produto"
-          >
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem id="none" textValue="Nenhuma">
-                Nenhuma
-              </SelectItem>
-              {categories
-                .filter((cat) => cat.status === 'active')
-                .map((cat) => (
-                  <SelectItem key={cat.id} id={cat.id} textValue={cat.name}>
-                    {cat.name}
+          <div className="space-y-1.5">
+            <Label htmlFor="product-barcode">Código de barras</Label>
+            <Input
+              id="product-barcode"
+              value={form.barcode}
+              onChange={(e) => updateField('barcode', e.target.value)}
+              placeholder="Ex: 7891234567890"
+            />
+            <FieldError message={errors.barcode} />
+          </div>
+        </FormSection>
+
+        {/* Pricing */}
+        <FormSection title="Preços">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="product-cost-price">Preço de custo</Label>
+              <Input
+                id="product-cost-price"
+                value={form.costPrice}
+                onChange={(e) => updateField('costPrice', e.target.value)}
+                placeholder="0,00"
+                inputMode="decimal"
+                aria-invalid={!!errors.costPrice}
+              />
+              <FieldError message={errors.costPrice} />
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="product-sale-price">Preço de venda</Label>
+              <Input
+                id="product-sale-price"
+                value={form.salePrice}
+                onChange={(e) => updateField('salePrice', e.target.value)}
+                placeholder="0,00"
+                inputMode="decimal"
+                aria-invalid={!!errors.salePrice}
+              />
+              <FieldError message={errors.salePrice} />
+            </div>
+          </div>
+        </FormSection>
+
+        {/* Classification */}
+        <FormSection title="Classificação">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label>Categoria</Label>
+              <Select
+                placeholder="Selecione"
+                selectedKey={form.categoryId}
+                onSelectionChange={(key) =>
+                  updateField('categoryId', key === null || key === 'none' ? null : (Number(key) as number | null))
+                }
+                aria-label="Categoria do produto"
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem id="none" textValue="Nenhuma">
+                    Nenhuma
                   </SelectItem>
-                ))}
-            </SelectContent>
-          </Select>
-          <FieldError message={errors.categoryId} />
-        </div>
+                  {categories
+                    .filter((cat) => cat.status === 'active')
+                    .map((cat) => (
+                      <SelectItem key={cat.id} id={cat.id} textValue={cat.name}>
+                        {cat.name}
+                      </SelectItem>
+                    ))}
+                </SelectContent>
+              </Select>
+              <FieldError message={errors.categoryId} />
+            </div>
 
-        {/* Unit select */}
-        <div className="space-y-1.5">
-          <Label>Unidade de medida</Label>
-          <Select
-            placeholder="Selecione uma unidade"
-            selectedKey={form.unitId}
-            onSelectionChange={(key) =>
-              updateField('unitId', key === null || key === 'none' ? null : (Number(key) as number | null))
-            }
-            aria-label="Unidade de medida do produto"
-          >
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem id="none" textValue="Nenhuma">
-                Nenhuma
-              </SelectItem>
-              {units
-                .filter((u) => u.status === 'active')
-                .map((unit) => (
-                  <SelectItem key={unit.id} id={unit.id} textValue={`${unit.name} (${unit.symbol})`}>
-                    {unit.name} ({unit.symbol})
+            <div className="space-y-1.5">
+              <Label>Unidade de medida</Label>
+              <Select
+                placeholder="Selecione"
+                selectedKey={form.unitId}
+                onSelectionChange={(key) =>
+                  updateField('unitId', key === null || key === 'none' ? null : (Number(key) as number | null))
+                }
+                aria-label="Unidade de medida do produto"
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem id="none" textValue="Nenhuma">
+                    Nenhuma
                   </SelectItem>
-                ))}
-            </SelectContent>
-          </Select>
-          <FieldError message={errors.unitId} />
-        </div>
-
-        {/* Track inventory switch */}
-        <div className="flex items-center justify-between rounded-xl border border-border/70 px-3 py-2.5">
-          <div className="space-y-0.5">
-            <Label htmlFor="product-track-inventory" className="text-sm font-medium">
-              Controlar estoque
-            </Label>
-            <p className="text-xs text-muted-foreground">
-              Habilitar movimentações de entrada e saída para este produto.
-            </p>
+                  {units
+                    .filter((u) => u.status === 'active')
+                    .map((unit) => (
+                      <SelectItem key={unit.id} id={unit.id} textValue={`${unit.name} (${unit.symbol})`}>
+                        {unit.name} ({unit.symbol})
+                      </SelectItem>
+                    ))}
+                </SelectContent>
+              </Select>
+              <FieldError message={errors.unitId} />
+            </div>
           </div>
-          <Switch
-            id="product-track-inventory"
-            isSelected={form.trackInventory}
-            onChange={(val) => updateField('trackInventory', val)}
-          />
-        </div>
+        </FormSection>
+
+        {/* Options */}
+        <FormSection title="Opções">
+          <div className="flex items-center justify-between rounded-xl border border-border/50 bg-muted/20 px-3 py-2.5 dark:border-white/6 dark:bg-white/[0.02]">
+            <div className="space-y-0.5">
+              <Label htmlFor="product-track-inventory" className="text-sm font-medium">
+                Controlar estoque
+              </Label>
+              <p className="text-xs text-muted-foreground">
+                Habilitar movimentações de entrada e saída para este produto.
+              </p>
+            </div>
+            <Switch
+              id="product-track-inventory"
+              isSelected={form.trackInventory}
+              onChange={(val) => updateField('trackInventory', val)}
+            />
+          </div>
+        </FormSection>
       </div>
 
       <DialogFooter>

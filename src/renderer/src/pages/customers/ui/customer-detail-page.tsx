@@ -132,7 +132,7 @@ function CustomerDetailPage(): React.JSX.Element {
       description={customer.documentNumber ? `CPF/CNPJ: ${customer.documentNumber}` : undefined}
       actions={
         <div className="flex items-center gap-2">
-          <Button variant="outline" onPress={handleBack} className="gap-2">
+          <Button variant="outline" onPress={handleBack} className="gap-1.5">
             <ArrowLeft className="size-4" />
             Voltar
           </Button>
@@ -141,7 +141,7 @@ function CustomerDetailPage(): React.JSX.Element {
               setFieldErrors({})
               setIsEditOpen(true)
             }}
-            className="gap-2"
+            className="gap-1.5"
           >
             <Pencil className="size-4" />
             Editar
@@ -203,7 +203,7 @@ function CustomerDetailPage(): React.JSX.Element {
           <Button
             variant="outline"
             onPress={() => navigate({ to: '/quotes' as string, search: { customerId: customer.id } as never })}
-            className="gap-2"
+            className="gap-1.5"
           >
             <FileText className="size-4" />
             Ver cotações
@@ -211,7 +211,7 @@ function CustomerDetailPage(): React.JSX.Element {
           <Button
             variant="outline"
             onPress={() => navigate({ to: '/sales-orders' as string, search: { customerId: customer.id } as never })}
-            className="gap-2"
+            className="gap-1.5"
           >
             <ShoppingCart className="size-4" />
             Ver pedidos de venda

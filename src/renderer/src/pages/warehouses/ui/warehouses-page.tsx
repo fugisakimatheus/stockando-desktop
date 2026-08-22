@@ -66,7 +66,7 @@ function WarehousesPage(): React.JSX.Element {
       description="Gerencie os armazéns e locais de estoque da empresa."
       actions={
         <DialogTrigger isOpen={isCreateOpen} onOpenChange={setIsCreateOpen}>
-          <Button className="gap-2">
+          <Button className="gap-1.5">
             <Plus className="size-4" />
             Novo armazém
           </Button>
@@ -90,7 +90,7 @@ function WarehousesPage(): React.JSX.Element {
           title="Nenhum armazém cadastrado"
           description="Cadastre seu primeiro armazém para começar a gerenciar o estoque."
           action={
-            <Button onPress={() => setIsCreateOpen(true)} className="gap-2">
+            <Button variant="outline" onPress={() => setIsCreateOpen(true)} className="gap-1.5">
               <Plus className="size-4" />
               Novo armazém
             </Button>
@@ -101,13 +101,11 @@ function WarehousesPage(): React.JSX.Element {
       {!isLoading && !isError && warehouses && warehouses.length > 0 && (
         <Table aria-label="Lista de armazéns">
           <TableHeader>
-            <TableRow>
-              <TableHead isRowHeader>Nome</TableHead>
-              <TableHead>Código</TableHead>
-              <TableHead>Endereço</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Ações</TableHead>
-            </TableRow>
+            <TableHead isRowHeader>Nome</TableHead>
+            <TableHead>Código</TableHead>
+            <TableHead>Endereço</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Ações</TableHead>
           </TableHeader>
           <TableBody>
             {warehouses.map((warehouse) => (

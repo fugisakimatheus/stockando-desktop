@@ -282,12 +282,12 @@ function QuoteDetailPage(): React.JSX.Element {
       description={pageDescription}
       actions={
         <div className="flex items-center gap-2">
-          <Button variant="outline" onPress={handleBack} className="gap-2">
+          <Button variant="outline" onPress={handleBack} className="gap-1.5">
             <ArrowLeft className="size-4" />
             Voltar
           </Button>
           {canEdit && (
-            <Button onPress={handleSave} isLoading={isSaving} className="gap-2">
+            <Button onPress={handleSave} isLoading={isSaving} className="gap-1.5">
               <Save className="size-4" />
               Salvar
             </Button>
@@ -317,7 +317,7 @@ function QuoteDetailPage(): React.JSX.Element {
                 size="sm"
                 onPress={() => setIsConvertDialogOpen(true)}
                 isLoading={isConverting}
-                className="gap-2"
+                className="gap-1.5"
               >
                 <ArrowRightLeft className="size-3.5" />
                 Converter em Pedido

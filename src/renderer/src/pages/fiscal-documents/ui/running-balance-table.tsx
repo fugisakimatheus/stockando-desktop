@@ -40,13 +40,11 @@ function RunningBalanceTable({ transactions, className }: RunningBalanceTablePro
   return (
     <Table className={className} aria-label="Transações financeiras">
       <TableHeader>
-        <TableRow>
-          <TableHead>Data</TableHead>
-          <TableHead>Descrição</TableHead>
-          <TableHead>Tipo</TableHead>
-          <TableHead className="text-right">Valor</TableHead>
-          <TableHead className="text-right">Saldo</TableHead>
-        </TableRow>
+        <TableHead>Data</TableHead>
+        <TableHead>Descrição</TableHead>
+        <TableHead>Tipo</TableHead>
+        <TableHead className="text-right">Valor</TableHead>
+        <TableHead className="text-right">Saldo</TableHead>
       </TableHeader>
       <TableBody>
         {transactions.map((tx) => (

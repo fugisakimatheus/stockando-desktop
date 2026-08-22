@@ -296,7 +296,7 @@ function SupplierDetailPage(): React.JSX.Element {
       title={supplier.name}
       description={supplier.tradeName ?? undefined}
       actions={
-        <Button variant="outline" onPress={() => setIsEditOpen(true)} className="gap-2">
+        <Button variant="outline" onPress={() => setIsEditOpen(true)} className="gap-1.5">
           <Pencil className="size-4" />
           Editar
         </Button>

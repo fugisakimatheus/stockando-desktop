@@ -151,7 +151,7 @@ function CustomersPage(): React.JSX.Element {
       title="Clientes"
       description="Gerencie os clientes cadastrados no sistema."
       actions={
-        <Button onPress={() => setIsCreateOpen(true)} className="gap-2">
+        <Button onPress={() => setIsCreateOpen(true)} className="gap-1.5">
           <Plus className="size-4" />
           Novo cliente
         </Button>
@@ -185,7 +185,7 @@ function CustomersPage(): React.JSX.Element {
             }
             action={
               !filters.search ? (
-                <Button onPress={() => setIsCreateOpen(true)} className="gap-2">
+                <Button variant="outline" onPress={() => setIsCreateOpen(true)} className="gap-1.5">
                   <Plus className="size-4" />
                   Adicionar cliente
                 </Button>
@@ -198,14 +198,12 @@ function CustomersPage(): React.JSX.Element {
           <>
             <Table aria-label="Lista de clientes">
               <TableHeader>
-                <TableRow>
-                  <TableHead isRowHeader>Nome</TableHead>
-                  <TableHead>CPF/CNPJ</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Telefone</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="w-24 text-right">Ações</TableHead>
-                </TableRow>
+                <TableHead isRowHeader>Nome</TableHead>
+                <TableHead>CPF/CNPJ</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Telefone</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead className="w-24 text-right">Ações</TableHead>
               </TableHeader>
               <TableBody items={customers}>
                 {(customer: CustomerListItem) => (
@@ -253,9 +251,9 @@ function CustomersPage(): React.JSX.Element {
               </TableBody>
             </Table>
 
-            <div className="flex items-center justify-between border-t border-border/70 pt-4">
-              <p className="text-sm text-muted-foreground">
-                {total} {total === 1 ? 'cliente' : 'clientes'} &bull; Página {currentPage} de {totalPages}
+            <div className="flex items-center justify-between border-t border-border/50 pt-3 dark:border-white/6">
+              <p className="text-xs text-muted-foreground tabular-nums">
+                {total} {total === 1 ? 'cliente' : 'clientes'} · Página {currentPage} de {totalPages}
               </p>
               <div className="flex items-center gap-2">
                 <Button

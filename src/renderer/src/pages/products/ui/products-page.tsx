@@ -137,7 +137,7 @@ function ProductsPage(): React.JSX.Element {
       title="Produtos"
       description="Cadastre e organize a base de produtos do negócio."
       actions={
-        <Button onPress={() => setIsCreateOpen(true)} className="gap-2">
+        <Button onPress={() => setIsCreateOpen(true)} className="gap-1.5">
           <Plus className="size-4" />
           Novo produto
         </Button>
@@ -210,7 +210,7 @@ function ProductsPage(): React.JSX.Element {
             }
             action={
               !filters.search && !filters.categoryId && !filters.status ? (
-                <Button onPress={() => setIsCreateOpen(true)} className="gap-2">
+                <Button variant="outline" onPress={() => setIsCreateOpen(true)} className="gap-1.5">
                   <Plus className="size-4" />
                   Adicionar produto
                 </Button>
@@ -223,16 +223,14 @@ function ProductsPage(): React.JSX.Element {
           <>
             <Table aria-label="Lista de produtos">
               <TableHeader>
-                <TableRow>
-                  <TableHead isRowHeader>SKU</TableHead>
-                  <TableHead>Nome</TableHead>
-                  <TableHead>Categoria</TableHead>
-                  <TableHead>Unidade</TableHead>
-                  <TableHead>Preço custo</TableHead>
-                  <TableHead>Preço venda</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="w-16 text-right">Ações</TableHead>
-                </TableRow>
+                <TableHead isRowHeader>SKU</TableHead>
+                <TableHead>Nome</TableHead>
+                <TableHead>Categoria</TableHead>
+                <TableHead>Unidade</TableHead>
+                <TableHead>Preço custo</TableHead>
+                <TableHead>Preço venda</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead className="w-16 text-right">Ações</TableHead>
               </TableHeader>
               <TableBody items={products}>
                 {(product: ProductListItem) => (
@@ -250,10 +248,10 @@ function ProductsPage(): React.JSX.Element {
                       <span className="text-muted-foreground">{product.unitSymbol ?? '—'}</span>
                     </TableCell>
                     <TableCell>
-                      <span className="text-muted-foreground">{formatCurrency(product.costPrice)}</span>
+                      <span className="text-muted-foreground tabular-nums">{formatCurrency(product.costPrice)}</span>
                     </TableCell>
                     <TableCell>
-                      <span className="text-muted-foreground">{formatCurrency(product.salePrice)}</span>
+                      <span className="text-muted-foreground tabular-nums">{formatCurrency(product.salePrice)}</span>
                     </TableCell>
                     <TableCell>
                       <StatusBadge status={product.status} />
@@ -276,9 +274,9 @@ function ProductsPage(): React.JSX.Element {
               </TableBody>
             </Table>
 
-            <div className="flex items-center justify-between border-t border-border/70 pt-4">
-              <p className="text-sm text-muted-foreground">
-                {paginationState.total} {paginationState.total === 1 ? 'produto' : 'produtos'} • Página{' '}
+            <div className="flex items-center justify-between border-t border-border/50 pt-3 dark:border-white/6">
+              <p className="text-xs text-muted-foreground tabular-nums">
+                {paginationState.total} {paginationState.total === 1 ? 'produto' : 'produtos'} · Página{' '}
                 {paginationState.currentPage} de {paginationState.totalPages}
               </p>
               <div className="flex items-center gap-2">

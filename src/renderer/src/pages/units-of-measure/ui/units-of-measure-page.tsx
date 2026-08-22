@@ -234,7 +234,7 @@ function UnitsOfMeasurePage(): React.JSX.Element {
       title="Unidades de Medida"
       description="Gerencie as unidades de medida utilizadas nos produtos do catálogo."
       actions={
-        <Button variant="outline" className="gap-2" onPress={handleCreate}>
+        <Button variant="outline" className="gap-1.5" onPress={handleCreate}>
           <Plus className="size-4" />
           Nova unidade
         </Button>
@@ -257,7 +257,7 @@ function UnitsOfMeasurePage(): React.JSX.Element {
             title="Nenhuma unidade cadastrada"
             description="Crie a primeira unidade de medida para começar a organizar os produtos."
             action={
-              <Button variant="outline" className="gap-2" onPress={handleCreate}>
+              <Button variant="outline" className="gap-1.5" onPress={handleCreate}>
                 <Plus className="size-4" />
                 Nova unidade
               </Button>
@@ -268,12 +268,10 @@ function UnitsOfMeasurePage(): React.JSX.Element {
         {!isLoading && !isError && units && units.length > 0 && (
           <Table aria-label="Unidades de medida">
             <TableHeader>
-              <TableRow>
-                <TableHead isRowHeader>Nome</TableHead>
-                <TableHead>Símbolo</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-right">Ações</TableHead>
-              </TableRow>
+              <TableHead isRowHeader>Nome</TableHead>
+              <TableHead>Símbolo</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="text-right">Ações</TableHead>
             </TableHeader>
             <TableBody>
               {units.map((unit) => (

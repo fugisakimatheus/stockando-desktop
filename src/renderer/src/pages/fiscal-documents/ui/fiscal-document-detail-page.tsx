@@ -295,7 +295,7 @@ function FiscalDocumentDetailPage(): React.JSX.Element {
       description={document.customerName ?? 'Documento fiscal'}
       actions={
         <div className="flex items-center gap-2">
-          <Button variant="outline" onPress={handleBack} className="gap-2">
+          <Button variant="outline" onPress={handleBack} className="gap-1.5">
             <ArrowLeft className="size-4" />
             Voltar
           </Button>
@@ -392,14 +392,12 @@ function FiscalDocumentDetailPage(): React.JSX.Element {
         ) : (
           <Table aria-label="Itens do documento fiscal">
             <TableHeader>
-              <TableRow>
-                <TableHead>Produto</TableHead>
-                <TableHead>SKU</TableHead>
-                <TableHead className="text-right">Qtd</TableHead>
-                <TableHead className="text-right">Preço Unit.</TableHead>
-                <TableHead className="text-right">Impostos</TableHead>
-                <TableHead className="text-right">Total</TableHead>
-              </TableRow>
+              <TableHead>Produto</TableHead>
+              <TableHead>SKU</TableHead>
+              <TableHead className="text-right">Qtd</TableHead>
+              <TableHead className="text-right">Preço Unit.</TableHead>
+              <TableHead className="text-right">Impostos</TableHead>
+              <TableHead className="text-right">Total</TableHead>
             </TableHeader>
             <TableBody>
               {document.items.map((item) => (
@@ -501,7 +499,7 @@ function FiscalDocumentDetailPage(): React.JSX.Element {
           <DialogClose variant="outline" isDisabled={authorizeMutation.isPending}>
             Cancelar
           </DialogClose>
-          <Button onPress={handleAuthorizeSubmit} isLoading={authorizeMutation.isPending} className="gap-2">
+          <Button onPress={handleAuthorizeSubmit} isLoading={authorizeMutation.isPending} className="gap-1.5">
             <CheckCircle2Icon className="size-4" />
             Autorizar
           </Button>
@@ -563,7 +561,7 @@ function FiscalDocumentDetailPage(): React.JSX.Element {
             variant="destructive"
             onPress={handleCancelSubmit}
             isLoading={cancelMutation.isPending}
-            className="gap-2"
+            className="gap-1.5"
           >
             <XCircleIcon className="size-4" />
             Cancelar Documento

@@ -25,8 +25,8 @@ const MOVEMENT_TYPE_OPTIONS = [
   { id: 'all', name: 'Todos os tipos' },
   { id: 'inbound', name: 'Entrada' },
   { id: 'outbound', name: 'Saída' },
-  { id: 'transfer_in', name: 'Transferência (entrada)' },
-  { id: 'transfer_out', name: 'Transferência (saída)' },
+  { id: 'transfer_in', name: 'Transf. entrada' },
+  { id: 'transfer_out', name: 'Transf. saída' },
   { id: 'adjustment', name: 'Ajuste' }
 ] as const
 
@@ -114,8 +114,6 @@ function StockMovementsPage(): React.JSX.Element {
   const hasNext = filters.offset + PAGE_SIZE < total
 
   function handleSearchChange(value: string): void {
-    // FilterBar requires a search handler — use it to filter by notes/reference
-    // In this page, the primary filtering is via the specific filter controls
     void value
   }
 
@@ -168,68 +166,64 @@ function StockMovementsPage(): React.JSX.Element {
       description="Histórico completo de entradas, saídas, transferências e ajustes de estoque."
     >
       <PageSection>
-        <div className="flex flex-col gap-4">
-          <FilterBar searchValue="" onSearchChange={handleSearchChange} searchPlaceholder="Buscar movimentações...">
-            <Select
-              selectedKey={filters.movementType ?? 'all'}
-              onSelectionChange={handleMovementTypeChange}
-              aria-label="Filtrar por tipo de movimentação"
-              placeholder="Tipo"
-            >
-              <SelectTrigger className="w-48">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {MOVEMENT_TYPE_OPTIONS.map((opt) => (
-                  <SelectItem key={opt.id} id={opt.id} textValue={opt.name}>
-                    {opt.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </FilterBar>
+        <FilterBar searchValue="" onSearchChange={handleSearchChange} searchPlaceholder="Buscar movimentações...">
+          <Select
+            selectedKey={filters.movementType ?? 'all'}
+            onSelectionChange={handleMovementTypeChange}
+            aria-label="Filtrar por tipo de movimentação"
+            placeholder="Tipo"
+          >
+            <SelectTrigger className="w-40">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {MOVEMENT_TYPE_OPTIONS.map((opt) => (
+                <SelectItem key={opt.id} id={opt.id} textValue={opt.name}>
+                  {opt.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <Input
-              type="number"
-              value={productIdInput}
-              onChange={(e) => setProductIdInput(e.target.value)}
-              onBlur={handleProductIdBlur}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') handleProductIdBlur()
-              }}
-              placeholder="ID Produto"
-              className="w-32"
-              aria-label="Filtrar por ID do produto"
-            />
-            <Input
-              type="number"
-              value={warehouseIdInput}
-              onChange={(e) => setWarehouseIdInput(e.target.value)}
-              onBlur={handleWarehouseIdBlur}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') handleWarehouseIdBlur()
-              }}
-              placeholder="ID Armazém"
-              className="w-32"
-              aria-label="Filtrar por ID do armazém"
-            />
-            <Input
-              type="date"
-              value={filters.startDate ?? ''}
-              onChange={handleStartDateChange}
-              className="w-40"
-              aria-label="Data inicial"
-            />
-            <Input
-              type="date"
-              value={filters.endDate ?? ''}
-              onChange={handleEndDateChange}
-              className="w-40"
-              aria-label="Data final"
-            />
-          </div>
-        </div>
+          <Input
+            type="number"
+            value={productIdInput}
+            onChange={(e) => setProductIdInput(e.target.value)}
+            onBlur={handleProductIdBlur}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') handleProductIdBlur()
+            }}
+            placeholder="Produto ID"
+            className="h-8 w-28 border-transparent bg-background/80 text-sm shadow-none focus-visible:border-ring dark:border-transparent dark:bg-background/60"
+            aria-label="Filtrar por ID do produto"
+          />
+          <Input
+            type="number"
+            value={warehouseIdInput}
+            onChange={(e) => setWarehouseIdInput(e.target.value)}
+            onBlur={handleWarehouseIdBlur}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') handleWarehouseIdBlur()
+            }}
+            placeholder="Armazém ID"
+            className="h-8 w-28 border-transparent bg-background/80 text-sm shadow-none focus-visible:border-ring dark:border-transparent dark:bg-background/60"
+            aria-label="Filtrar por ID do armazém"
+          />
+          <Input
+            type="date"
+            value={filters.startDate ?? ''}
+            onChange={handleStartDateChange}
+            className="h-8 w-36 border-transparent bg-background/80 text-sm shadow-none focus-visible:border-ring dark:border-transparent dark:bg-background/60"
+            aria-label="Data inicial"
+          />
+          <Input
+            type="date"
+            value={filters.endDate ?? ''}
+            onChange={handleEndDateChange}
+            className="h-8 w-36 border-transparent bg-background/80 text-sm shadow-none focus-visible:border-ring dark:border-transparent dark:bg-background/60"
+            aria-label="Data final"
+          />
+        </FilterBar>
 
         {movementsQuery.isLoading && <LoadingState message="Carregando movimentações..." />}
 
@@ -257,17 +251,15 @@ function StockMovementsPage(): React.JSX.Element {
           <>
             <Table aria-label="Histórico de movimentações de estoque">
               <TableHeader>
-                <TableRow>
-                  <TableHead isRowHeader>ID</TableHead>
-                  <TableHead>Tipo</TableHead>
-                  <TableHead>Produto ID</TableHead>
-                  <TableHead>Armazém ID</TableHead>
-                  <TableHead>Quantidade</TableHead>
-                  <TableHead>Custo unit.</TableHead>
-                  <TableHead>Referência</TableHead>
-                  <TableHead>Notas</TableHead>
-                  <TableHead>Data</TableHead>
-                </TableRow>
+                <TableHead isRowHeader>ID</TableHead>
+                <TableHead>Tipo</TableHead>
+                <TableHead>Produto ID</TableHead>
+                <TableHead>Armazém ID</TableHead>
+                <TableHead>Quantidade</TableHead>
+                <TableHead>Custo unit.</TableHead>
+                <TableHead>Referência</TableHead>
+                <TableHead>Notas</TableHead>
+                <TableHead>Data</TableHead>
               </TableHeader>
               <TableBody items={movements}>
                 {(movement: StockMovement) => (
@@ -285,10 +277,10 @@ function StockMovementsPage(): React.JSX.Element {
                       <span className="text-muted-foreground">{movement.warehouseId}</span>
                     </TableCell>
                     <TableCell>
-                      <span className="font-medium">{movement.quantity}</span>
+                      <span className="font-medium tabular-nums">{movement.quantity}</span>
                     </TableCell>
                     <TableCell>
-                      <span className="text-muted-foreground">{formatCurrency(movement.unitCost)}</span>
+                      <span className="text-muted-foreground tabular-nums">{formatCurrency(movement.unitCost)}</span>
                     </TableCell>
                     <TableCell>
                       <span className="text-xs text-muted-foreground">
@@ -303,16 +295,18 @@ function StockMovementsPage(): React.JSX.Element {
                       </span>
                     </TableCell>
                     <TableCell>
-                      <span className="text-xs text-muted-foreground">{formatDate(movement.createdAt)}</span>
+                      <span className="text-xs text-muted-foreground tabular-nums">
+                        {formatDate(movement.createdAt)}
+                      </span>
                     </TableCell>
                   </TableRow>
                 )}
               </TableBody>
             </Table>
 
-            <div className="flex items-center justify-between border-t border-border/70 pt-4">
-              <p className="text-sm text-muted-foreground">
-                {total} {total === 1 ? 'movimentação' : 'movimentações'} • Página {currentPage} de {totalPages}
+            <div className="flex items-center justify-between border-t border-border/50 pt-3 dark:border-white/6">
+              <p className="text-xs text-muted-foreground tabular-nums">
+                {total} {total === 1 ? 'movimentação' : 'movimentações'} · Página {currentPage} de {totalPages}
               </p>
               <div className="flex items-center gap-2">
                 <Button

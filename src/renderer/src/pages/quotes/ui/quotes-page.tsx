@@ -122,7 +122,7 @@ function QuotesPage(): React.JSX.Element {
       title="Orçamentos"
       description="Gerencie propostas comerciais para seus clientes."
       actions={
-        <Button onPress={handleNewQuote} className="gap-2">
+        <Button onPress={handleNewQuote} className="gap-1.5">
           <Plus className="size-4" />
           Novo orçamento
         </Button>
@@ -195,7 +195,7 @@ function QuotesPage(): React.JSX.Element {
             }
             action={
               !hasActiveFilters ? (
-                <Button onPress={handleNewQuote} className="gap-2">
+                <Button variant="outline" onPress={handleNewQuote} className="gap-1.5">
                   <Plus className="size-4" />
                   Criar orçamento
                 </Button>
@@ -208,14 +208,12 @@ function QuotesPage(): React.JSX.Element {
           <>
             <Table aria-label="Lista de orçamentos">
               <TableHeader>
-                <TableRow>
-                  <TableHead isRowHeader>Número</TableHead>
-                  <TableHead>Cliente</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Total</TableHead>
-                  <TableHead>Válido até</TableHead>
-                  <TableHead>Criado em</TableHead>
-                </TableRow>
+                <TableHead isRowHeader>Número</TableHead>
+                <TableHead>Cliente</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Total</TableHead>
+                <TableHead>Válido até</TableHead>
+                <TableHead>Criado em</TableHead>
               </TableHeader>
               <TableBody items={quotes}>
                 {(quote: QuoteListItem) => (
@@ -248,9 +246,9 @@ function QuotesPage(): React.JSX.Element {
               </TableBody>
             </Table>
 
-            <div className="flex items-center justify-between border-t border-border/70 pt-4">
-              <p className="text-sm text-muted-foreground">
-                {total} {total === 1 ? 'orçamento' : 'orçamentos'} • Página {currentPage} de {totalPages}
+            <div className="flex items-center justify-between border-t border-border/50 pt-3 dark:border-white/6">
+              <p className="text-xs text-muted-foreground tabular-nums">
+                {total} {total === 1 ? 'orçamento' : 'orçamentos'} · Página {currentPage} de {totalPages}
               </p>
               <div className="flex items-center gap-2">
                 <Button

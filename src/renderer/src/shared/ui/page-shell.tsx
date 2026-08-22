@@ -69,13 +69,13 @@ function PageSection({ title, description, className, children, ...props }: Page
   return (
     <section
       className={cn(
-        'rounded-2xl border border-border/70 bg-gradient-to-br from-primary/4 via-primary/2 to-primary/1 p-4 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-sm dark:border-white/10 dark:from-primary/8 dark:via-primary/5 dark:to-primary/3 dark:shadow-[0_10px_35px_rgba(2,6,23,0.25)]',
+        'flex flex-col gap-4 rounded-2xl border border-border/70 bg-gradient-to-br from-primary/4 via-primary/2 to-primary/1 p-4 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-sm dark:border-white/10 dark:from-primary/8 dark:via-primary/5 dark:to-primary/3 dark:shadow-[0_10px_35px_rgba(2,6,23,0.25)]',
         className
       )}
       {...props}
     >
       {(title || description) && (
-        <div className="mb-4 space-y-1">
+        <div className="space-y-1">
           {title && <h2 className="text-lg font-semibold tracking-tight text-foreground">{title}</h2>}
           {description && <p className="text-sm text-muted-foreground">{description}</p>}
         </div>
