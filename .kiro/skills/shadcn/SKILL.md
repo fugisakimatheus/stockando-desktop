@@ -47,7 +47,6 @@ These rules are **always enforced**. Each links to a file with Incorrect/Correct
 - **No manual `dark:` color overrides.** Use semantic tokens (`bg-background`, `text-muted-foreground`).
 - **Use `cn()` for conditional classes.** Don't write manual template literal ternaries.
 - **No manual `z-index` on overlay components.** Dialog, Sheet, Popover, etc. handle their own stacking.
-- **Gengar overlay glass.** Floating overlays use `@gengar/design-system/lib/overlay-glass.styles` — not one-off `bg-*/30` + blur. See [styling.md](./rules/styling.md#gengar-overlay-glass) and [`packages/design-system/docs/overlay-glass.md`](../../../packages/design-system/docs/overlay-glass.md).
 
 ### Forms & Inputs → [forms.md](./rules/forms.md)
 
