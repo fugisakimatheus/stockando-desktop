@@ -1,91 +1,53 @@
 import {
-  listSalesOrders,
-  getSalesOrder,
   createSalesOrder,
-  updateSalesOrder,
-  transitionSalesOrderStatus
+  getSalesOrder,
+  listSalesOrders,
+  transitionSalesOrderStatus,
+  updateSalesOrder
 } from '@shared/api'
 import type {
+  CreateSalesOrderInput,
+  PaginatedResult,
   SalesOrder,
   SalesOrderDetail,
   SalesOrderDetailItem,
-  SalesOrderListItem,
   SalesOrderListFilters,
+  SalesOrderListItem,
   SalesOrderStatus,
+  UpdateSalesOrderInput
+} from '@shared/api'
+import { createPaginatedQueryHooks } from '@shared/lib'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+
+// ---------------------------------------------------------------------------
+// Generated hooks via factory
+// ---------------------------------------------------------------------------
+
+const {
+  keys: salesOrderKeys,
+  useList: useSalesOrders,
+  useDetail: useSalesOrderDetail,
+  useCreate: useCreateSalesOrder,
+  useUpdate: useUpdateSalesOrder
+} = createPaginatedQueryHooks<
+  SalesOrderListItem,
+  SalesOrderDetail,
+  SalesOrderListFilters,
   CreateSalesOrderInput,
   UpdateSalesOrderInput,
-  PaginatedResult
-} from '@shared/api'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+  SalesOrderDetail,
+  SalesOrderDetail
+>({
+  domain: 'sales-orders',
+  list: (companyId, filters) => listSalesOrders(companyId, filters),
+  detail: (companyId, id) => getSalesOrder(companyId, id),
+  create: (companyId, input) => createSalesOrder(companyId, input),
+  update: (companyId, id, data) => updateSalesOrder(companyId, id, data)
+})
 
 // ---------------------------------------------------------------------------
-// Query Key Factory
+// Custom hook: status transition (not covered by generic factory)
 // ---------------------------------------------------------------------------
-
-const salesOrderKeys = {
-  all: (companyId: number) => [companyId, 'sales-orders'] as const,
-  lists: (companyId: number) => [...salesOrderKeys.all(companyId), 'list'] as const,
-  list: (companyId: number, filters: SalesOrderListFilters) => [...salesOrderKeys.lists(companyId), filters] as const,
-  details: (companyId: number) => [...salesOrderKeys.all(companyId), 'detail'] as const,
-  detail: (companyId: number, id: number) => [...salesOrderKeys.details(companyId), id] as const
-}
-
-// ---------------------------------------------------------------------------
-// Hooks
-// ---------------------------------------------------------------------------
-
-/**
- * Fetches a paginated list of sales orders for the given company,
- * supporting filtering by customer, status, payment status, and search term.
- */
-function useSalesOrders(companyId: number, filters: SalesOrderListFilters) {
-  return useQuery({
-    queryKey: salesOrderKeys.list(companyId, filters),
-    queryFn: () => listSalesOrders(companyId, filters)
-  })
-}
-
-/**
- * Fetches a single sales order detail with items, payments, totalPaid, and remainingBalance.
- * Only enabled when orderId is defined.
- */
-function useSalesOrderDetail(companyId: number, orderId: number | undefined) {
-  return useQuery({
-    queryKey: salesOrderKeys.detail(companyId, orderId ?? 0),
-    queryFn: () => getSalesOrder(companyId, orderId as number),
-    enabled: orderId !== undefined
-  })
-}
-
-/**
- * Mutation to create a new sales order.
- * Invalidates the sales orders list cache on success.
- */
-function useCreateSalesOrder(companyId: number) {
-  const queryClient = useQueryClient()
-
-  return useMutation({
-    mutationFn: (input: CreateSalesOrderInput) => createSalesOrder(companyId, input),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: salesOrderKeys.all(companyId) })
-    }
-  })
-}
-
-/**
- * Mutation to update an existing sales order (draft only).
- * Invalidates the sales orders list and detail cache on success.
- */
-function useUpdateSalesOrder(companyId: number) {
-  const queryClient = useQueryClient()
-
-  return useMutation({
-    mutationFn: ({ id, ...data }: UpdateSalesOrderInput & { id: number }) => updateSalesOrder(companyId, id, data),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: salesOrderKeys.all(companyId) })
-    }
-  })
-}
 
 /**
  * Mutation to transition a sales order to a new status.
@@ -105,20 +67,20 @@ function useTransitionSalesOrderStatus(companyId: number) {
 
 export {
   salesOrderKeys,
-  useSalesOrders,
-  useSalesOrderDetail,
   useCreateSalesOrder,
-  useUpdateSalesOrder,
-  useTransitionSalesOrderStatus
+  useSalesOrderDetail,
+  useSalesOrders,
+  useTransitionSalesOrderStatus,
+  useUpdateSalesOrder
 }
 export type {
+  CreateSalesOrderInput,
+  PaginatedResult,
   SalesOrder,
   SalesOrderDetail,
   SalesOrderDetailItem,
-  SalesOrderListItem,
   SalesOrderListFilters,
+  SalesOrderListItem,
   SalesOrderStatus,
-  CreateSalesOrderInput,
-  UpdateSalesOrderInput,
-  PaginatedResult
+  UpdateSalesOrderInput
 }

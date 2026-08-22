@@ -1,6 +1,6 @@
-import type { Category } from '@pages/categories/hooks/use-categories'
-import type { UnitOfMeasure } from '@pages/units-of-measure/hooks/use-units-of-measure'
 import type { CreateProductInput, ProductListItem, UpdateProductInput } from '@shared/api'
+import type { Category } from '@shared/hooks/use-categories'
+import type { UnitOfMeasure } from '@shared/hooks/use-units-of-measure'
 import { Button } from '@shared/ui/button'
 import { Dialog, DialogClose, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@shared/ui/dialog'
 import { Input } from '@shared/ui/input'

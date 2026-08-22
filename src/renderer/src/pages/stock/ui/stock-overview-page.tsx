@@ -1,6 +1,6 @@
 import { useProductStock, useWarehouseOverview, useReconcile } from '@pages/stock/hooks/use-stock'
-import { useWarehouses } from '@pages/warehouses/hooks/use-warehouses'
 import type { Pagination, ReconciliationResult } from '@shared/api'
+import { useWarehouses } from '@shared/hooks/use-warehouses'
 import { Badge } from '@shared/ui/badge'
 import { Button } from '@shared/ui/button'
 import { EmptyState } from '@shared/ui/empty-state'

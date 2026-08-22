@@ -1,4 +1,5 @@
 import { ApiError } from '@shared/api'
+import { useWarehouses } from '@shared/hooks/use-warehouses'
 import { Button } from '@shared/ui/button'
 import { Dialog, DialogClose, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@shared/ui/dialog'
 import { Input } from '@shared/ui/input'
@@ -10,7 +11,6 @@ import { type FormEvent, useCallback, useState } from 'react'
 import { toast } from 'sonner'
 
 import { useRecordTransfer } from '../../stock/hooks/use-stock'
-import { useWarehouses } from '../../warehouses/hooks/use-warehouses'
 
 // ---------------------------------------------------------------------------
 // Constants

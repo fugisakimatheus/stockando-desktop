@@ -1,7 +1,9 @@
-import { useCategories } from '@pages/categories/hooks/use-categories'
-import { useUnitsOfMeasure } from '@pages/units-of-measure/hooks/use-units-of-measure'
-import { ApiError } from '@shared/api'
 import type { CreateProductInput, UpdateProductInput } from '@shared/api'
+import { useCategories } from '@shared/hooks/use-categories'
+import { useCompanyId } from '@shared/hooks/use-company-id'
+import { usePaginationControlled } from '@shared/hooks/use-pagination'
+import { useUnitsOfMeasure } from '@shared/hooks/use-units-of-measure'
+import { formatCurrency, useMutationHandlers } from '@shared/lib'
 import { Badge } from '@shared/ui/badge'
 import { Button } from '@shared/ui/button'
 import { EmptyState } from '@shared/ui/empty-state'
@@ -12,7 +14,7 @@ import { PageSection, PageShell } from '@shared/ui/page-shell'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@shared/ui/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@shared/ui/table'
 import { ChevronLeft, ChevronRight, Package, Pencil, Plus } from 'lucide-react'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { toast } from 'sonner'
 
 import { useCreateProduct, useProducts, useUpdateProduct } from '../hooks/use-products'
@@ -23,7 +25,6 @@ import { ProductFormDialog } from './product-form-dialog'
 // Constants
 // ---------------------------------------------------------------------------
 
-const COMPANY_ID = 1
 const PAGE_SIZE = 20
 
 const STATUS_OPTIONS = [
@@ -35,11 +36,6 @@ const STATUS_OPTIONS = [
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
-
-function formatCurrency(value: number | null): string {
-  if (value === null) return '—'
-  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
-}
 
 function StatusBadge({ status }: { status: string }): React.JSX.Element {
   if (status === 'active') {
@@ -53,6 +49,8 @@ function StatusBadge({ status }: { status: string }): React.JSX.Element {
 // ---------------------------------------------------------------------------
 
 function ProductsPage(): React.JSX.Element {
+  const companyId = useCompanyId()
+
   const [filters, setFilters] = useState<ProductListFilters>({
     limit: PAGE_SIZE,
     offset: 0,
@@ -61,23 +59,27 @@ function ProductsPage(): React.JSX.Element {
     status: undefined
   })
 
-  const productsQuery = useProducts(COMPANY_ID, filters)
-  const categoriesQuery = useCategories(COMPANY_ID)
-  const unitsQuery = useUnitsOfMeasure(COMPANY_ID)
-  const createProduct = useCreateProduct(COMPANY_ID)
-  const updateProduct = useUpdateProduct(COMPANY_ID)
+  const productsQuery = useProducts(companyId, filters)
+  const categoriesQuery = useCategories(companyId)
+  const unitsQuery = useUnitsOfMeasure(companyId)
+  const createProduct = useCreateProduct(companyId)
+  const updateProduct = useUpdateProduct(companyId)
 
   const products = productsQuery.data?.data ?? []
-  const total = productsQuery.data?.total ?? 0
-  const currentPage = Math.floor(filters.offset / PAGE_SIZE) + 1
-  const totalPages = Math.ceil(total / PAGE_SIZE)
-  const hasPrevious = filters.offset > 0
-  const hasNext = filters.offset + PAGE_SIZE < total
+
+  const { paginationState, goToNextPage, goToPreviousPage, resetPage } = usePaginationControlled({
+    total: productsQuery.data?.total ?? 0,
+    offset: filters.offset,
+    pageSize: PAGE_SIZE,
+    onOffsetChange: useCallback((offset: number) => setFilters((prev) => ({ ...prev, offset })), [])
+  })
 
   // Dialog state
   const [isCreateOpen, setIsCreateOpen] = useState(false)
   const [editingProduct, setEditingProduct] = useState<ProductListItem | null>(null)
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
+
+  const { handleMutationError } = useMutationHandlers({ setFieldErrors })
 
   // ---------------------------------------------------------------------------
   // Filter handlers
@@ -85,6 +87,7 @@ function ProductsPage(): React.JSX.Element {
 
   function handleSearchChange(value: string): void {
     setFilters((prev) => ({ ...prev, search: value, offset: 0 }))
+    resetPage()
   }
 
   function handleCategoryChange(key: React.Key | null): void {
@@ -95,14 +98,6 @@ function ProductsPage(): React.JSX.Element {
   function handleStatusChange(key: React.Key | null): void {
     const status = key === 'all' || key === null ? undefined : String(key)
     setFilters((prev) => ({ ...prev, status, offset: 0 }))
-  }
-
-  function handlePrevious(): void {
-    setFilters((prev) => ({ ...prev, offset: Math.max(0, prev.offset - PAGE_SIZE) }))
-  }
-
-  function handleNext(): void {
-    setFilters((prev) => ({ ...prev, offset: prev.offset + PAGE_SIZE }))
   }
 
   // ---------------------------------------------------------------------------
@@ -116,15 +111,9 @@ function ProductsPage(): React.JSX.Element {
         toast.success('Produto criado com sucesso')
         setIsCreateOpen(false)
       },
-      onError: (error) => {
-        if (error instanceof ApiError && error.fields) {
-          setFieldErrors(error.fields)
-        } else if (error instanceof ApiError && error.code === 'CONFLICT') {
-          setFieldErrors({ sku: 'Já existe um produto com este SKU.' })
-        } else {
-          toast.error('Erro ao criar produto. Tente novamente.')
-        }
-      }
+      onError: handleMutationError('Erro ao criar produto. Tente novamente.', {
+        CONFLICT: { sku: 'Já existe um produto com este SKU.' }
+      })
     })
   }
 
@@ -135,13 +124,7 @@ function ProductsPage(): React.JSX.Element {
         toast.success('Produto atualizado com sucesso')
         setEditingProduct(null)
       },
-      onError: (error) => {
-        if (error instanceof ApiError && error.fields) {
-          setFieldErrors(error.fields)
-        } else {
-          toast.error('Erro ao atualizar produto. Tente novamente.')
-        }
-      }
+      onError: handleMutationError('Erro ao atualizar produto. Tente novamente.')
     })
   }
 
@@ -295,14 +278,15 @@ function ProductsPage(): React.JSX.Element {
 
             <div className="flex items-center justify-between border-t border-border/70 pt-4">
               <p className="text-sm text-muted-foreground">
-                {total} {total === 1 ? 'produto' : 'produtos'} • Página {currentPage} de {totalPages}
+                {paginationState.total} {paginationState.total === 1 ? 'produto' : 'produtos'} • Página{' '}
+                {paginationState.currentPage} de {paginationState.totalPages}
               </p>
               <div className="flex items-center gap-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  isDisabled={!hasPrevious}
-                  onPress={handlePrevious}
+                  isDisabled={!paginationState.hasPrevious}
+                  onPress={goToPreviousPage}
                   aria-label="Página anterior"
                 >
                   <ChevronLeft className="size-4" />
@@ -311,8 +295,8 @@ function ProductsPage(): React.JSX.Element {
                 <Button
                   variant="outline"
                   size="sm"
-                  isDisabled={!hasNext}
-                  onPress={handleNext}
+                  isDisabled={!paginationState.hasNext}
+                  onPress={goToNextPage}
                   aria-label="Próxima página"
                 >
                   Próxima

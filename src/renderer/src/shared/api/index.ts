@@ -1,5 +1,7 @@
 export { ApiError, apiClient } from './client'
 export type { FetchOptions } from './client'
+export { API_ERROR_CODES, getUserErrorMessage, isKnownErrorCode } from './error-codes'
+export type { ApiErrorCode } from './error-codes'
 export { queryClient } from './query-client'
 export * from './catalog-api'
 export * from './commercial-api'

@@ -1,8 +1,8 @@
-import { useProducts } from '@pages/products/hooks/use-products'
 import { ApiError } from '@shared/api'
 import type { CreateQuoteInput, QuoteDetailItem, QuoteItemInput, UpdateQuoteInput } from '@shared/api'
 import { useActiveCompany } from '@shared/hooks/use-active-company'
 import { useCustomers } from '@shared/hooks/use-customers'
+import { useProducts } from '@shared/hooks/use-products'
 import {
   useConvertQuoteToOrder,
   useCreateQuote,

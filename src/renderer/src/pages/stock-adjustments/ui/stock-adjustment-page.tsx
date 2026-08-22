@@ -1,5 +1,6 @@
 import { ApiError } from '@shared/api'
 import type { AdjustmentInput, AdjustmentType, Warehouse } from '@shared/api'
+import { useWarehouses } from '@shared/hooks/use-warehouses'
 import { Badge } from '@shared/ui/badge'
 import { Button } from '@shared/ui/button'
 import { ConfirmDialog } from '@shared/ui/confirm-dialog'
@@ -16,7 +17,6 @@ import { ChevronLeft, ChevronRight, ClipboardList, Loader2Icon } from 'lucide-re
 import { type FormEvent, useCallback, useState } from 'react'
 import { toast } from 'sonner'
 
-import { useWarehouses } from '../../warehouses/hooks/use-warehouses'
 import { useStockAdjustments, useCreateStockAdjustment } from '../hooks/use-stock-adjustments'
 import type { StockAdjustment } from '../hooks/use-stock-adjustments'
 

@@ -5,6 +5,9 @@ This directory captures significant architectural and technical decisions for th
 | ADR | Title | Status | Date |
 |-----|-------|--------|------|
 | ADR-0001 | Database schema foundation for stock, POS, and fiscal documents | proposed | 2026-08-01 |
+| ADR-0002 | Shared Lib Utility Patterns | accepted | 2026-08-21 |
+| ADR-0003 | Renderer DX Abstractions — Hook Factory, Pagination, Error Codes, and Branded Types | accepted | 2026-08-21 |
+| ADR-0004 | Renderer DX Patterns v2 — QueryState, useListPage, Hook Consolidation, and API Result | accepted | 2026-08-21 |
 
 ## Related documentation
 

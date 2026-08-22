@@ -1,5 +1,3 @@
-import { useProducts } from '@pages/products/hooks/use-products'
-import { useWarehouses } from '@pages/warehouses/hooks/use-warehouses'
 import { ApiError } from '@shared/api'
 import type {
   CreatePurchaseOrderInput,
@@ -11,6 +9,7 @@ import type {
 import { useActiveCompany } from '@shared/hooks/use-active-company'
 import { usePurchaseOrderPayments, useRegisterPurchaseOrderPayment } from '@shared/hooks/use-payments'
 import type { RegisterPaymentInput } from '@shared/hooks/use-payments'
+import { useProducts } from '@shared/hooks/use-products'
 import {
   useCreatePurchaseOrder,
   usePurchaseOrderDetail,
@@ -19,6 +18,7 @@ import {
   useUpdatePurchaseOrder
 } from '@shared/hooks/use-purchase-orders'
 import { useSuppliers } from '@shared/hooks/use-suppliers'
+import { useWarehouses } from '@shared/hooks/use-warehouses'
 import { AttachmentPanel } from '@shared/ui/attachment-panel'
 import { AuditExpandablePanel } from '@shared/ui/audit-expandable-panel'
 import { Button } from '@shared/ui/button'
